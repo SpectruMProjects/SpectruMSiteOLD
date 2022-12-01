@@ -1,14 +1,14 @@
 import { createContext, useContext } from "react";
 import { BehaviorSubject } from "rxjs";
 import { useSubject } from "../utils/rxjs/subscribe";
-import { ProfileService } from "./ProfileService";
+import { UserService } from "./UserService";
 import { User } from "./User";
 
 export class ProfileVM {
   readonly user = new BehaviorSubject<User | null>(null)
 
   constructor(
-    private readonly _service: ProfileService
+    private readonly _service: UserService
   ) {
     this._service.user.subscribe(this.user)
   }

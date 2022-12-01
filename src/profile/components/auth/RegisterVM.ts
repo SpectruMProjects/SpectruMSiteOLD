@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
 import { BehaviorSubject } from "rxjs";
 import { useSubject } from "../../../utils/rxjs/subscribe";
-import { ProfileService } from "../../ProfileService";
+import { UserService } from "../../UserService";
 
 export class RegisterVM {
-  constructor(private readonly _service: ProfileService) {}
+  constructor(private readonly _service: UserService) {}
 
   readonly username = new BehaviorSubject('')
   readonly mail     = new BehaviorSubject('')

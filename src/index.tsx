@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { ProfileService, ProfileServiceContext } from './profile/ProfileService';
+import { UserService, ProfileServiceContext } from './profile/UserService';
 import { ProfileVM, ProfileVMContext } from './profile/ProfileVM';
 
 //Services
-const profileService = new ProfileService()
+const userService = new UserService()
 
 //Vm's
-const profileVM = new ProfileVM(profileService)
+const profileVM = new ProfileVM(userService)
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
   {/* Inject dependecies */}
-  <ProfileServiceContext.Provider value={profileService}>
+  <ProfileServiceContext.Provider value={userService}>
   <ProfileVMContext.Provider value={profileVM}>
 
   <App/>

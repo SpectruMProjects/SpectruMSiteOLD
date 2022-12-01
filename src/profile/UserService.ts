@@ -8,7 +8,7 @@ type RegiserUser = {
   password: string,
 }
 
-export class ProfileService  {
+export class UserService  {
   private readonly _user = new BehaviorSubject<User | null>(null)
   get user() {
     return this._user.asObservable()
@@ -23,5 +23,5 @@ export class ProfileService  {
   }
 }
 
-export const ProfileServiceContext = createContext<ProfileService | null>(null)
+export const ProfileServiceContext = createContext<UserService | null>(null)
 export function useProfileService() {return useContext(ProfileServiceContext)!}

@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
 import { BehaviorSubject } from "rxjs";
 import { useSubject } from "../../../utils/rxjs/subscribe";
-import { ProfileService } from "../../ProfileService";
+import { UserService } from "../../UserService";
 
 export class LoginVM {
-  constructor(private readonly _service: ProfileService) {}
+  constructor(private readonly _service: UserService) {}
 
   readonly loginField = new BehaviorSubject('')
   readonly passwordField = new BehaviorSubject('')

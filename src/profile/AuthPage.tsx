@@ -5,7 +5,7 @@ import LoginForm from "./components/auth/LoginForm"
 import { LoginVM, LoginVMContext } from "./components/auth/LoginVM"
 import RegisterForm from "./components/auth/RegisterForm"
 import { RegisterVM, RegisterVMContext } from "./components/auth/RegisterVM"
-import { useProfileService } from "./ProfileService"
+import { useProfileService } from "./UserService"
 
 export default function AuthPage() {
   const [vm] = useState(new AuthVM())
