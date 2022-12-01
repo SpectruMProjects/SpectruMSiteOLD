@@ -1,5 +1,7 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { env } from '../env/env'
+import { LoginDto, LoginReponse } from './dto/login'
+import { RegisterDto, RegisterResponse } from './dto/register'
 
 const url = env.server_url
 
@@ -8,7 +10,7 @@ function composeUrl(uri: string): string {
 }
 
 export class HttpClient {
-  async get(uri: string, config?: AxiosRequestConfig): Promise<unknown> {
+  async get(uri: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     const accessToken = localStorage.getItem('accessToken')
     const header = accessToken ? {'Authorization': 'Bearer ' + accessToken} : {}
     
@@ -25,19 +27,18 @@ export class HttpClient {
       )
     } catch (e) {
       if (e instanceof axios.AxiosError) {
-        if (e.status === 401) {localStorage.removeItem('accessToken')}
-        await this.refreshToken()
-
-        if (accessToken) {
-          return await this.get(uri, config)
+        if (e.status === 401) {
+          localStorage.removeItem('accessToken')
+          await this.refreshToken()
+          if (accessToken) return await this.get(uri, config)
         }
+        throw e
       }
-
       throw e
     }
   }
 
-  async post(uri: string, body: any, config?: AxiosRequestConfig): Promise<unknown> {
+  async post(uri: string, body: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     const accessToken = localStorage.getItem('accessToken')
     const header = accessToken ? {'Authorization': 'Bearer ' + accessToken} : {}
     
@@ -55,19 +56,18 @@ export class HttpClient {
       )
     } catch (e) {
       if (e instanceof axios.AxiosError) {
-        if (e.status === 401) {localStorage.removeItem('accessToken')}
-        await this.refreshToken()
-
-        if (accessToken) {
-          return await this.post(uri, body, config)
+        if (e.status === 401) {
+          localStorage.removeItem('accessToken')
+          await this.refreshToken()
+          if (accessToken) return await this.get(uri, config)
         }
+        throw e
       }
-
       throw e
     }
   }
 
-  async put(uri: string, data: any, config: AxiosRequestConfig): Promise<unknown> {
+  async put(uri: string, data: any, config: AxiosRequestConfig): Promise<AxiosResponse> {
     const accessToken = localStorage.getItem('accessToken')
     const header = accessToken ? {'Authorization': 'Bearer ' + accessToken} : {}
     
@@ -85,19 +85,18 @@ export class HttpClient {
       )
     } catch (e) {
       if (e instanceof axios.AxiosError) {
-        if (e.status === 401) {localStorage.removeItem('accessToken')}
-        await this.refreshToken()
-
-        if (accessToken) {
-          return await this.put(uri, data, config)
+        if (e.status === 401) {
+          localStorage.removeItem('accessToken')
+          await this.refreshToken()
+          if (accessToken) return await this.get(uri, config)
         }
+        throw e
       }
-
       throw e
     }
   }
 
-  async delete(uri: string, config: AxiosRequestConfig): Promise<unknown> {
+  async delete(uri: string, config: AxiosRequestConfig): Promise<AxiosResponse> {
     const accessToken = localStorage.getItem('accessToken')
     const header = accessToken ? {'Authorization': 'Bearer ' + accessToken} : {}
     
@@ -114,14 +113,13 @@ export class HttpClient {
       )
     } catch (e) {
       if (e instanceof axios.AxiosError) {
-        if (e.status === 401) {localStorage.removeItem('accessToken')}
-        await this.refreshToken()
-
-        if (accessToken) {
-          return await this.delete(uri, config)
+        if (e.status === 401) {
+          localStorage.removeItem('accessToken')
+          await this.refreshToken()
+          if (accessToken) return await this.get(uri, config)
         }
+        throw e
       }
-
       throw e
     }
   }
@@ -138,6 +136,46 @@ export class HttpClient {
     } catch (e) {
       localStorage.removeItem('refreshToken')
       localStorage.removeItem('accessToken')
+    }
+  }
+
+  async login({password, login}: LoginDto): Promise<LoginReponse> {
+    try {
+      const { data } = await this.post('/auth/', {password, login})
+    
+      const {refreshToken, accessToken} = data
+      localStorage.setItem('refreshToken', refreshToken)
+      localStorage.setItem('accessToken', accessToken)
+
+      return {
+        code: 'ok',
+        ...data
+      }
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        if (e.status === 400) return { code: 'error' };
+      }
+      throw e
+    }
+  }
+
+  async register({mail, password, username}: RegisterDto): Promise<RegisterResponse> {
+    try {
+      await this.post('/auth/reg', {password, mail, username})
+      return {code: 'ok'}
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        if (e.status === 400) {
+          const data = e.response?.data
+          if (data?.message) {
+            return {
+              code: 'error',
+              codes: data.message
+            }
+          }
+        }
+      }
+      throw e
     }
   }
 }

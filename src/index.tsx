@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { HttpClient } from './http_client/HttpClient';
 import './index.css';
 import { UserService, ProfileServiceContext } from './profile/service/UserService';
 import { ProfileVM, ProfileVMContext } from './profile/vm/ProfileVM';
 
+const httpClient = new HttpClient()
+
 //Services
-const userService = new UserService()
+const userService = new UserService(httpClient)
 
 //Vm's
 const profileVM = new ProfileVM(userService)
