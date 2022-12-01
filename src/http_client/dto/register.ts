@@ -15,4 +15,8 @@ export type RegisterResponse =
 } | {
   code: 'error',
   codes: RegisterFormFieldErrorCode[]
+} | {
+  code: 'auth.error.tooManyRegRequests'
+} | {
+  code: 'auth.error.userWithSameUsernameOrEmailExists'
 }

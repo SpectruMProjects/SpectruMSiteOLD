@@ -21,4 +21,6 @@ export type LoginReponse =
   code: 'auth.error.incorrectPassword'
 } | {
   code: 'error'
+} | {
+  code: 'auth.error.userWithSameUsernameOrEmailNotExists'
 }
