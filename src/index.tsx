@@ -10,6 +10,7 @@ const httpClient = new HttpClient()
 
 //Services
 const userService = new UserService(httpClient)
+userService.auth()
 
 //Vm's
 const profileVM = new ProfileVM(userService)

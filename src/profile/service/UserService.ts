@@ -16,11 +16,22 @@ export class UserService  {
   constructor(private readonly _httpClient: HttpClient) {}
 
   async login(login: string, password: string) {
-    return await this._httpClient.login({ password, login })
+    const res = await this._httpClient.login({ password, login })
+    if (res.code !== 'ok') return res
+
+    this._user.next(res.user)
   }
 
   async register({mail, password, username}: RegiserUser) {
     return await this._httpClient.register({mail, password, username})
+  }
+
+  async auth() {
+    const res = await this._httpClient.auth()
+    if (res.code === 'ok') {
+      const {UUID,id,mail,username} = res.user
+      this._user.next(new User(id, username, mail, UUID))
+    }
   }
 }
 

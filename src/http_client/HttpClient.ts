@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { env } from '../env/env'
+import { AuthReponse } from './dto/auth'
 import { LoginDto, LoginReponse } from './dto/login'
 import { RegisterDto, RegisterResponse } from './dto/register'
 
@@ -156,6 +157,27 @@ export class HttpClient {
         if (e.status === 400) return { code: 'error' };
       }
       throw e
+    }
+  }
+
+  async auth(): Promise<AuthReponse> {
+    try {
+      const res = await this.get('/users/me')
+      return {
+        code: 'ok',
+        user: res.data
+      }
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        if (e.status === 401 && localStorage.getItem('accessToken')) {
+          await this.refreshToken()
+          return await this.auth()
+        }
+      }
+
+      return {
+        code: 'error'
+      }
     }
   }
 
