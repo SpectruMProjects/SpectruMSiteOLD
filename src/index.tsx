@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { UserService, ProfileServiceContext } from './profile/UserService';
-import { ProfileVM, ProfileVMContext } from './profile/ProfileVM';
+import { UserService, ProfileServiceContext } from './profile/service/UserService';
+import { ProfileVM, ProfileVMContext } from './profile/vm/ProfileVM';
 
 //Services
 const userService = new UserService()

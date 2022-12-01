@@ -1,5 +1,5 @@
-import Profile from "./components/profile/Profile"
-import { useUser } from "./ProfileVM"
+import Profile from "../components/Profile"
+import { useUser } from "../vm/ProfileVM"
 
 export default function ProfilePage() {
   const user = useUser()

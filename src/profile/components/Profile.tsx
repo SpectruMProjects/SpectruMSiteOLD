@@ -1,5 +1,5 @@
-import Card from "../../../components/Card"
-import { User } from "../../User"
+import Card from "../../components/Card"
+import { User } from "../User"
 import Skin from "./Skin"
 
 type ProfileProps = {

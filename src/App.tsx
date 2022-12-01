@@ -7,10 +7,10 @@ import HomePage from "./home/HomePage";
 import LauncherPage from "./launcher/LauncherPage";
 import PassPage from "./pass/PassPage";
 import { useEffect, useState } from "react";
-import ProfilePage from "./profile/ProfilePage";
+import ProfilePage from "./profile/pages/ProfilePage";
 import Profile from '@material-ui/icons/VerifiedUser'
-import { useUser } from "./profile/ProfileVM";
-import AuthPage from "./profile/AuthPage";
+import { useUser } from "./profile/vm/ProfileVM";
+import AuthPage from "./profile/pages/AuthPage";
 import { ShoppingCart } from "@material-ui/icons";
 
 export default function App() {

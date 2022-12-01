@@ -1,8 +1,8 @@
 import { createContext, useContext } from "react";
 import { BehaviorSubject } from "rxjs";
-import { useSubject } from "../utils/rxjs/subscribe";
-import { UserService } from "./UserService";
-import { User } from "./User";
+import { useSubject } from "../../utils/rxjs/subscribe";
+import { UserService } from "../service/UserService";
+import { User } from "../User";
 
 export class ProfileVM {
   readonly user = new BehaviorSubject<User | null>(null)

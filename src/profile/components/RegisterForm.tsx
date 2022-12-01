@@ -1,7 +1,7 @@
-import Card from "../../../components/Card"
-import TextField from "../../../components/input/TextInput"
-import { useAuthVM } from "../../AuthVM"
-import { useRegisterForm } from "./RegisterVM"
+import Card from "../../components/Card"
+import TextField from "../../components/input/TextInput"
+import { useAuthVM } from "../vm/AuthVM"
+import { useRegisterForm } from "../vm/RegisterVM"
 
 export default function RegisterForm() {
   const authVM = useAuthVM()

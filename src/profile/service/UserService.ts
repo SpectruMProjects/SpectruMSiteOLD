@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { BehaviorSubject } from "rxjs";
-import { User } from "./User";
+import { User } from "../User";
 
 type RegiserUser = {
   username: string,

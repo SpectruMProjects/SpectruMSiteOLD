@@ -1,7 +1,7 @@
-import Card from "../../../components/Card";
-import TextField from "../../../components/input/TextInput";
-import { useAuthVM } from "../../AuthVM";
-import { useLoginVMForm } from "./LoginVM";
+import Card from "../../components/Card";
+import TextField from "../../components/input/TextInput";
+import { useAuthVM } from "../vm/AuthVM";
+import { useLoginVMForm } from "../vm/LoginVM";
 
 export default function LoginForm() {
   const authVm = useAuthVM()

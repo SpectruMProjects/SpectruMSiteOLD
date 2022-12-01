@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { BehaviorSubject } from "rxjs";
-import { useSubject } from "../../../utils/rxjs/subscribe";
-import { UserService } from "../../UserService";
+import { useSubject } from "../../utils/rxjs/subscribe";
+import { UserService } from "../service/UserService";
 
 export class RegisterVM {
   constructor(private readonly _service: UserService) {}

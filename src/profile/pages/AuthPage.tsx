@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { useSubject } from "../utils/rxjs/subscribe"
-import { AuthVM, AuthVMContext } from "./AuthVM"
-import LoginForm from "./components/auth/LoginForm"
-import { LoginVM, LoginVMContext } from "./components/auth/LoginVM"
-import RegisterForm from "./components/auth/RegisterForm"
-import { RegisterVM, RegisterVMContext } from "./components/auth/RegisterVM"
-import { useProfileService } from "./UserService"
+import { useSubject } from "../../utils/rxjs/subscribe"
+import { AuthVM, AuthVMContext } from "../vm/AuthVM"
+import LoginForm from "../components/LoginForm"
+import { LoginVM, LoginVMContext } from "../vm/LoginVM"
+import RegisterForm from "../components/RegisterForm"
+import { RegisterVM, RegisterVMContext } from "../vm/RegisterVM"
+import { useProfileService } from "../service/UserService"
 
 export default function AuthPage() {
   const [vm] = useState(new AuthVM())
