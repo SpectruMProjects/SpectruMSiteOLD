@@ -13,8 +13,10 @@ export type RegisterResponse =
 {
   code: 'ok'
 } | {
-  code: 'error',
+  code: 'form',
   codes: RegisterFormFieldErrorCode[]
+} | {
+  code: 'error'
 } | {
   code: 'auth.error.tooManyRegRequests'
 } | {

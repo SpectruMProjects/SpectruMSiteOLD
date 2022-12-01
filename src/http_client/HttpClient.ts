@@ -142,7 +142,8 @@ export class HttpClient {
 
   async login({password, login}: LoginDto): Promise<LoginReponse> {
     try {
-      const { data } = await this.post('/auth/', {password, login})
+      const res = await this.post('/auth/', {password, login})
+      const { data } = res
     
       const {refreshToken, accessToken} = data
       localStorage.setItem('refreshToken', refreshToken)
@@ -154,9 +155,11 @@ export class HttpClient {
       }
     } catch (e) {
       if (e instanceof AxiosError) {
-        if (e.status === 400) return { code: 'error' };
+        const message = e.response?.data?.message
+        if (e.status === 400 && typeof message == 'object') 
+          return { code: 'form', codes: message };
       }
-      throw e
+      return {code: 'error'}
     }
   }
 
@@ -191,13 +194,15 @@ export class HttpClient {
           const data = e.response?.data
           if (data?.message) {
             return {
-              code: 'error',
+              code: 'form',
               codes: data.message
             }
           }
         }
       }
-      throw e
+      return {
+        code: 'error'
+      }
     }
   }
 }

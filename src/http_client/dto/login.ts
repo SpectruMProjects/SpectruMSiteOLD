@@ -3,6 +3,8 @@ export interface LoginDto {
   password: string;
 }
 
+export type LoginFormFieldErrorCode = 'login.empty'
+
 export type LoginReponse = 
 {
   code: 'ok',
@@ -20,7 +22,10 @@ export type LoginReponse =
 {
   code: 'auth.error.incorrectPassword'
 } | {
-  code: 'error'
+  code: 'form',
+  codes: LoginFormFieldErrorCode[]
 } | {
   code: 'auth.error.userWithSameUsernameOrEmailNotExists'
+} | {
+  code: 'error'
 }
