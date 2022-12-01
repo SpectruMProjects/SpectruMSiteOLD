@@ -5,16 +5,13 @@ import { ProfileService } from "./ProfileService";
 import { User } from "./User";
 
 export class ProfileVM {
+  readonly user = new BehaviorSubject<User | null>(null)
+
   constructor(
     private readonly _service: ProfileService
   ) {
-    this._service.user.subscribe({
-      complete: () => this.user.complete(),
-      next: (v) => this.user.next(v),
-    })
+    this._service.user.subscribe(this.user)
   }
-
-  readonly user = new BehaviorSubject<User | null>(null)
 
   async login(login: string, password: string) {
     try {
