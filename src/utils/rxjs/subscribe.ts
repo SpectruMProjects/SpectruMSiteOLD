@@ -1,23 +1,19 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BehaviorSubject, skip, Subscription } from "rxjs";
 
 export function useSubject<T>(subject: BehaviorSubject<T>, byDefault?: T) {
   const [state, setState] = useState<T>(byDefault ?? subject.value)
 
-  let subscription: Subscription | null = null
-
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    let subscription: Subscription | null = null
     subscription = subject
       .pipe(skip(1))
       .subscribe(v => {
         setState(v)
       })
+    
+    return () => subscription?.unsubscribe()
   }, [])
-
-  useLayoutEffect(() => {
-    subscription?.unsubscribe()
-  })
 
   return state
 }
