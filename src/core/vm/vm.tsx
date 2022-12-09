@@ -1,4 +1,4 @@
-import { Component, Context, ReactNode, useEffect} from "react"
+import { Context, ReactNode, useEffect} from "react"
 
 export abstract class VM<T extends VM<T>> {
   onInit(): void | Promise<void> {}
