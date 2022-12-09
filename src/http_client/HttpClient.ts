@@ -1,8 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { env } from '../env/env'
-import { AuthReponse } from './dto/auth'
-import { LoginDto, LoginReponse } from './dto/login'
-import { RegisterDto, RegisterResponse } from './dto/register'
 
 const url = env.server_url
 
@@ -28,10 +25,10 @@ export class HttpClient {
       )
     } catch (e) {
       if (e instanceof axios.AxiosError) {
-        if (e.status === 401) {
+        if (e.response?.status === 401) {
           localStorage.removeItem('accessToken')
           await this.refreshToken()
-          if (accessToken) return await this.get(uri, config)
+          if (localStorage.getItem('accessToken')) return await this.get(uri, config)
         }
         throw e
       }
@@ -57,10 +54,10 @@ export class HttpClient {
       )
     } catch (e) {
       if (e instanceof axios.AxiosError) {
-        if (e.status === 401) {
+        if (e.response?.status === 401) {
           localStorage.removeItem('accessToken')
           await this.refreshToken()
-          if (accessToken) return await this.get(uri, config)
+          if (localStorage.getItem('accessToken')) return await this.get(uri, config)
         }
         throw e
       }
@@ -86,10 +83,10 @@ export class HttpClient {
       )
     } catch (e) {
       if (e instanceof axios.AxiosError) {
-        if (e.status === 401) {
+        if (e.response?.status === 401) {
           localStorage.removeItem('accessToken')
           await this.refreshToken()
-          if (accessToken) return await this.get(uri, config)
+          if (localStorage.getItem('accessToken')) return await this.get(uri, config)
         }
         throw e
       }
@@ -114,10 +111,10 @@ export class HttpClient {
       )
     } catch (e) {
       if (e instanceof axios.AxiosError) {
-        if (e.status === 401) {
+        if (e.response?.status === 401) {
           localStorage.removeItem('accessToken')
           await this.refreshToken()
-          if (accessToken) return await this.get(uri, config)
+          if (localStorage.getItem('accessToken')) return await this.get(uri, config)
         }
         throw e
       }
@@ -156,7 +153,7 @@ export class HttpClient {
     } catch (e) {
       if (e instanceof AxiosError) {
         const message = e.response?.data?.message
-        if (e.status === 400 && typeof message == 'object') 
+        if (e.response?.status === 400 && typeof message == 'object') 
           return { code: 'form', codes: message };
       }
       return {code: 'error'}
@@ -172,7 +169,7 @@ export class HttpClient {
       }
     } catch (e) {
       if (e instanceof AxiosError) {
-        if (e.status === 401 && localStorage.getItem('accessToken')) {
+        if (e.response?.status === 403 && localStorage.getItem('accessToken')) {
           await this.refreshToken()
           return await this.auth()
         }
@@ -190,7 +187,7 @@ export class HttpClient {
       return {code: 'ok'}
     } catch (e) {
       if (e instanceof AxiosError) {
-        if (e.status === 400) {
+        if (e.response?.status === 400) {
           const data = e.response?.data
           if (data?.message) {
             return {
@@ -205,4 +202,258 @@ export class HttpClient {
       }
     }
   }
+
+  async activateRegCode(code: string): Promise<ActivateRegCodeResponse> {
+    try {
+      const res = await this.get(`/auth/activate/reg/${code}`)
+      return {
+        code: 'ok',
+        user: res.data.user,
+        accessToken: res.data.accessToken,
+        refreshToken: res.data.refreshToken
+      }
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        if (e.response?.status === 400) {
+          return { code: e.response.data.code }
+        }
+      }
+
+      return { code: 'error' }
+    }
+  }
+
+  async changePass({ mail, newPass }: ChangePassDto): Promise<ChangePassResponse> {
+    try {
+      await this.post('/auth/changePass', { mail, newPass })
+      return { code: 'ok' }
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.status === 400)
+        return { code: e.response.data.code }
+      return { code: 'error' }
+    }
+  }
+
+  async activateChangePassCode(code: string): Promise<ActivateChangePassReponse> {
+    try {
+      const res = await this.get(`/auth/activate/changePass/${code}`)
+      return {
+        code: 'ok',
+        ...res.data
+      }
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.status === 400)
+        return { code: e.response.data.code }
+      return { code: 'error' }
+    }
+  }
+
+  async getWhiteList({ server }: GetWhiteListDto): Promise<GetWhiteListResponse> {
+    try {
+      const res = await this.get(`/pass/${server}/whiteList`)
+      return {
+        code: 'ok',
+        ...res.data
+      }
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.status === 400) {
+        return { code: e.response.data.code }
+      }
+      return { code: 'error' }
+    }
+  }
+
+  async getWhiteListUserStatus({ server, username }: GetWhiteListUserStatusDto): Promise<GetWhiteListUserStatusResponse> {
+    try {
+      await this.get(`/pass/${server}/whiteList/${username}`)
+      return { code: 'ok', status: 'active' }
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.status === 400) {
+        return (e.response.data.code 
+          ? { code: e.response.data.code } 
+          : { code: 'ok', status: 'notActive' })
+      }
+      return {code: 'error'}
+    }
+  }
+
+  async getHardcoreStat(username: string): Promise<GetHardcoreStatResponse> {
+    try {
+      const res = await this.get(`/hardcore/${username}`)
+      return {
+        code: 'ok',
+        ...res.data
+      }
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.status === 404) {
+        return { code: 'notFound' }
+      }
+      return { code: 'error' }
+    }
+  }
+}
+
+export type ActivateRegCodeResponse = 
+{
+  code: 'ok',
+  user: {
+    id: string,
+    username: string,
+    mail: string,
+    UUID: string,
+    SFMAPIToken: string,
+
+  },
+  accessToken: string,
+  refreshToken: string 
+} | {
+  code: 'error'
+} | {
+  code: 'userWithSameUsernameOrEmailExists'
+} | {
+  code: 'codeExpired'
+}
+
+export type AuthReponse = 
+{
+  code: 'ok',
+  user: {
+    id: string,
+    mail: string,
+    username: string,
+    UUID: string
+  }
+} | {
+  code: 'error'
+}
+
+export interface LoginDto {
+  login: string;
+  password: string;
+}
+
+export type LoginFormFieldErrorCode = 'login.empty'
+
+export type LoginReponse = 
+{
+  code: 'ok',
+  user: {
+    id: string,
+    username: string,
+    mail: string,
+    UUID: string,
+    SFMAPIToken: string,
+    ServerId: string
+  },
+  refreshToken: string,
+  accessToken: string
+} | 
+{
+  code: 'incorrectPassword'
+} | {
+  code: 'form',
+  codes: LoginFormFieldErrorCode[]
+} | {
+  code: 'userWithSameUsernameOrEmailNotExists'
+} | {
+  code: 'error'
+}
+
+export interface RegisterDto {
+  mail: string
+  username: string
+  password: string
+}
+
+export type RegisterFormFieldErrorCode = 
+  'mail.notMail'      | 
+  'username.empty'    | 'usename.incorrect' |
+  'password.tooShort' | 'password.incorrect'
+
+export type RegisterResponse = 
+{
+  code: 'ok'
+} | {
+  code: 'form',
+  codes: RegisterFormFieldErrorCode[]
+} | {
+  code: 'error'
+} | {
+  code: 'tooManyRegRequests'
+} | {
+  code: 'userWithSameUsernameOrEmailExists'
+}
+
+export type ChangePassDto = { mail: string, newPass: string } 
+export type ChangePassResponse = 
+{
+  code: 'ok'
+} | {
+  code: 'error'
+} | {
+  code: 'userWithSameEmailNotExists'
+} | {
+  code: 'tooManyChangePassRequests'
+}
+
+export type ActivateChangePassReponse = 
+{
+  code: 'error'
+} | {
+  code: 'ok',
+  user: {
+    id: string,
+    username: string,
+    mail: string,
+    UUID: string,
+    SFMAPIToken: string,
+    ServerId: string
+  },
+  refreshToken: string,
+  accessToken: string 
+} | {
+  code: 'tokenExpired'
+} | {
+  code: 'userNotFound'
+}
+
+export type GetWhiteListDto = { server: string }
+export type GetWhiteListResponse = 
+{
+  code: 'error'
+} | {
+  code: 'ok',
+  users: {
+    UUID: string,
+    username: string,
+  }[]
+} | {
+  code: 'serverNotFound'
+}
+
+export type GetWhiteListUserStatusDto = { server: string, username: string }
+export type GetWhiteListUserStatusResponse =
+{
+  code: 'error'
+} | {
+  code: 'ok',
+  status: 'active' | 'notActive'
+} | {
+  code: 'serverNotFound'
+}
+
+export type GetHardcoreStatResponse =
+{
+  code: 'error'
+} | {
+  code: 'ok',
+  deaths: {
+    at: number,
+    reason?: string
+  }[],
+  loginTime: number,
+  deathTime: number,
+  respawnTime: number
+} | {
+  code: 'notFound'
 }
