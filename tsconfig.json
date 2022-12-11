@@ -18,9 +18,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "components":["components"],
+      "utils": ["utils"],
+      "pages":["pages"],
+      "store":["store"],
+      "pages-components":["pages-components"],
+    },
   },
   "include": [
     "src"
-  ]
+, "delete/rxjs", "vm.tsx"  ]
 }

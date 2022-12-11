@@ -1,27 +1,25 @@
-type TextFieldProps = {
-  value: string,
-  label?: string,
-  onChange: (newValue: string) => void,
-  className?: string,
-  type?: 'text' | 'password',
-  error?: string
-}
+import { TextInputProps } from "./TextInput.props";
 
-export default function TextField({
-  value, onChange, className, 
-  type, error, label}: TextFieldProps
-) {
+export function TextField({
+  value,
+  setValue,
+  className,
+  type,
+  error,
+  label,
+}: TextInputProps): JSX.Element {
   return (
     <div>
-      <div className={error ? 'text-red' : ''}>
-        {error ?? label}
-      </div>
+      <div className={error ? "text-red" : ""}>{error ?? label}</div>
       <input
-        className={(className ?? '') + " mt-2 px-6 py-4 bg-mantle rounded-lg outline-none"}
+        className={
+          (className ?? "") +
+          " mt-2 px-6 py-4 bg-mantle rounded-lg outline-none"
+        }
         value={value}
-        onChange={(e) => onChange(e.target.value)}
-        type={type ?? 'text'}
+        onChange={(e) => setValue(e.target.value)}
+        type={type ?? "text"}
       />
     </div>
-  )
+  );
 }
