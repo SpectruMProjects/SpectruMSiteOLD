@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { HomePage, LauncherPage, PassPage, ProfilePage, AuthPage } from "pages";
-import { NavBar } from "page-components/navbar";
+import NavBar from "components/navbar/NavBar";
 
 export default function App() {
   const router = createBrowserRouter([
