@@ -27,6 +27,7 @@
       "store":["store"],
       "pages-components":["pages-components"],
     },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }, { "name": "ts-plugin-scss-modules" }],
   },
   "include": [
     "src"

@@ -1,0 +1,71 @@
+.wrapperCardMenu {
+	position: relative;
+	display: flex;
+	color: var(--text);
+	padding: 10px;
+	gap: 20px;
+	cursor: pointer;
+	user-select: none;
+	transition: var(--transition);
+}
+
+.wrapperCardMenu:hover {
+	color:var(--mauve);
+	transition: var(--transition);
+}
+
+.wrapperMenuOn {
+	border-radius: 10px 0px 0px 10px;
+	color: var(--blue);
+	background: var(--mantle);
+	transition: var(--transition);
+}
+
+.radiusMenu {
+	position: absolute;
+	background: var(--mantle);
+	width: 10px;
+	height: 100%;
+	top: 0px;
+	right: -12px;
+	opacity: 0;
+	transition: var(--transition);
+}
+ .radiusMenu::after {
+	content: "";
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: -40px;
+	right: 0px;
+	border-radius:0 0 50% 0;
+	overflow: hidden;
+	background: transparent;
+	box-shadow: 0px 30px var(--mantle);
+}
+
+ .radiusMenu::before {
+	content: "";
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	bottom: -40px;
+	right: 0px;
+	border-radius:0 50% 0 0px;
+	background: transparent;
+	box-shadow: 0px -30px var(--mantle);
+}
+
+.radiusMenuOn {
+	opacity: 1;
+	transition: var(--transition);
+}
+
+.wrapperMenuOn:hover {
+	color: var(--blue);
+	background: var(--mantle);
+}
+
+.wrapperText {
+	z-index: 1;
+}

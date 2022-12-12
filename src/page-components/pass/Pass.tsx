@@ -1,3 +1,5 @@
+import styles from "./Pass.module.scss";
+
 export const Pass = (): JSX.Element => {
-  return <div>PassPage</div>;
+  return <div className={styles.wrapperPass}>PassPage</div>;
 };

@@ -5,15 +5,18 @@ import {
   VerifiedUser as Profile,
   ShoppingCart,
 } from "@mui/icons-material";
+import cn from "classnames";
 import { useLocation } from "react-router-dom";
 
 import { CardNavBar } from "./components";
+import { NavBarProps } from "./NavBar.props";
+import styles from "./NavBar.module.scss";
 
-export function NavBar(): JSX.Element {
+export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   const { pathname } = useLocation();
   return (
-    <div className='bg-base text-text flex flex-col place-items-center h-screen w-52 space-y-0 rounded-r-[28px]'>
-      <h1 className='py-14 text-lg font-bold'>SpectruMine</h1>
+    <div className={cn(styles.wrapperNavBar)} {...props}>
+      <h1 className={styles.titleNavBar}>SpectruMine</h1>
       <CardNavBar
         text={"Главная"}
         to={"/"}
