@@ -9,40 +9,40 @@ import { useLocation } from "react-router-dom";
 
 import { CardNavBar } from "./components";
 
-/**
- * В качестве ключа используется текст опции в меню, пожэтому он должен быть уникальным
- */
-
 export function NavBar(): JSX.Element {
-  // const location = useLocation();
-  // console.log(location);
+  const { pathname } = useLocation();
   return (
-    <div className='bg-base text-text flex flex-col place-items-center h-screen w-52 space-y-2 rounded-r-[28px]'>
+    <div className='bg-base text-text flex flex-col place-items-center h-screen w-52 space-y-0 rounded-r-[28px]'>
       <h1 className='py-14 text-lg font-bold'>SpectruMine</h1>
-      <CardNavBar text={"Главная"} to={"/"} icon={<Home />} selected={false} />
+      <CardNavBar
+        text={"Главная"}
+        to={"/"}
+        icon={<Home />}
+        selected={pathname === "/"}
+      />
       <CardNavBar
         text={"Лаунчер"}
         to={"/launcher"}
         icon={<Launch />}
-        selected={false}
+        selected={pathname === "/launcher"}
       />
       <CardNavBar
         text={"Пропуск"}
         to={"/pass"}
         icon={<ShoppingCart />}
-        selected={false}
+        selected={pathname === "/pass"}
       />
       <CardNavBar
         text={"Профиль"}
         to={"/profile"}
         icon={<Profile />}
-        selected={false}
+        selected={pathname === "/profile"}
       />
       <CardNavBar
         text={"Авторизация"}
         to={"/auth"}
         icon={<Auth />}
-        selected={false}
+        selected={pathname === "/auth"}
       />
     </div>
   );
