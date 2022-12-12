@@ -1,4 +1,4 @@
-import { Profile } from "page-components/profile";
+import { Profile } from "user/page-components/profile";
 
 export function ProfilePage() {
   return <Profile />;

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { HomePage, LauncherPage, PassPage, ProfilePage, AuthPage } from "pages";
-import NavBar from "components/navbar/NavBar";
+import { NavBar } from "components/navbar";
 
 export default function App() {
   return (
