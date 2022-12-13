@@ -292,8 +292,9 @@ export class HttpClient {
     }
   }
 
-  
-  async getWhiteList({ server }: GetWhiteListDto): Promise<GetWhiteListResponse> {
+  async getWhiteList({
+    server,
+  }: GetWhiteListDto): Promise<GetWhiteListResponse> {
     try {
       const res = await this.get(`/pass/${server}/whiteList`);
       return {
