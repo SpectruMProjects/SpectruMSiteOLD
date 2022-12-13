@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-
 import { env } from "utils/constants";
 
 const url = env.server_url;
@@ -193,6 +192,9 @@ export class HttpClient {
     }
   }
 
+  /**
+   * Запрос на регистрацию. Код для активации придёт на почту
+   */
   async register({
     mail,
     password,
@@ -219,14 +221,22 @@ export class HttpClient {
     }
   }
 
+  /**
+   * Отправка кода регистрации. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
+   */
   async activateRegCode(code: string): Promise<ActivateRegCodeResponse> {
     try {
       const res = await this.get(`/auth/activate/reg/${code}`);
+      const { accessToken, refreshToken, user } = res.data;
+
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+
       return {
         code: "ok",
-        user: res.data.user,
-        accessToken: res.data.accessToken,
-        refreshToken: res.data.refreshToken,
+        user,
+        accessToken,
+        refreshToken,
       };
     } catch (e) {
       if (e instanceof AxiosError) {
@@ -239,6 +249,9 @@ export class HttpClient {
     }
   }
 
+  /**
+   * Запрос на смену пароля. Код для активации придёт на почту
+   */
   async changePass({
     mail,
     newPass,
@@ -253,14 +266,24 @@ export class HttpClient {
     }
   }
 
+  /**
+   * Отправка кода смены пароля. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
+   */
   async activateChangePassCode(
     code: string
   ): Promise<ActivateChangePassReponse> {
     try {
       const res = await this.get(`/auth/activate/changePass/${code}`);
+      const { accessToken, refreshToken, user } = res.data;
+
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+
       return {
         code: "ok",
-        ...res.data,
+        user,
+        accessToken,
+        refreshToken,
       };
     } catch (e) {
       if (e instanceof AxiosError && e.response?.status === 400)

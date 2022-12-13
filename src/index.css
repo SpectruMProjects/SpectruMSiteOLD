@@ -1,36 +1,113 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
-:root{
-  --rosewater:#f5e0dc;
-  --flamingo:	#f2cdcd;
-  --pink:	#f5c2e7;
-  --mauve:	#cba6f7;
-  --red:	#f38ba8
-  --maroon:	#eba0ac;
-  --peach:	#fab387;
-  --yellow	:#f9e2af;
-  --green:	#a6e3a1;
-  --teal:	#94e2d5;
-  --sky	:#89dceb;
-  --sapphire:	#74c7ec;
-  --blue:	#89b4fa;
-  --lavender:	#b4befe;
-  --text:	#cdd6f4;
-  --subtext1:	#bac2de;
-  --subtext0:	#a6adc8;
-  --overlay2:	#9399b2;
-  --overlay1:	#7f849c;
-  --overlay0:	#6c7086;
-  --surface2:	#585b70;
-  --surface1	:#45475a;
-  --surface0:	#313244;
+:root {
+  --rosewater: #f5e0dc;
+  --flamingo: #f2cdcd;
+  --pink: #f5c2e7;
+  --mauve: #cba6f7;
+  --red: #f38ba8;
+  --maroon: #eba0ac;
+  --peach: #fab387;
+  --yellow: #f9e2af;
+  --green: #a6e3a1;
+  --teal: #94e2d5;
+  --sky: #89dceb;
+  --sapphire: #74c7ec;
+  --blue: #89b4fa;
+  --lavender: #b4befe;
+  --text: #cdd6f4;
+  --subtext1: #bac2de;
+  --subtext0: #a6adc8;
+  --overlay2: #9399b2;
+  --overlay1: #7f849c;
+  --overlay0: #6c7086;
+  --surface2: #585b70;
+  --surface1: #45475a;
+  --surface0: #313244;
   --base: #1e1e2e;
   --mantle: #181825;
   --crust: #11111b;
 
-  --transition: all 0.25s ;
+  --transition: all 0.25s;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 * {
   box-sizing: border-box;
@@ -45,7 +122,3 @@ body {
   background-color: var(--crust);
   color: var(--text);
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

@@ -22,7 +22,7 @@ export const CardNavBar = ({
       onClick={() => navigate(to)}
     >
       {icon}
-      <h1 className={styles.wrapperText}>{text}</h1>
+      <p className={styles.wrapperText}>{text}</p>
       <span
         className={cn(styles.radiusMenu, {
           [styles.radiusMenuOn]: selected,

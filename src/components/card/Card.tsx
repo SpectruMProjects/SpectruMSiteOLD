@@ -1,8 +1,15 @@
-import { CardProps } from "./Card.props";
+import cn from "classnames";
 
-export function Card({ children, className }: CardProps): JSX.Element {
+import CardProps from "./Card.props";
+import styles from "./Card.module.scss";
+
+export function Card({
+  children,
+  className,
+  ...props
+}: CardProps): JSX.Element {
   return (
-    <div className={(className ?? "") + " bg-base m-4 p-4 rounded-lg"}>
+    <div className={cn(className, styles.wrapperCard)} {...props}>
       {children}
     </div>
   );

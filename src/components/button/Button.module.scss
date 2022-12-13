@@ -1,0 +1,16 @@
+.buttonWrapper {
+	outline: none;
+	border: none;
+	background: var(--mauve);
+	color: var(--crust);
+	border-radius: 15px;
+	padding: 10px;
+	width: 100%;
+	font-size: 18px;
+	font-weight: 500;
+	transition: var(--transition);
+	cursor: pointer;
+}
+.buttonWrapper:hover {
+	transform: scale(1.02);
+}

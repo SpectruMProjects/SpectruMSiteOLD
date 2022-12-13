@@ -1,0 +1,68 @@
+.wrapperInput {
+	position: relative;
+}
+
+.input {
+	padding: 10px 15px;
+	border: 1px solid var(--blue);
+	border-radius: 10px;
+	outline: none;
+	background: var(--crust);
+	transition: var(--transition);
+	width: 100%;
+	color: var(--text);
+}
+
+.input:hover {
+	border: 1px solid var(--mauve);
+}
+
+.inputOnFocus {
+	border: 1px solid var(--mauve);
+	box-shadow: 0px 0px 0px 1px var(--mauve);
+	transition: var(--transition);
+}
+
+.inputPasswordOn {
+	padding-right:40px;
+	transition: var(--transition);
+}
+
+.inputOnError {
+	border: 1px solid var(--red);
+	box-shadow: 0px 0px 0px 1px var(--red);
+	transition: var(--transition);
+}
+
+.inputOnError:hover {
+	border: 1px solid var(--red);
+}
+
+.visibilityIcon {
+	background: transparent;
+	outline: none;
+	border: none;
+	height: 25px;
+	color: var(--text);
+	position: absolute;
+	top: 11px;
+	right: 9px;
+	transition: var(--transition);
+	cursor: pointer;
+}
+
+.labelInput {
+	position: absolute;
+	font-size: 15px;
+	top: 12px;
+	left: 10px;
+	user-select: none;
+	pointer-events: none;
+	background: var(--crust);
+	padding: 0px 5px;
+	transition: var(--transition);
+}
+
+.labelInputOn {
+	top: -14px;
+}

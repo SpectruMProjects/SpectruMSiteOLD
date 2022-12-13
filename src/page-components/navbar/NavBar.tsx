@@ -8,12 +8,19 @@ import {
 import cn from "classnames";
 import { useLocation } from "react-router-dom";
 
+import { IUser } from "utils/interface";
+import { useAppSelector } from "utils/hooks";
+import { getUser } from "store/select";
+
 import { CardNavBar } from "./components";
-import { NavBarProps } from "./NavBar.props";
+import NavBarProps from "./NavBar.props";
 import styles from "./NavBar.module.scss";
 
 export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   const { pathname } = useLocation();
+
+  const user: IUser | undefined = useAppSelector(getUser);
+
   return (
     <div className={cn(styles.wrapperNavBar)} {...props}>
       <h1 className={styles.titleNavBar}>SpectruMine</h1>
@@ -35,18 +42,21 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
         icon={<ShoppingCart />}
         selected={pathname === "/pass"}
       />
-      <CardNavBar
-        text={"Профиль"}
-        to={"/profile"}
-        icon={<Profile />}
-        selected={pathname === "/profile"}
-      />
-      <CardNavBar
-        text={"Авторизация"}
-        to={"/auth"}
-        icon={<Auth />}
-        selected={pathname === "/auth"}
-      />
+      {user ? (
+        <CardNavBar
+          text={"Профиль"}
+          to={"/profile"}
+          icon={<Profile />}
+          selected={pathname === "/profile"}
+        />
+      ) : (
+        <CardNavBar
+          text={"Авторизация"}
+          to={"/auth"}
+          icon={<Auth />}
+          selected={pathname === "/auth"}
+        />
+      )}
     </div>
   );
 }
