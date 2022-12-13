@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-
 import { env } from "utils/constants";
 
 const url = env.server_url;
@@ -196,7 +195,11 @@ export class HttpClient {
   /**
    * Запрос на регистрацию. Код для активации придёт на почту
    */
-  async register({mail, password, username}: RegisterDto): Promise<RegisterResponse> {
+  async register({
+    mail,
+    password,
+    username,
+  }: RegisterDto): Promise<RegisterResponse> {
     try {
       await this.post("/auth/reg", { password, mail, username });
       return { code: "ok" };
@@ -224,17 +227,17 @@ export class HttpClient {
   async activateRegCode(code: string): Promise<ActivateRegCodeResponse> {
     try {
       const res = await this.get(`/auth/activate/reg/${code}`);
-      const { accessToken, refreshToken, user } = res.data
+      const { accessToken, refreshToken, user } = res.data;
 
-      localStorage.setItem('accessToken', accessToken)
-      localStorage.setItem('refreshToken', refreshToken)
-      
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+
       return {
-        code: 'ok',
+        code: "ok",
         user,
         accessToken,
-        refreshToken
-      }
+        refreshToken,
+      };
     } catch (e) {
       if (e instanceof AxiosError) {
         if (e.response?.status === 400) {
@@ -249,7 +252,10 @@ export class HttpClient {
   /**
    * Запрос на смену пароля. Код для активации придёт на почту
    */
-  async changePass({ mail, newPass }: ChangePassDto): Promise<ChangePassResponse> {
+  async changePass({
+    mail,
+    newPass,
+  }: ChangePassDto): Promise<ChangePassResponse> {
     try {
       await this.post("/auth/changePass", { mail, newPass });
       return { code: "ok" };
@@ -263,20 +269,22 @@ export class HttpClient {
   /**
    * Отправка кода смены пароля. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
    */
-  async activateChangePassCode(code: string): Promise<ActivateChangePassReponse> {
+  async activateChangePassCode(
+    code: string
+  ): Promise<ActivateChangePassReponse> {
     try {
-      const res = await this.get(`/auth/activate/changePass/${code}`)
-      const { accessToken, refreshToken, user } = res.data
+      const res = await this.get(`/auth/activate/changePass/${code}`);
+      const { accessToken, refreshToken, user } = res.data;
 
-      localStorage.setItem('accessToken', accessToken)
-      localStorage.setItem('refreshToken', refreshToken)
-      
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+
       return {
-        code: 'ok',
+        code: "ok",
         user,
         accessToken,
-        refreshToken
-      }
+        refreshToken,
+      };
     } catch (e) {
       if (e instanceof AxiosError && e.response?.status === 400)
         return { code: e.response.data.code };

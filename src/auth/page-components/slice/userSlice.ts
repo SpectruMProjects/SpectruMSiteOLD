@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface IUser {
-  id: number;
-}
+import { IUser } from "utils/interface";
 
 export interface CounterState {
   user: IUser | undefined;
@@ -20,4 +18,4 @@ export const userSlice = createSlice({
 
 export const userReducer = userSlice.reducer;
 
-export const {} = userSlice.actions;
+//export const {} = userSlice.actions;

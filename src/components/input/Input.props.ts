@@ -1,14 +1,14 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-export interface TextInputProps
+export default interface InputProps
   extends DetailedHTMLProps<
     HTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
   value: string;
-  label?: string;
-  className?: string;
+  password?: boolean;
   setValue: (value: string) => void;
   type?: "text" | "password";
   error?: boolean;
+  label: string;
 }

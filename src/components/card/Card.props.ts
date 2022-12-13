@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
-export interface CardProps
+export default interface CardProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   children: ReactNode;
   className?: string;
