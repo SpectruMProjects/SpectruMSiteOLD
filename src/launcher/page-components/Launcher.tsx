@@ -1,3 +1,5 @@
+import styles from "./Launcher.module.scss";
+
 export const Launcher = (): JSX.Element => {
-  return <div className='text-overlay0'>LauncherPage</div>;
+  return <div className={styles.wrapperLauncher}>LauncherPage</div>;
 };

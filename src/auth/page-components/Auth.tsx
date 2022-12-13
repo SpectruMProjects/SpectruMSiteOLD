@@ -1,11 +1,11 @@
 import { LoginForm, RegisterForm } from "./components";
 
+import styles from "./Auth.module.scss";
+
 export const Auth = (): JSX.Element => {
   return (
-    <div className='flex-1 flex justify-center align-middle'>
-      <div className='self-center'>
-        {"login" === "login" ? <LoginForm /> : <RegisterForm />}
-      </div>
+    <div className={styles.wrapperAuth}>
+      <div>{"login" === "login" ? <LoginForm /> : <RegisterForm />}</div>
     </div>
   );
 };

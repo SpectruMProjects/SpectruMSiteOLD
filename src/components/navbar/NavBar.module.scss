@@ -1,0 +1,17 @@
+.wrapperNavBar {
+	width: 200px;
+	padding: 25px 10px;
+	border-radius: 15px 0px 0px 15px;
+	background: var(--base);
+	align-items: left;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.titleNavBar {
+	color: var(--blue);
+	font-weight: 700;
+	user-select: none;
+	margin-bottom: 10px;
+}

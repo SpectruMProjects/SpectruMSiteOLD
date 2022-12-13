@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import cn from "classnames";
 
 import { cardNavBardProps } from "./cardNavBar.props";
+import styles from "./cardNavBar.module.scss";
 
 export const CardNavBar = ({
   selected,
@@ -11,20 +13,21 @@ export const CardNavBar = ({
 }: cardNavBardProps): JSX.Element => {
   const navigate = useNavigate();
 
-  function slectableStyle(selected: boolean): string {
-    return selected ? `text-pink font-bold` : "text-overlay0";
-  }
-
   return (
     <div
-      className={`flex flex-row w-5/6 py-6 px-4 ${slectableStyle(
-        selected
-      )} hover:text-rosewater hover:ml-6 transition-all`}
+      className={cn(styles.wrapperCardMenu, {
+        [styles.wrapperMenuOn]: selected,
+      })}
       key={text}
       onClick={() => navigate(to)}
     >
       {icon}
-      <h1 className={`select-none flex-1 text-end`}>{text}</h1>
+      <h1 className={styles.wrapperText}>{text}</h1>
+      <span
+        className={cn(styles.radiusMenu, {
+          [styles.radiusMenuOn]: selected,
+        })}
+      ></span>
     </div>
   );
 };
