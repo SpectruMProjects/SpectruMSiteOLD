@@ -354,6 +354,21 @@ export class HttpClient {
   getUserCapeUrl(userId: string): string { 
     return composeUrl(`/users/${userId}/cape`)
   }
+
+  async getUserById(userId: string): Promise<GetUserByIdResponse> {
+    try {
+      const res = await this.get(`/users/${userId}`)
+      const { id, username, skin, cape } = res.data
+      return {
+        code: 'ok',
+        user: {
+          id, username, skin, cape
+        }
+      }
+    } catch (e) {
+      return {code: 'error'}
+    }
+  }
 }
 
 export type ActivateRegCodeResponse =
@@ -544,3 +559,18 @@ export type GetHardcoreStatResponse =
   | {
       code: "notFound";
     };
+
+export type GetUserByIdResponse = 
+{
+  code: 'ok',
+  user: {
+    id: string,
+    username: string,
+    skin?: string,
+    cape?: string
+  }
+} | {
+  code: 'error'
+} | {
+  code: 'notFound'
+}
