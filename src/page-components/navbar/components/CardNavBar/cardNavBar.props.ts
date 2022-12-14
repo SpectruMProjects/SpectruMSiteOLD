@@ -9,5 +9,4 @@ export interface cardNavBardProps
   activeMenu: boolean;
   setTop: (top: number) => void;
   index: number;
-  setNumberTop: (num: number) => void;
 }

@@ -32,16 +32,6 @@ export function Input({
       >
         {label}
       </label>
-      <label
-        className={cn(styles.labelInputBack, {
-          [styles.labelInputBackOn]:
-            focus === true
-              ? true
-              : value.replaceAll(" ", "").length !== 0
-              ? true
-              : false,
-        })}
-      ></label>
       <input
         className={cn(className, styles.input, {
           [styles.inputOnError]: error === true,

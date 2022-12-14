@@ -8,6 +8,10 @@
 	user-select: none;
 	transition: var(--transition);
 }
+.wrapperCardMenu:hover {
+	color: var(--secondary);
+	transition: var(--transition);
+}
 
 .iconWrap {
 	z-index: 3;
@@ -44,5 +48,10 @@
 }
 
 .wrapperCardMenuSelect{
+	color: var(--primary);
 	padding: 15px 10px;
+}
+
+.wrapperCardMenuSelect:hover{
+	color: var(--primary);
 }

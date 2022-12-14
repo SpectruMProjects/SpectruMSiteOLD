@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 
@@ -12,10 +12,15 @@ export const CardNavBar = ({
   to,
   activeMenu,
   index,
-  setNumberTop,
   setTop,
 }: cardNavBardProps): JSX.Element => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selected) {
+      setTop(index);
+    }
+  }, [index, selected, setTop]);
 
   return (
     <div
@@ -25,8 +30,7 @@ export const CardNavBar = ({
       })}
       key={text}
       onClick={() => {
-        setNumberTop(index);
-        setTop(0);
+        setTop(index);
         navigate(to);
       }}
     >

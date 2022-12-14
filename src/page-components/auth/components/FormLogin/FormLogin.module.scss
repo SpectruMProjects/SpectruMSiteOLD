@@ -1,9 +1,9 @@
 .wrapperFormLogin {
-	background-color: var(--crust);
+	background: var(--background4);
 	padding: 50px;
 	display: flex;
 	flex-direction: column;
-	border-radius: 15px;
+	border-radius: var(--radius);
 	gap: 20px;
 	width: 100%;
 	max-width: 450px;
@@ -15,11 +15,11 @@
 .title {
 	font-size: 20px;
 	font-weight: 600;
-	color: var(--text);
+	color: var(--text4);
 }
 
 .buttonRegister {
-	background-color: var(--peach);
+	background-color: var(--secondary);
 }
 
 .cardWrap {
@@ -31,4 +31,5 @@
 .cardWrap p {
 	user-select: none;
 	white-space: nowrap;
+	color: var(--text4);
 }

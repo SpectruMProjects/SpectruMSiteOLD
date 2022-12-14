@@ -39,6 +39,8 @@
   --transition-fast: all 0.1s;
   --transition-slow: all 0.5s;
 
+  --radius: 10px;
+
   /*--------------------------------------------- Light theme -------------------------------------------------------*/
   --light-primary: rgb(137, 180, 250);
   --light-primary-dark: #b4befe;
@@ -175,6 +177,7 @@ select {
   text-decoration: none;
   list-style: none;
   font-family: "Manrope", sans-serif;
+  font-weight: 500;
 }
 
 body {

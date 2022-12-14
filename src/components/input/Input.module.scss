@@ -4,22 +4,22 @@
 
 .input {
 	padding: 10px 15px;
-	border: 1px solid var(--blue);
-	border-radius: 10px;
+	border: 1px solid var(--primary);
+	border-radius: var(--radius);
 	outline: none;
-	background: var(--crust);
+	background: var(--background1);
 	transition: var(--transition);
 	width: 100%;
-	color: var(--text);
+	color: var(--text1);
 }
 
 .input:hover {
-	border: 1px solid var(--mauve);
+	border: 1px solid var(--primary);
 }
 
 .inputOnFocus {
-	border: 1px solid var(--mauve);
-	box-shadow: 0px 0px 0px 1px var(--mauve);
+	border: 1px solid var(--secondary);
+	box-shadow: 0px 0px 0px 1px var(--secondary);
 	transition: var(--transition);
 }
 
@@ -58,11 +58,14 @@
 	left: 10px;
 	user-select: none;
 	pointer-events: none;
-	background: var(--crust);
 	padding: 0px 5px;
 	transition: var(--transition);
 }
 
 .labelInputOn {
-	top: -14px;
+	transition: var(--transition);
+	top: -24px;
+	font-size: 17px;
+	font-weight: 700;
+	color: var(--text4);
 }
