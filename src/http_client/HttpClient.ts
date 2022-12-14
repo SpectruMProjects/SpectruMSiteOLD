@@ -340,6 +340,20 @@ export class HttpClient {
       return { code: "error" };
     }
   }
+
+  /**
+   * Возращает url для скачивания скина игрока 
+   */
+  getUserSkinUrl(userId: string): string { 
+    return composeUrl(`/users/${userId}/skin`)
+  }
+
+  /**
+   * Возращает url для скачивания плаща игрока 
+   */
+  getUserCapeUrl(userId: string): string { 
+    return composeUrl(`/users/${userId}/cape`)
+  }
 }
 
 export type ActivateRegCodeResponse =
