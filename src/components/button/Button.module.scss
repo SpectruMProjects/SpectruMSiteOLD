@@ -10,7 +10,16 @@
 	font-weight: 500;
 	transition: var(--transition);
 	cursor: pointer;
+	user-select: none;
 }
 .buttonWrapper:hover {
 	transform: scale(1.02);
+}
+
+.buttonWrapperOn {
+	transform: scale(0.97);
+}
+
+.buttonWrapperOn:hover {
+	transform: scale(0.97); 
 }

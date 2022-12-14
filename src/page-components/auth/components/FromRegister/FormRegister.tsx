@@ -1,31 +1,51 @@
 import { useState } from "react";
 
 import { Card, Button, Input } from "components";
-import { useAppDispatch } from "utils/hooks";
-import { actionAddForm } from "page-components/auth";
 
 import FormRegisterProps from "./FormRegister.props";
 import styles from "./FormRegister.module.scss";
 
-export function FormRegister({ className, ...props }: FormRegisterProps) {
-  const dispatch = useAppDispatch();
+export function FormRegister({
+  className,
+  setForm,
+  ...props
+}: FormRegisterProps) {
+  const [username, setUsername] = useState<string>("");
+  const [usernameError, setUsernameError] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<boolean>(false);
 
-  const [data, setData] = useState({
-    username: "",
-    usernameError: false,
-    email: "",
-    emailError: false,
-    password: "",
-    passwordError: false,
-  });
-  const {
-    username,
-    usernameError,
-    email,
-    emailError,
-    password,
-    passwordError,
-  } = data;
+  const handleRegistration = () => {
+    setUsernameError(false);
+    setEmailError(false);
+    setPasswordError(false);
+
+    if (
+      username.replaceAll(" ", "").length < 3 ||
+      username.replace(/^.*[a-zA-Z0-9]$/g, "") !== ""
+    ) {
+      setUsernameError(true);
+    }
+
+    if (
+      email.replace(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g, "") !== "" ||
+      email.replaceAll(" ", "").length === 0
+    ) {
+      setEmailError(true);
+    }
+
+    if (
+      password.replaceAll(" ", "").length < 8 ||
+      password.replace(
+        /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/g,
+        ""
+      ) !== ""
+    ) {
+      setPasswordError(true);
+    }
+  };
 
   return (
     <div className={styles.wrapperFormRegister} {...props}>
@@ -36,37 +56,31 @@ export function FormRegister({ className, ...props }: FormRegisterProps) {
           label='Логин'
           value={username}
           error={usernameError}
-          setValue={(username) => setData({ ...data, username })}
+          setValue={setUsername}
         />
         <Input
           type='text'
           label='Почта'
           value={email}
           error={emailError}
-          setValue={(email) => setData({ ...data, email })}
+          setValue={setEmail}
         />
         <Input
           type='text'
           label='Пароль'
           value={password}
           error={passwordError}
-          setValue={(password) => setData({ ...data, password })}
+          setValue={setPassword}
           password={true}
         />
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-          text='Подтвердить'
-        />
+        <Button onClick={handleRegistration} text='Подтвердить' />
       </Card>
       <Card className={styles.cardWrap}>
-        <p>Уже зарегестрированы?</p>
+        <p>Уже зарегистрированы?</p>
         <Button
           className={styles.buttonRegister}
-          onClick={(e) => {
-            e.preventDefault();
-            dispatch(actionAddForm(false));
+          onClick={() => {
+            setForm(false);
           }}
           text='Войти'
         />

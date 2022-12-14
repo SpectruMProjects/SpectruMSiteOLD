@@ -2,18 +2,15 @@ import { useState } from "react";
 import cn from "classnames";
 
 import { Card, Button, Input } from "components";
-import { useAppDispatch } from "utils/hooks";
-import { actionAddForm } from "page-components/auth";
 
 import FormLoginProps from "./FormLogin.props";
 import styles from "./FormLogin.module.scss";
 
 export function FormLogin({
   className,
+  setForm,
   ...props
 }: FormLoginProps): JSX.Element {
-  const dispatch = useAppDispatch();
-
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -65,9 +62,8 @@ export function FormLogin({
         <p>Нет аккаунта?</p>
         <Button
           className={styles.buttonRegister}
-          onClick={(e) => {
-            e.preventDefault();
-            dispatch(actionAddForm(true));
+          onClick={() => {
+            setForm(true);
           }}
           text='Регистрация'
         />
