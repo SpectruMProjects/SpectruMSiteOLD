@@ -6,4 +6,8 @@ export interface cardNavBardProps
   icon: React.ReactNode;
   text: string;
   to: string;
+  activeMenu: boolean;
+  setTop: (top: number) => void;
+  index: number;
+  setNumberTop: (num: number) => void;
 }

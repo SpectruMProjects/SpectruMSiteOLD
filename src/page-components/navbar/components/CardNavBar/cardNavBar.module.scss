@@ -1,7 +1,7 @@
 .wrapperCardMenu {
 	position: relative;
 	display: flex;
-	color: var(--text);
+	color: var(--text4);
 	padding: 10px;
 	gap: 20px;
 	cursor: pointer;
@@ -9,64 +9,40 @@
 	transition: var(--transition);
 }
 
-.wrapperCardMenu:hover {
-	color:var(--mauve);
+.iconWrap {
+	z-index: 3;
 	transition: var(--transition);
 }
 
-.wrapperMenuOn {
-	border-radius: 10px 0px 0px 10px;
-	color: var(--blue);
-	background: var(--mantle);
+.iconOn {
+	transform: scale(1.2);
+	color: var(--primary);
+}
+
+.iconActive {
 	transition: var(--transition);
-}
-
-.radiusMenu {
-	position: absolute;
-	background: var(--mantle);
-	width: 10px;
-	height: 100%;
-	top: 0px;
-	right: -12px;
-	opacity: 0;
-	transition: var(--transition);
-}
- .radiusMenu::after {
-	content: "";
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	top: -40px;
-	right: 0px;
-	border-radius:0 0 50% 0;
-	overflow: hidden;
-	background: transparent;
-	box-shadow: 0px 30px var(--mantle);
-}
-
- .radiusMenu::before {
-	content: "";
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	bottom: -40px;
-	right: 0px;
-	border-radius:0 50% 0 0px;
-	background: transparent;
-	box-shadow: 0px -30px var(--mantle);
-}
-
-.radiusMenuOn {
-	opacity: 1;
-	transition: var(--transition);
-}
-
-.wrapperMenuOn:hover {
-	color: var(--blue);
-	background: var(--mantle);
+	transform: translateX(-30px) scale(1.2);
 }
 
 .wrapperText {
 	z-index: 1;
 	font-size: 16px;
+	opacity: 0;
+	text-align: left;
+	width: 20px;
+	overflow: hidden;
+	transform: translateX(-40px);
+	transition: var(--transition);
+}
+
+.wrapperTextOn {
+	width: 100%;
+	transform: translateX(0px);
+	transition: var(--transition);
+	opacity: 1;
+	
+}
+
+.wrapperCardMenuSelect{
+	padding: 15px 10px;
 }

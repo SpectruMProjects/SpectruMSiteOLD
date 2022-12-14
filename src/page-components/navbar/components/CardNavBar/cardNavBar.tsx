@@ -10,24 +10,41 @@ export const CardNavBar = ({
   text,
   icon,
   to,
+  activeMenu,
+  index,
+  setNumberTop,
+  setTop,
 }: cardNavBardProps): JSX.Element => {
   const navigate = useNavigate();
 
   return (
     <div
       className={cn(styles.wrapperCardMenu, {
-        [styles.wrapperMenuOn]: selected,
+        [styles.wrapperCardMenuOn]: activeMenu,
+        [styles.wrapperCardMenuSelect]: selected,
       })}
       key={text}
-      onClick={() => navigate(to)}
+      onClick={() => {
+        setNumberTop(index);
+        setTop(0);
+        navigate(to);
+      }}
     >
-      {icon}
-      <p className={styles.wrapperText}>{text}</p>
       <span
-        className={cn(styles.radiusMenu, {
-          [styles.radiusMenuOn]: selected,
+        className={cn(styles.iconWrap, {
+          [styles.iconOn]: selected,
+          [styles.iconActive]: selected && activeMenu,
         })}
-      ></span>
+      >
+        {icon}
+      </span>
+      <p
+        className={cn(styles.wrapperText, {
+          [styles.wrapperTextOn]: activeMenu,
+        })}
+      >
+        {text}
+      </p>
     </div>
   );
 };
