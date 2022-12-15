@@ -1,7 +1,7 @@
 .wrapperNavBar {
-	position: fixed;
+	position: absolute;
 	top: 100px;
-	left: 250px;
+	left: -150px;
 	width: 100%;
 	max-width: 65px;
 	padding: 25px 10px;
@@ -14,11 +14,18 @@
 	box-shadow: 0px 0px 10px var(--shadow-opacity01);
 	transition: var(--transition);
 	z-index: 1;
+	user-select: none;
 }
 
 .wrapperNavBarOn {
 	transition: var(--transition);
 	max-width: 200px;
+}
+
+.checkMenuOff {
+	transition: var(--transition);
+	opacity: 0;
+	
 }
 
 .titleWrapper {
@@ -138,7 +145,7 @@
 }
 
 
-@media screen and (max-width:2300px ) {
+@media screen and (max-width:1600px ) {
 	.wrapperNavBar {
 		left: 50px;
 	}

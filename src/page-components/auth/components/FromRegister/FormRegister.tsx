@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Card, Button, Input } from "components";
+import { HttpClient } from "service";
 
 import FormRegisterProps from "./FormRegister.props";
 import styles from "./FormRegister.module.scss";
@@ -10,14 +11,16 @@ export function FormRegister({
   setForm,
   ...props
 }: FormRegisterProps) {
+  const axios = new HttpClient();
+
   const [username, setUsername] = useState<string>("");
   const [usernameError, setUsernameError] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>("");
-  const [emailError, setEmailError] = useState<boolean>(false);
+  const [mail, setEmail] = useState<string>("");
+  const [mailError, setEmailError] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
   const [passwordError, setPasswordError] = useState<boolean>(false);
 
-  const handleRegistration = () => {
+  const handleRegistration = async () => {
     setUsernameError(false);
     setEmailError(false);
     setPasswordError(false);
@@ -30,8 +33,8 @@ export function FormRegister({
     }
 
     if (
-      email.replace(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g, "") !== "" ||
-      email.replaceAll(" ", "").length === 0
+      mail.replace(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g, "") !== "" ||
+      mail.replaceAll(" ", "").length === 0
     ) {
       setEmailError(true);
     }
@@ -44,6 +47,10 @@ export function FormRegister({
       ) !== ""
     ) {
       setPasswordError(true);
+    }
+
+    if (!usernameError && !mailError && !passwordError) {
+      await axios.register({ mail, username, password });
     }
   };
 
@@ -61,8 +68,8 @@ export function FormRegister({
         <Input
           type='text'
           label='Почта'
-          value={email}
-          error={emailError}
+          value={mail}
+          error={mailError}
           setValue={setEmail}
         />
         <Input

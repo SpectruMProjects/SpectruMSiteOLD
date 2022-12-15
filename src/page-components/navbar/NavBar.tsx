@@ -46,6 +46,8 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
       <span
         className={cn(styles.checkMenuWrapper, {
           [styles.checkMenuOn]: activeMenu,
+          [styles.checkMenuOff]:
+            menuList.find((menu) => menu.to === pathname) === undefined,
         })}
         style={{ top: 82 + 48 * top + top * 1.5 }}
       >
@@ -86,18 +88,20 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
           }
           return true;
         })
-        .map((menu, index) => (
-          <CardNavBar
-            key={index}
-            text={menu.text}
-            to={menu.to}
-            index={index}
-            icon={<menu.icon />}
-            selected={pathname === menu.to}
-            activeMenu={activeMenu}
-            setTop={setTop}
-          />
-        ))}
+        .map((menu, index) => {
+          return (
+            <CardNavBar
+              key={index}
+              text={menu.text}
+              to={menu.to}
+              index={index}
+              icon={<menu.icon />}
+              selected={pathname === menu.to}
+              activeMenu={activeMenu}
+              setTop={setTop}
+            />
+          );
+        })}
     </div>
   );
 }

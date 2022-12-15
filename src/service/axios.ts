@@ -342,31 +342,34 @@ export class HttpClient {
   }
 
   /**
-   * Возращает url для скачивания скина игрока 
+   * Возращает url для скачивания скина игрока
    */
-  getUserSkinUrl(userId: string): string { 
-    return composeUrl(`/users/${userId}/skin`)
+  getUserSkinUrl(userId: string): string {
+    return composeUrl(`/users/${userId}/skin`);
   }
 
   /**
-   * Возращает url для скачивания плаща игрока 
+   * Возращает url для скачивания плаща игрока
    */
-  getUserCapeUrl(userId: string): string { 
-    return composeUrl(`/users/${userId}/cape`)
+  getUserCapeUrl(userId: string): string {
+    return composeUrl(`/users/${userId}/cape`);
   }
 
   async getUserById(userId: string): Promise<GetUserByIdResponse> {
     try {
-      const res = await this.get(`/users/${userId}`)
-      const { id, username, skin, cape } = res.data
+      const res = await this.get(`/users/${userId}`);
+      const { id, username, skin, cape } = res.data;
       return {
-        code: 'ok',
+        code: "ok",
         user: {
-          id, username, skin, cape
-        }
-      }
+          id,
+          username,
+          skin,
+          cape,
+        },
+      };
     } catch (e) {
-      return {code: 'error'}
+      return { code: "error" };
     }
   }
 }
@@ -379,7 +382,6 @@ export type ActivateRegCodeResponse =
         username: string;
         mail: string;
         UUID: string;
-        SFMAPIToken: string;
       };
       accessToken: string;
       refreshToken: string;
@@ -423,8 +425,6 @@ export type LoginReponse =
         username: string;
         mail: string;
         UUID: string;
-        SFMAPIToken: string;
-        ServerId: string;
       };
       refreshToken: string;
       accessToken: string;
@@ -500,8 +500,6 @@ export type ActivateChangePassReponse =
         username: string;
         mail: string;
         UUID: string;
-        SFMAPIToken: string;
-        ServerId: string;
       };
       refreshToken: string;
       accessToken: string;
@@ -560,17 +558,19 @@ export type GetHardcoreStatResponse =
       code: "notFound";
     };
 
-export type GetUserByIdResponse = 
-{
-  code: 'ok',
-  user: {
-    id: string,
-    username: string,
-    skin?: string,
-    cape?: string
-  }
-} | {
-  code: 'error'
-} | {
-  code: 'notFound'
-}
+export type GetUserByIdResponse =
+  | {
+      code: "ok";
+      user: {
+        id: string;
+        username: string;
+        skin?: string;
+        cape?: string;
+      };
+    }
+  | {
+      code: "error";
+    }
+  | {
+      code: "notFound";
+    };

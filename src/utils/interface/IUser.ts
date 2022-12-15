@@ -3,6 +3,4 @@ export interface IUser {
   username: string;
   mail: string;
   UUID: string;
-  SFMAPIToken: string;
-  ServerId: string;
 }

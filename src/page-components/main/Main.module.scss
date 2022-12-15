@@ -3,23 +3,10 @@
 	position: relative;
 	padding: 0px 20px;
 	width: 100%;
+	max-width: 1200px;
 	height: 100vh;
 	align-items: center;
 	justify-content: center;
 	margin: 0 auto;
 }
 
-@media screen and (min-width: 1400px) {
-	.mainWrapper {
-		max-width: 1200px;
-	}
-	
-}
-
-
-@media screen and (min-width: 2000px) {
-	.mainWrapper {
-		max-width: 1400px;
-	}
-	
-}

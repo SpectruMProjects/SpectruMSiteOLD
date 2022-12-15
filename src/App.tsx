@@ -1,4 +1,3 @@
-import { createRef } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import {
@@ -8,14 +7,16 @@ import {
   ProfilePage,
   AuthPage,
   MainPage,
+  ConfirmationPage,
 } from "pages";
 
 export const routes = [
-  { path: "/", element: <HomePage />, nodeRef: createRef() },
-  { path: "/launcher", element: <LauncherPage />, nodeRef: createRef() },
-  { path: "/pass", element: <PassPage />, nodeRef: createRef() },
-  { path: "/profile", element: <ProfilePage />, nodeRef: createRef() },
-  { path: "/auth", element: <AuthPage />, nodeRef: createRef() },
+  { path: "/", element: <HomePage /> },
+  { path: "launcher", element: <LauncherPage /> },
+  { path: "pass", element: <PassPage /> },
+  { path: "profile", element: <ProfilePage /> },
+  { path: "auth", element: <AuthPage /> },
+  { path: "auth/activate/reg/:code", element: <ConfirmationPage /> },
 ];
 
 const router = createBrowserRouter([

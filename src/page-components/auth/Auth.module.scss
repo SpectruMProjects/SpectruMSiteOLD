@@ -8,10 +8,10 @@
 }
 
 .wrapperFormWrap {
-	margin-top: 150px;
 	display: flex;
 	position: relative;
 	width: 450px;
+	height:calc(100vh - 40px);
 }
 
 .wrapperFormTop, .wrapperFormBottom {
@@ -20,7 +20,6 @@
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	overflow: hidden;
 	border-radius: var(--radius);
 	background: transparent;
 	transform: scale(0.8);
@@ -39,12 +38,12 @@
 }
 
 .wrapperFormOn {
-	top: 0px;
+	top: 150px;
 	transition: var(--transition-slow);
 	transform: scale(1);
 	opacity: 1;
 	z-index: 1;
-	user-select:inherit;
+	user-select: inherit;
 }
 
 

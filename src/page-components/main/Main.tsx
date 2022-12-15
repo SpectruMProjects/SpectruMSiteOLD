@@ -19,7 +19,7 @@ export const Main = (): JSX.Element => {
           classNames='page'
           unmountOnExit
         >
-          {() => <div className='page'>{currentOutlet}</div>}
+          <div className='page'>{currentOutlet}</div>
         </CSSTransition>
       </SwitchTransition>
     </main>
