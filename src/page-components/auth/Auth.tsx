@@ -13,14 +13,14 @@ export const Auth = ({ className, ...props }: AuthProps): JSX.Element => {
     <div className={cn(className, styles.wrapperAuth)} {...props}>
       <div className={styles.wrapperFormWrap}>
         <div
-          className={cn(styles.wrapperForm, {
+          className={cn(styles.wrapperFormTop, {
             [styles.wrapperFormOn]: !form,
           })}
         >
           <FormLogin setForm={setForm} />
         </div>
         <div
-          className={cn(styles.wrapperForm, {
+          className={cn(styles.wrapperFormBottom, {
             [styles.wrapperFormOn]: form,
           })}
         >

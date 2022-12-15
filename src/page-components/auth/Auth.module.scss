@@ -12,16 +12,14 @@
 	display: flex;
 	position: relative;
 	width: 450px;
-	background-color: red;
 }
 
-.wrapperForm {
+.wrapperFormTop, .wrapperFormBottom {
 	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	top: -100px;
 	overflow: hidden;
 	border-radius: var(--radius);
 	background: transparent;
@@ -32,6 +30,14 @@
 	user-select: none;
 }
 
+.wrapperFormTop {
+	top: -200px;
+}
+
+.wrapperFormBottom {
+	top: 500px;
+}
+
 .wrapperFormOn {
 	top: 0px;
 	transition: var(--transition-slow);
@@ -40,6 +46,7 @@
 	z-index: 1;
 	user-select:inherit;
 }
+
 
 @media screen and (min-width: 2000px) {
 	.wrapperAuth {
