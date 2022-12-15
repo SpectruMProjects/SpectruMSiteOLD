@@ -472,6 +472,9 @@ export type RegisterResponse =
     }
   | {
       code: "userWithSameUsernameOrEmailExists";
+    }
+  | {
+      code: "usernameNotExistsInMojang";
     };
 
 export type ChangePassDto = { mail: string; newPass: string };
