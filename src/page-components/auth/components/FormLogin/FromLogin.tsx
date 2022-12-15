@@ -64,6 +64,10 @@ export function FormLogin({
           className={styles.buttonRegister}
           onClick={() => {
             setForm(true);
+            setLogin("");
+            setLoginError(false);
+            setPassword("");
+            setPasswordError(false);
           }}
           text='Регистрация'
         />

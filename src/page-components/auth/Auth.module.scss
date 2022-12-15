@@ -1,14 +1,48 @@
 .wrapperAuth {
-	width: 100%;
 	display: flex;
+	width: 100%;
 	height: 100vh;
 	padding: 20px;
-	justify-content: center;
 	align-items: flex-start;
+	justify-content: center;
+}
+
+.wrapperFormWrap {
+	margin-top: 150px;
+	display: flex;
+	position: relative;
+	width: 450px;
+	background-color: red;
+}
+
+.wrapperForm {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	top: -100px;
+	overflow: hidden;
+	border-radius: var(--radius);
+	background: transparent;
+	transform: scale(0.8);
+	opacity: 0;
+	transition: var(--transition-slow);
+	z-index: -1;
+	user-select: none;
+}
+
+.wrapperFormOn {
+	top: 0px;
+	transition: var(--transition-slow);
+	transform: scale(1);
+	opacity: 1;
+	z-index: 1;
+	user-select:inherit;
 }
 
 @media screen and (min-width: 2000px) {
 	.wrapperAuth {
-		height: calc(100vh - 160px);
+		height: 100vh;
 	}
 }

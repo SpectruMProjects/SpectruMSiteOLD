@@ -81,6 +81,12 @@ export function FormRegister({
           className={styles.buttonRegister}
           onClick={() => {
             setForm(false);
+            setUsername("");
+            setUsernameError(false);
+            setEmail("");
+            setEmailError(false);
+            setPassword("");
+            setPasswordError(false);
           }}
           text='Войти'
         />

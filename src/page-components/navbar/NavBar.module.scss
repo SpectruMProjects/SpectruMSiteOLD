@@ -13,6 +13,7 @@
 	border-radius: var(--radius);
 	box-shadow: 0px 0px 10px var(--shadow-opacity01);
 	transition: var(--transition);
+	z-index: 1;
 }
 
 .wrapperNavBarOn {

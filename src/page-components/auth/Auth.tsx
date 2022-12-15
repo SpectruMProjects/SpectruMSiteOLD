@@ -11,11 +11,22 @@ export const Auth = ({ className, ...props }: AuthProps): JSX.Element => {
 
   return (
     <div className={cn(className, styles.wrapperAuth)} {...props}>
-      {!form ? (
-        <FormLogin setForm={setForm} />
-      ) : (
-        <FormRegister setForm={setForm} />
-      )}
+      <div className={styles.wrapperFormWrap}>
+        <div
+          className={cn(styles.wrapperForm, {
+            [styles.wrapperFormOn]: !form,
+          })}
+        >
+          <FormLogin setForm={setForm} />
+        </div>
+        <div
+          className={cn(styles.wrapperForm, {
+            [styles.wrapperFormOn]: form,
+          })}
+        >
+          <FormRegister setForm={setForm} />
+        </div>
+      </div>
     </div>
   );
 };
