@@ -5,16 +5,8 @@ import {
   Launch,
   VerifiedUser as Profile,
   ShoppingCart,
-  SvgIconComponent,
 } from "@mui/icons-material";
-
-interface MenuListState {
-  menuList: {
-    text: string;
-    to: string;
-    icon: SvgIconComponent;
-  }[];
-}
+import { MenuListState } from "utils/interface";
 
 const initialState: MenuListState = {
   menuList: [
