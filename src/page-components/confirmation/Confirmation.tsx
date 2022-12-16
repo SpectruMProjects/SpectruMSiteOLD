@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import cn from "classnames";
 
-import { getMenuList, getUser } from "store/select";
+import { getUser } from "store/select";
 import { useAppDispatch, useAppSelector } from "utils/hooks";
 import { IUser } from "utils/interface";
 import { fetchConfirmationAccount } from "page-components/auth";
@@ -18,7 +18,6 @@ export const Confirmation = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const user: IUser | undefined = useAppSelector(getUser);
-  const menuList = useAppSelector(getMenuList);
 
   const [load, setLoad] = useState<boolean>(true);
   const [close, setClose] = useState<boolean>(false);
@@ -28,26 +27,24 @@ export const Confirmation = (): JSX.Element => {
       if (code) dispatch(fetchConfirmationAccount(code));
     }
     if (user !== undefined) {
-      const pathname2 = pathname;
       setLoad(false);
+      
       setTimeout(() => {
         setClose(true);
       }, 4800);
-      console.log(
-        menuList.find((menu) => menu.to === pathname2),
-        pathname,
-        "первое"
-      );
-      const time = setTimeout(() => {
-        navigate("/profile");
-      }, 5000);
-
-      if (menuList.find((menu) => menu.to === pathname) !== undefined) {
-        clearTimeout(time);
-      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code, pathname, user]);
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        if (window.location.pathname === pathname)
+          navigate("/profile");
+      }, 5000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   return (
     <CardPage className={styles.wrapperConf}>
