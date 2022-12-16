@@ -2,13 +2,13 @@
 
 :root {
   /*--------------------------------------------- Static -------------------------------------------------------*/
-  --pink: #f5c2e7;
-  --teal: #94e2d5;
-  --perple: #cba6f7;
+  --pink: #f5e0dc;
+  --teal: #eba0ac;
+  --perple: #f2cdcd;
 
   --success: #a6e3a1;
   --danger: #f38ba8;
-  --warning: #fab387;
+  --warning: #f9e2af;
 
   --primary: rgb(137, 180, 250);
   --primary-dark: #b4befe;
@@ -50,6 +50,7 @@
   --light-text1: #1e1e2e;
   --light-text2: #181825;
   --light-text3: #11111b;
+  --light-text4: #cdd6f4;
 
   --light-border1: #9399b2;
   --light-border2: #7f849c;
@@ -63,33 +64,34 @@
   --light-primary-opacity03: rgba(137, 180, 250, 0.3);
   --light-primary-opacity01: rgba(137, 180, 250, 0.1);
 
-  --light-shadow-opacity03: rgba(0, 0, 0, 0.3);
-  --light-shadow-opacity01: rgba(0, 0, 0, 0.1);
+  --light-shadow-opacity03: rgba(17, 17, 27, 0.3);
+  --light-shadow-opacity01: rgba(17, 17, 27, 0.1);
 
   /*--------------------------------------------- Dark theme -------------------------------------------------------*/
-  --dark-primary: rgb(242, 205, 205);
-  --dark-primary-dark: #eba0ac;
-  --dark-primary-light: #f5e0dc;
-  --dark-secondary: #f9e2af;
+  --dark-primary: #f38ba8;
+  --dark-primary-dark: #cba6f7;
+  --dark-primary-light: #f5c2e7;
+  --dark-secondary: #fab387;
 
   --dark-text1: #cdd6f4;
   --dark-text2: #bac2de;
   --dark-text3: #a6adc8;
+  --dark-text4: #1e1e2e;
 
   --dark-border1: #585b70;
   --dark-border2: #45475a;
   --dark-border3: #313244;
 
-  --dark-background1: #1e1e2e;
+  --dark-background1: #11111b;
   --dark-background2: #181825;
-  --dark-background3: #11111b;
+  --dark-background3: #1e1e2e;
   --dark-background4: #cdd6f4;
 
-  --dark-primary-opacity03: rgba(242, 205, 205, 0.3);
-  --dark-primary-opacity01: rgba(242, 205, 205, 0.1);
+  --dark-primary-opacity03: rgba(203, 166, 247, 0.3);
+  --dark-primary-opacity01: rgba(203, 166, 247, 0.1);
 
-  --dark-shadow-opacity03: rgba(255, 255, 255, 0.3);
-  --dark-shadow-opacity01: rgba(255, 255, 255, 0.1);
+  --dark-shadow-opacity03: rgba(205, 214, 244, 0.3);
+  --dark-shadow-opacity01: rgba(205, 214, 244, 0.1);
 }
 
 *,

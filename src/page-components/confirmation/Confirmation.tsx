@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import cn from "classnames";
 
-import { getUser } from "store/select";
 import { useAppDispatch, useAppSelector } from "utils/hooks";
 import { IUser } from "utils/interface";
 import { fetchConfirmationAccount } from "page-components/auth";
+import { LoadingIcon } from "assets/svg";
+import { getUser } from "store/select";
 
 import styles from "./Confirmation.module.scss";
-import { LoadingIcon } from "assets/svg";
 
 export const Confirmation = (): JSX.Element => {
   const { pathname } = useLocation();
@@ -28,7 +28,7 @@ export const Confirmation = (): JSX.Element => {
     }
     if (user !== undefined) {
       setLoad(false);
-      
+
       setTimeout(() => {
         setClose(true);
       }, 4800);
@@ -39,12 +39,11 @@ export const Confirmation = (): JSX.Element => {
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        if (window.location.pathname === pathname)
-          navigate("/profile");
+        if (window.location.pathname === pathname) navigate("/profile");
       }, 5000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  }, [user]);
 
   return (
     <CardPage className={styles.wrapperConf}>

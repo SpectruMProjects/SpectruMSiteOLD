@@ -1,1 +1,2 @@
-export * from "./reduxHook";
+export * from "./useRedux";
+export * from "./useDebounce";
