@@ -27,6 +27,7 @@
       "store":["store"],
       "service": ["service"],
       "pages-components":["pages-components"],
+      "assets":["assets"],
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }, { "name": "ts-plugin-scss-modules" }],
   },

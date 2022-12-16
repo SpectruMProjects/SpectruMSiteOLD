@@ -11,35 +11,22 @@ export const fetchConfirmationAccount = createAsyncThunk(
     const res: ActivateRegCodeResponse = await axios.activateRegCode(code);
 
     if (res.code === "ok") {
-      return {
-        state: "fullfilled",
-        user: res.user,
-        loading: false,
-        error: null,
-      };
+      return res.user;
     }
-    if (res.code === "error") {
-      return {
-        state: "error",
-        user: undefined,
-        loading: false,
-        error: "Error request",
-      };
-    }
+
+    return undefined;
   }
 );
 
 export interface CounterState {
-  state: string;
+  status: "idle" | "pending" | "rejected" | "received";
   user: IUser | undefined;
-  loading: boolean;
   error: string | null;
 }
 
 const initialState: CounterState = {
-  state: "intle",
+  status: "idle",
   user: undefined,
-  loading: false,
   error: null,
 };
 
@@ -48,21 +35,19 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(fetchConfirmationAccount.pending, (state) => {
-      state.loading = true;
-      state.state = "pending";
-      state.error = null;
-      state.user = undefined;
-    });
-    builder.addCase(fetchConfirmationAccount.rejected, (state, action) => {
-      state.loading = false;
-      state.state = "rejected";
-      state.error = "Error request";
-      state.user = undefined;
-    });
-    builder.addCase(fetchConfirmationAccount.fulfilled, (state, action) => {
-      //state = action.payload;
-    });
+    builder
+      .addCase(fetchConfirmationAccount.pending, (state) => {
+        state.status = "pending";
+        state.error = null;
+      })
+      .addCase(fetchConfirmationAccount.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = String(action.payload || action.meta);
+      })
+      .addCase(fetchConfirmationAccount.fulfilled, (state, action) => {
+        state.status = "received";
+        state.user = action.payload as unknown as IUser;
+      });
   },
 });
 
