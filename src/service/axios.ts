@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { env } from "utils/constants";
+import { MinecraftDeathReason } from "./types/minecraftDeathReason";
 
 const url = env.server_url;
 
@@ -372,6 +373,19 @@ export class HttpClient {
       return { code: "error" };
     }
   }
+
+  async hasUserPass(server: string, username: string): Promise<HasUserPassResponse> {
+    try {
+      await this.get(`/pass/${server}/whiteList/${username}`)
+      return {
+        code: "ok"
+      }
+    } catch (e) {
+      if (e instanceof AxiosError && e.status === 400) 
+        return { code: "noPass" }
+      return {code: "error"}
+    }
+  }
 }
 
 export type ActivateRegCodeResponse =
@@ -551,7 +565,10 @@ export type GetHardcoreStatResponse =
       code: "ok";
       deaths: {
         at: number;
-        reason?: string;
+        reason?: {
+          reason: MinecraftDeathReason,
+          from?: string
+        };
       }[];
       loginTime: number;
       deathTime: number;
@@ -577,3 +594,12 @@ export type GetUserByIdResponse =
   | {
       code: "notFound";
     };
+
+export type HasUserPassResponse =
+  {
+    code: "ok"
+  } | {
+    code: "error"
+  } | {
+    code: "noPass"
+  }
