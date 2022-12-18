@@ -5,7 +5,7 @@ import cn from "classnames";
 
 import { useAppDispatch, useAppSelector } from "utils/hooks";
 import { IUser } from "utils/interface";
-import { fetchConfirmationAccount } from "page-components/auth";
+import { fetchConfirmationAccount } from "store/slice";
 import { LoadingIcon } from "assets/svg";
 import { getUser } from "store/select";
 

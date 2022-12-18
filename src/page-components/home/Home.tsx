@@ -1,5 +1,7 @@
+import { CardPage } from "components";
+
 import styles from "./Home.module.scss";
 
 export const Home = (): JSX.Element => {
-  return <div className={styles.wrapperHome}>HomePage</div>;
+  return <CardPage className={styles.wrapperHome}>HomePage</CardPage>;
 };

@@ -1,36 +1,64 @@
 import { useState } from "react";
-import { Diversity1 as Logo } from "@mui/icons-material";
+import {
+  Diversity1 as Logo,
+  NightsStay as Dark,
+  LightMode as Light,
+} from "@mui/icons-material";
 import cn from "classnames";
 import { useLocation } from "react-router-dom";
 
 import { IUser } from "utils/interface";
-import { useAppSelector } from "utils/hooks";
-import { getMenuList, getUser } from "store/select";
+import { useAppDispatch, useAppSelector } from "utils/hooks";
+import { getMenuList, getTheme, getUser } from "store/select";
 
-import { CardNavBar } from "./components";
+import { CardNavBar, CardNavTheme, CircleMenuMove } from "./components";
 import NavBarProps from "./NavBar.props";
 import styles from "./NavBar.module.scss";
+import { actionChangeTheme } from "store/slice";
 
 export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   const { pathname } = useLocation();
+  const dispatch = useAppDispatch();
 
   const user: IUser | undefined = useAppSelector(getUser);
   const menuList = useAppSelector(getMenuList);
+  const theme: boolean = useAppSelector(getTheme);
 
   const [activeMenu, setActiveMenu] = useState<boolean>(false);
   const [top, setTop] = useState<number>(0);
+
+  const menuOff: boolean =
+    menuList.find((menu) => menu.to === pathname) === undefined;
+
+  const handleChangeTheme = (): void => {
+    dispatch(actionChangeTheme(!theme));
+  };
+
+  const filterMenuList = (menu: any): boolean => {
+    if (user === undefined) {
+      if (menu.to === "/profile") {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    if (user !== undefined) {
+      if (menu.to === "/auth") {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return true;
+  };
 
   return (
     <div
       className={cn(styles.wrapperNavBar, {
         [styles.wrapperNavBarOn]: activeMenu,
       })}
-      onMouseEnter={(e) => {
-        setActiveMenu(true);
-      }}
-      onMouseLeave={(e) => {
-        setActiveMenu(false);
-      }}
+      onMouseEnter={() => setActiveMenu(true)}
+      onMouseLeave={() => setActiveMenu(false)}
       {...props}
     >
       <span className={styles.titleWrapper}>
@@ -43,51 +71,9 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
           SpectruMine
         </h1>
       </span>
-      <span
-        className={cn(styles.checkMenuWrapper, {
-          [styles.checkMenuOn]: activeMenu,
-          [styles.checkMenuOff]:
-            menuList.find((menu) => menu.to === pathname) === undefined,
-        })}
-        style={{ top: 82 + 48 * top + top * 1.5 }}
-      >
-        <div className={styles.wrapperCircle}>
-          <span className={cn(styles.checkMenu)}></span>
-          <span
-            className={cn(styles.checkMenuTop, {
-              [styles.checkMenuTopOn]: activeMenu,
-            })}
-          ></span>
-          <span
-            className={cn(styles.checkMenuMain, {
-              [styles.checkMenuMainOn]: activeMenu,
-            })}
-          ></span>
-          <span
-            className={cn(styles.checkMenuBottom, {
-              [styles.checkMenuBottomOn]: activeMenu,
-            })}
-          ></span>
-        </div>
-      </span>
+      <CircleMenuMove top={top} activeMenu={activeMenu} menuOff={menuOff} />
       {menuList
-        .filter((menu) => {
-          if (user === undefined) {
-            if (menu.to === "/profile") {
-              return false;
-            } else {
-              return true;
-            }
-          }
-          if (user !== undefined) {
-            if (menu.to === "/auth") {
-              return false;
-            } else {
-              return true;
-            }
-          }
-          return true;
-        })
+        .filter((menu) => filterMenuList(menu))
         .map((menu, index) => {
           return (
             <CardNavBar
@@ -102,6 +88,13 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
             />
           );
         })}
+      <CardNavTheme
+        icon={theme ? <Dark /> : <Light />}
+        text={"Тема"}
+        activeMenu={activeMenu}
+        theme={theme}
+        onClick={handleChangeTheme}
+      />
     </div>
   );
 }

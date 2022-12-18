@@ -1,9 +1,10 @@
-import { ActivateRegCodeResponse, HttpClient } from "service";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { IUser } from "utils/interface";
+import { HttpClient as axiosClass } from "service";
+import { ActivateRegCodeResponse } from "service/types";
 
-const axios = new HttpClient();
+const axios = new axiosClass();
 
 export const fetchConfirmationAccount = createAsyncThunk(
   "@@user/confirmationAccount",
@@ -18,13 +19,13 @@ export const fetchConfirmationAccount = createAsyncThunk(
   }
 );
 
-export interface CounterState {
+export interface UserState {
   status: "idle" | "pending" | "rejected" | "received";
   user: IUser | undefined;
   error: string | null;
 }
 
-const initialState: CounterState = {
+const initialState: UserState = {
   status: "idle",
   user: undefined,
   error: null,

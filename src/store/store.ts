@@ -1,14 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { userReducer } from "page-components/auth";
-import { menuListReducer } from "page-components/navbar";
-import { notificationReducer } from "./slice/notificationSlice";
+import {
+  notificationReducer,
+  menuListReducer,
+  userReducer,
+  themeReducer,
+} from "./slice";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     menuList: menuListReducer,
     notification: notificationReducer,
+    theme: themeReducer,
   },
   devTools: true,
 });

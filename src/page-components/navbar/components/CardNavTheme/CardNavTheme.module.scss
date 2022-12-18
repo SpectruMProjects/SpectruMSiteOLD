@@ -1,0 +1,38 @@
+.wrapperCardMenu {
+	position: relative;
+	display: flex;
+	color: var(--text4);
+	padding: 10px;
+	gap: 20px;
+	cursor: pointer;
+	user-select: none;
+	transition: var(--transition);
+}
+
+.iconWrap {
+	display: flex;
+	align-items: center;
+	width: 25px;
+	height: 30px;
+	transition: var(--transition);
+}
+
+.wrapperText {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	font-size: 16px;
+	opacity: 0;
+	text-align: left;
+	width: 20px;
+	overflow: hidden;
+	transform: translateX(-40px);
+	transition: var(--transition);
+}
+
+.wrapperTextOn {
+	width: 100%;
+	transform: translateX(0px);
+	transition: var(--transition);
+	opacity: 1;
+}

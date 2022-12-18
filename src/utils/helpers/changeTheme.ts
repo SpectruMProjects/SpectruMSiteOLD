@@ -15,9 +15,9 @@ export const changeThemeFunction = (theme: string) => {
     "background2",
     "background3",
     "background4",
-    "primary-opacity05",
+    "primary-opacity03",
     "primary-opacity01",
-    "shadow-opacity05",
+    "shadow-opacity03",
     "shadow-opacity01",
   ];
 

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 
-import { cardNavBardProps } from "./cardNavBar.props";
-import styles from "./cardNavBar.module.scss";
+import CardNavBardProps from "./СardNavBar.props";
+import styles from "./СardNavBar.module.scss";
 
 export const CardNavBar = ({
   selected,
@@ -13,7 +13,7 @@ export const CardNavBar = ({
   activeMenu,
   index,
   setTop,
-}: cardNavBardProps): JSX.Element => {
+}: CardNavBardProps): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +25,6 @@ export const CardNavBar = ({
   return (
     <div
       className={cn(styles.wrapperCardMenu, {
-        [styles.wrapperCardMenuOn]: activeMenu,
         [styles.wrapperCardMenuSelect]: selected,
       })}
       key={text}
