@@ -1,65 +1,86 @@
-import React from "react";
 import cn from "classnames";
-import CloseIcon from "@mui/icons-material/Close";
-import InfoIcon from "@mui/icons-material/Info";
-import CopyIcon from "@mui/icons-material/ContentCopy";
+import {
+  QuestionMark,
+  PublicOff,
+  ContentCopy,
+  Info,
+} from "@mui/icons-material";
 
-import { useAppDispatch, useAppSelector } from "utils/hooks";
-import { getCopy, getErrors, getLoading } from "store/select";
-import { actionDeleteError } from "store/slice";
-
-import { NotificationProps } from "./Notification.props";
-import styles from "./Notification.module.css";
+import { useAppSelector } from "utils/hooks";
+import {
+  getAction,
+  getCopy,
+  getErrors,
+  getFetch,
+  getLoading,
+} from "store/select";
+import { IAction, IError } from "utils/interface";
+import { actionDeleteAction, actionDeleteError } from "store/slice";
 import { LoadingIcon } from "assets/svg";
+import { NotifyCard } from "components";
+
+import NotificationProps from "./Notification.props";
+import styles from "./Notification.module.scss";
 
 export const Notification = ({
   className,
   ...props
 }: NotificationProps): JSX.Element => {
-  const dispatch = useAppDispatch();
-
-  const errors: { text: string; id: any }[] = useAppSelector(getErrors);
+  const errors: IError[] = useAppSelector(getErrors);
+  const action: IAction[] = useAppSelector(getAction);
   const loading: boolean = useAppSelector(getLoading);
   const copy: boolean = useAppSelector(getCopy);
-  //remove error layout
-  const handleRemove = (id: string) => {
-    dispatch(actionDeleteError(id));
-  };
+  const fetch: boolean = useAppSelector(getFetch);
 
   return (
-    <section className={cn(className, styles.loadingWrapper)} {...props}>
-      {copy && (
-        <div className={cn(styles.loading, styles.copy)}>
-          <span className={styles.copyIcon}>
-            <CopyIcon />
-          </span>
-          <p>Row copied</p>
-        </div>
-      )}
-      {loading && (
-        <div className={styles.loading}>
-          <span className={styles.loadingIcon}>
-            <LoadingIcon />
-          </span>
-          <p>Loading data...</p>
-        </div>
-      )}
+    <section className={cn(className, styles.notificationWrapper)} {...props}>
+      {action !== null &&
+        action.map(({ id, text, action }) => (
+          <NotifyCard
+            key={id}
+            icon={<QuestionMark />}
+            text={text}
+            color={"mauve"}
+            remove={{ id, action: actionDeleteAction }}
+            action={
+              action && {
+                func: action?.func,
+                text: action?.text,
+              }
+            }
+          />
+        ))}
       {errors !== null &&
         errors.map((error) => (
-          <div key={error?.id} className={styles.error}>
-            <span className={styles.errorIcon}>
-              <InfoIcon />
-            </span>
-            <p>{error?.text}</p>
-            <button
-              className={styles.removeWrapper}
-              onClick={() => handleRemove(error?.id)}
-              tabIndex={0}
-            >
-              <CloseIcon className={styles.removeIcon} />
-            </button>
-          </div>
+          <NotifyCard
+            key={error?.id}
+            icon={<Info />}
+            text={error.text}
+            color={"danger"}
+            remove={{ id: error.id, action: actionDeleteError }}
+          />
         ))}
+      {copy && (
+        <NotifyCard
+          icon={<ContentCopy />}
+          text={"Строка скопирована"}
+          color={"success"}
+        />
+      )}
+      {loading && (
+        <NotifyCard
+          icon={<LoadingIcon />}
+          text={"Загрузка данных..."}
+          color={"secondary"}
+        />
+      )}
+      {fetch && (
+        <NotifyCard
+          icon={<PublicOff />}
+          text={"Нету подключения к серверу..."}
+          color={"warning"}
+        />
+      )}
     </section>
   );
 };

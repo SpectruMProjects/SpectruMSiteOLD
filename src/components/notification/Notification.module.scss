@@ -1,121 +1,14 @@
-.loadingWrapper {
-	display: flex;
-	gap: 5px;
-	flex-direction: column;
-	z-index: 10;
-	position: absolute;
-	left: 0px;
-	bottom: 20px;
-	padding: 5px;
-	max-width: 420px;
-	pointer-events: none;
-	user-select: none;
-	width: 100%;
-  }
-  
-  .loading,
-  .error {
-	display: flex;
-	gap: 20px;
-	padding: 5px 15px 5px 15px;
-	border-radius: 10px;
-	align-items: center;
-	border: 1px solid var(--border3);
-	background-color: var(--shadow-opacity05);
-	backdrop-filter: blur(30px);
-	transition: var(--transition);
-	width: 100%;
-  }
-  
-  .copy {
-	padding: 10px 30px 10px 15px;
-  }
-  
-  .loading p {
-	font-size: 16px;
-	color: var(--text1);
-  }
-  
-  .error {
-	width: 100%;
-	padding: 5px 15px;
-	background-color: var(--danger-opcatity05);
-	border: 1px solid var(--danger);
-  }
-  
-  .error p {
-	font-size: 16px;
-	font-weight: 600;
-	color: var(--text1);
-	word-break: break-all;
-	width: 100%;
-  }
-  
-  .loadingIcon {
-	width: 25px;
-	height: 25px;
-	position: relative;
-  }
-  
-  .errorIcon {
-	height: 25px;
-	width: 25px;
-	transform: rotate(180deg);
-  }
-  
-  .copyIcon {
-	width: 20px;
-	height: 20px;
-  }
-  
-  .copyIcon svg {
-	width: 20px;
-	height: 20px;
-	fill: var(--text1);
-  }
-  
-  .loadingIcon svg {
-	position: absolute;
-	top: 50%;
-	bottom: 50%;
-	left: -80%;
-	width: 60px;
-	height: 60px;
-	pointer-events: none;
-  }
-  
-  .loadingIcon svg circle {
-	stroke: var(--primary);
-  }
-  
-  .removeWrapper {
-	width: 25px;
-	height: 25px;
-	border-radius: 50%;
-	border: none;
-	background: none;
-	cursor: pointer;
-	pointer-events: fill;
-	user-select: all;
-  }
-  
-  .removeIcon {
-	min-width: 25px;
-	height: 25px;
-	transition: var(--transition);
-	border-radius: 50%;
-  }
-  
-  .removeIcon:hover {
-	transition: var(--transition);
-	background-color: var(--shadow-opacity05);
-  }
-  
-  @media screen and (max-width: 600px) {
-	.loadingWrapper {
-	  width: 100%;
-	  max-width: 600px;
-	  top: 40px;
-	  bottom: inherit;
-	}
-  }
+.notificationWrapper {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  z-index: 10;
+  position: absolute;
+  left: -20px;
+  bottom: 20px;
+  padding: 5px;
+  max-width: 420px;
+  pointer-events: none;
+  user-select: none;
+  width: 100%;
+}

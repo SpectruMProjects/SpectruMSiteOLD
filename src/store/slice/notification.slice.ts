@@ -1,22 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface error {
-  text: string;
-  id: any;
-}
+import { IAction, IError } from "utils/interface";
 
 interface INotificationState {
   loading: boolean;
   fetch: boolean;
-  errors: error[];
   copy: boolean;
+  errors: IError[];
+  action: IAction[];
 }
+
+//
+/*
+{ id: "212", text: "Ошибка твоей жопы" }
+{
+      id: "213",
+      text: "Убрать тебя и всю твою семью гнида черножопая ?",
+      action: { text: "Убрать", func: () => alert("Ты мертв") },
+},*/
 
 const initialState: INotificationState = {
   loading: false,
   fetch: false,
-  errors: [],
   copy: false,
+  errors: [],
+  action: [],
 };
 
 export const notificationSlice = createSlice({
@@ -41,6 +49,16 @@ export const notificationSlice = createSlice({
         (error) => String(error.id) !== String(action.payload)
       );
     },
+    actionAddAction: (state, action) => {
+      state.action = state.action.filter(
+        (actio) => String(actio.id) !== String(action.payload)
+      );
+    },
+    actionDeleteAction: (state, action) => {
+      state.action = state.action.filter(
+        (actio) => String(actio.id) !== String(action.payload)
+      );
+    },
   },
 });
 
@@ -53,4 +71,6 @@ export const {
   actionAddError,
   actionDeleteError,
   actionAddCopy,
+  actionAddAction,
+  actionDeleteAction,
 } = notificationSlice.actions;

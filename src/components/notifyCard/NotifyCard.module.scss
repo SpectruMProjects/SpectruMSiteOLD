@@ -1,0 +1,96 @@
+.wrapperNotification {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px var(--shadow-opacity03);
+  transition: var(--transition);
+  width: 100%;
+  color: var(--text5);
+  overflow: hidden;
+}
+
+.wrapperUpNotification {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.notificationIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.notificationIcon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.notificationIcon svg circle {
+  stroke: var(--text5);
+}
+
+.text {
+  font-size: 16px;
+  color: var(--text5);
+  word-break: break-all;
+  width: 100%;
+}
+
+.buttonWrapperCancel {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  pointer-events: fill;
+  user-select: all;
+}
+
+.cancelIcon {
+  min-width: 35px;
+  min-height: 35px;
+  padding: 5px;
+  transition: var(--transition);
+  border-radius: 50%;
+  color: var(--text5);
+}
+
+.cancelIcon:hover {
+  transition: var(--transition);
+  background-color: var(--shadow-opacity03);
+}
+
+.wrapperActionButton {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.actionButton {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 5px 10px;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  pointer-events: fill;
+  user-select: inherit;
+  transition: var(--transition);
+  color: var(--text5);
+}
+
+.actionButton:hover {
+  transition: var(--transition);
+  background-color: var(--shadow-opacity03);
+}

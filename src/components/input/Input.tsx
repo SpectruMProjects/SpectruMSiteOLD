@@ -18,23 +18,26 @@ export function Input({
   const [focus, setFocus] = useState<boolean>(false);
   const [visibility, setVisibility] = useState<boolean>(false);
 
+  const focusStyle = (): boolean => {
+    if (focus) return true;
+    else {
+      if (value.replaceAll(" ", "").length !== 0) return true;
+      else return false;
+    }
+  };
+
   return (
     <div className={styles.wrapperInput}>
       <label
         className={cn(styles.labelInput, {
-          [styles.labelInputOn]:
-            focus === true
-              ? true
-              : value.replaceAll(" ", "").length !== 0
-              ? true
-              : false,
+          [styles.labelInputOn]: focusStyle(),
         })}
       >
         {label}
       </label>
       <input
         className={cn(className, styles.input, {
-          [styles.inputOnError]: error === true,
+          [styles.inputOnError]: error,
           [styles.inputOnFocus]: focus,
           [styles.inputPasswordOn]: password,
         })}
