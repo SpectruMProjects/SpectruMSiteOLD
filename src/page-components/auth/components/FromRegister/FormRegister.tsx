@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Card, Button, Input } from "components";
-import { HttpClient } from "service";
+import axios from "service/axios";
 
 import FormRegisterProps from "./FormRegister.props";
 import styles from "./FormRegister.module.scss";
@@ -11,8 +11,6 @@ export function FormRegister({
   setForm,
   ...props
 }: FormRegisterProps) {
-  const axios = new HttpClient();
-
   const [username, setUsername] = useState<string>("");
   const [usernameError, setUsernameError] = useState<boolean>(false);
   const [mail, setEmail] = useState<string>("");

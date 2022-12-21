@@ -1,10 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { IUser } from "utils/interface";
-import { HttpClient as axiosClass } from "service";
+import axios from "service/axios";
 import { ActivateRegCodeResponse } from "service/types";
-
-const axios = new axiosClass();
 
 export const fetchConfirmationAccount = createAsyncThunk(
   "@@user/confirmationAccount",

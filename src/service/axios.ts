@@ -26,7 +26,7 @@ function composeUrl(uri: string): string {
   return url + (uri.startsWith("/") ? uri : "/" + uri);
 }
 
-export class HttpClient {
+const apiClient = {
   async get(uri: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     const accessToken = localStorage.getItem("accessToken");
     const header = accessToken
@@ -53,7 +53,7 @@ export class HttpClient {
       }
       throw e;
     }
-  }
+  },
 
   async post(
     uri: string,
@@ -85,7 +85,7 @@ export class HttpClient {
       }
       throw e;
     }
-  }
+  },
 
   async put(
     uri: string,
@@ -117,7 +117,7 @@ export class HttpClient {
       }
       throw e;
     }
-  }
+  },
 
   async delete(
     uri: string,
@@ -148,7 +148,7 @@ export class HttpClient {
       }
       throw e;
     }
-  }
+  },
 
   async refreshToken() {
     const refreshToken = localStorage.getItem("refreshToken");
@@ -165,7 +165,7 @@ export class HttpClient {
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("accessToken");
     }
-  }
+  },
 
   async login({ password, login }: LoginDto): Promise<LoginReponse> {
     try {
@@ -188,7 +188,7 @@ export class HttpClient {
       }
       return { code: "error" };
     }
-  }
+  },
 
   async auth(): Promise<AuthReponse> {
     try {
@@ -209,7 +209,7 @@ export class HttpClient {
         code: "error",
       };
     }
-  }
+  },
 
   /**
    * Запрос на регистрацию. Код для активации придёт на почту
@@ -238,7 +238,7 @@ export class HttpClient {
         code: "error",
       };
     }
-  }
+  },
 
   /**
    * Отправка кода регистрации. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
@@ -266,7 +266,7 @@ export class HttpClient {
 
       return { code: "error" };
     }
-  }
+  },
 
   /**
    * Запрос на смену пароля. Код для активации придёт на почту
@@ -283,7 +283,7 @@ export class HttpClient {
         return { code: e.response.data.code };
       return { code: "error" };
     }
-  }
+  },
 
   /**
    * Отправка кода смены пароля. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
@@ -309,7 +309,7 @@ export class HttpClient {
         return { code: e.response.data.code };
       return { code: "error" };
     }
-  }
+  },
 
   async getWhiteList({
     server,
@@ -326,7 +326,7 @@ export class HttpClient {
       }
       return { code: "error" };
     }
-  }
+  },
 
   async getWhiteListUserStatus({
     server,
@@ -343,7 +343,7 @@ export class HttpClient {
       }
       return { code: "error" };
     }
-  }
+  },
 
   async getHardcoreStat(username: string): Promise<GetHardcoreStatResponse> {
     try {
@@ -358,21 +358,21 @@ export class HttpClient {
       }
       return { code: "error" };
     }
-  }
+  },
 
   /**
    * Возращает url для скачивания скина игрока
    */
   getUserSkinUrl(userId: string): string {
     return composeUrl(`/users/${userId}/skin`);
-  }
+  },
 
   /**
    * Возращает url для скачивания плаща игрока
    */
   getUserCapeUrl(userId: string): string {
     return composeUrl(`/users/${userId}/cape`);
-  }
+  },
 
   async getUserById(userId: string): Promise<GetUserByIdResponse> {
     try {
@@ -390,7 +390,7 @@ export class HttpClient {
     } catch (e) {
       return { code: "error" };
     }
-  }
+  },
 
   async hasUserPass(
     server: string,
@@ -408,3 +408,5 @@ export class HttpClient {
     }
   }
 }
+
+export default apiClient
