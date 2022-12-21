@@ -1,28 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IAction, IError } from "utils/interface";
+import { IAction, IError, INotify } from "utils/interface";
 
 interface INotificationState {
-  loading: boolean;
-  fetch: boolean;
-  copy: boolean;
+  loading: INotify;
+  fetch: INotify;
+  copy: INotify;
   errors: IError[];
   action: IAction[];
 }
 
-//
-/*
-{ id: "212", text: "Ошибка твоей жопы" }
-{
-      id: "213",
-      text: "Убрать тебя и всю твою семью гнида черножопая ?",
-      action: { text: "Убрать", func: () => alert("Ты мертв") },
-},*/
-
 const initialState: INotificationState = {
-  loading: false,
-  fetch: false,
-  copy: false,
+  loading: { pending: false },
+  fetch: { pending: false },
+  copy: { pending: false },
   errors: [],
   action: [],
 };
