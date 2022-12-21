@@ -2,9 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   Home,
   SupervisedUserCircle as Auth,
-  Launch,
   VerifiedUser as Profile,
-  ShoppingCart,
+  HeartBroken,
 } from "@mui/icons-material";
 import { MenuListState } from "utils/interface";
 
@@ -16,15 +15,20 @@ const initialState: MenuListState = {
       icon: Home,
     },
     {
-      text: "Лаунчер",
-      to: "/launcher",
-      icon: Launch,
+      text: "Хардкор",
+      to: "/hardcore",
+      icon: HeartBroken
     },
-    {
-      text: "Пропуск",
-      to: "/pass",
-      icon: ShoppingCart,
-    },
+    // {
+    //   text: "Лаунчер",
+    //   to: "/launcher",
+    //   icon: Launch,
+    // },
+    // {
+    //   text: "Пропуск",
+    //   to: "/pass",
+    //   icon: ShoppingCart,
+    // },
     {
       text: "Профиль",
       to: "/profile",

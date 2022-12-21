@@ -5,3 +5,4 @@ export * from "./AuthPage";
 export * from "./ProfilePage";
 export * from "./MainPage";
 export * from "./ConfirmationPage";
+export * from "./HardcorePage"

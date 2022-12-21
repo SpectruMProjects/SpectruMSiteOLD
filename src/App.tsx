@@ -8,8 +8,8 @@ import {
   AuthPage,
   MainPage,
   ConfirmationPage,
+  HardcorePage
 } from "pages";
-import HardcorePage from "pages/HardcorePage";
 
 export const routes = [
   { path: "/", element: () => <HomePage /> },

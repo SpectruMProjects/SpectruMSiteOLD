@@ -1,4 +1,4 @@
-export default function HardcorePage() {
+export function HardcorePage() {
   return (
     <div>HardcorePage</div>
   )
