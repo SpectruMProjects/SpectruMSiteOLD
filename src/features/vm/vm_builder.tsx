@@ -5,10 +5,10 @@ interface Props<T> {
   children: {
     vm: BehaviorSubject<T>
 
-    needEffect?: (old: T, next: T) => boolean
+    needEffect?: ((old: T, next: T) => boolean) | (keyof T)[]
     effect?: (state: T) => void
 
-    needRebuild?: (old: T, next: T) => boolean
+    needRebuild?: ((old: T, next: T) => boolean) | (keyof T)[]
     builder: (state: T) => ReactNode,
   }
 }
@@ -26,8 +26,15 @@ export default function VMBuilder<T>({ children: {
 
   useEffect(() => {
     const sub = vm.pipe(skip(1)).subscribe((newState) => {
-      if (needRebuild(state, newState)) setState(newState)
-      if (needEffect(state, newState)) effect(newState)
+      let rebuild = typeof needRebuild === "function" 
+        ? needRebuild(state, newState)
+        : needRebuild.reduce((acc, key) => acc || (state[key] !== newState[key]), false)
+      if (rebuild) setState(newState)
+      
+      let newEffect = typeof needEffect === "function" 
+        ? needEffect(state, newState)
+        : needEffect.reduce((acc, key) => acc || (state[key] !== newState[key]), false)
+      if (newEffect) effect(newState)
     })
     
     return () => {
