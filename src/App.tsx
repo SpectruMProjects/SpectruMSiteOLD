@@ -9,14 +9,16 @@ import {
   MainPage,
   ConfirmationPage,
 } from "pages";
+import HardcorePage from "pages/HardcorePage";
 
 export const routes = [
-  { path: "/", element: <HomePage /> },
-  { path: "launcher", element: <LauncherPage /> },
-  { path: "pass", element: <PassPage /> },
-  { path: "profile", element: <ProfilePage /> },
-  { path: "auth", element: <AuthPage /> },
-  { path: "auth/activate/reg/:code", element: <ConfirmationPage /> },
+  { path: "/", element: () => <HomePage /> },
+  { path: "launcher", element: () =>  <LauncherPage /> },
+  { path: "pass", element: () => <PassPage /> },
+  { path: "profile", element: () => <ProfilePage /> },
+  { path: "auth", element: () => <AuthPage /> },
+  { path: "auth/activate/reg/:code", element: () => <ConfirmationPage /> },
+  { path: "hardcore", element: () => <HardcorePage/> }
 ];
 
 const router = createBrowserRouter([
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
       ...routes.map((route) => ({
         index: route.path === "/",
         path: route.path === "/" ? undefined : route.path,
-        element: route.element,
+        element: route.element(),
       })),
     ],
   },
