@@ -40,7 +40,7 @@ export const notificationSlice = createSlice({
         (error) => error.id !== action.payload
       );
     },
-    actionAddAction: (state, action: { payload: IAction }) => {
+    actionAddAction: (state, action) => {
       state.action.push(action.payload)
     },
     actionDeleteAction: (state, action: { payload: string }) => {
