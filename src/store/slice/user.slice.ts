@@ -1,53 +1,57 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 
-import { IUser } from "utils/interface";
-import axios from "service/axios";
-import { ActivateRegCodeResponse } from "service/types";
-
-export const fetchConfirmationAccount = createAsyncThunk(
-  "@@user/confirmationAccount",
-  async (code: string) => {
-    const res: ActivateRegCodeResponse = await axios.activateRegCode(code);
-
-    if (res.code === "ok") {
-      return res.user;
-    }
-
-    return undefined;
-  }
-);
+import {IUser} from "utils/interface";
+import {fetchConfirmationAccount, fetchLoginAccount} from "../thunk"
 
 export interface UserState {
-  status: "idle" | "pending" | "rejected" | "received";
-  user: IUser | undefined;
-  error: string | null;
+    status: "idle" | "pending" | "rejected" | "received";
+    user: IUser | undefined;
+    error: string | null;
 }
 
 const initialState: UserState = {
-  status: "idle",
-  user: undefined,
-  error: null,
+    status: "idle",
+    user: undefined,
+    error: null,
 };
 
 export const userSlice = createSlice({
-  name: "@@user",
-  initialState,
-  reducers: {},
-  extraReducers(builder) {
-    builder
-      .addCase(fetchConfirmationAccount.pending, (state) => {
-        state.status = "pending";
-        state.error = null;
-      })
-      .addCase(fetchConfirmationAccount.rejected, (state, action) => {
-        state.status = "rejected";
-        state.error = String(action.payload || action.meta);
-      })
-      .addCase(fetchConfirmationAccount.fulfilled, (state, action) => {
-        state.status = "received";
-        state.user = action.payload as unknown as IUser;
-      });
-  },
+    name: "@@user",
+    initialState,
+    reducers: {
+        actionClearError: ((state: Draft<UserState>) => {
+            state.error = null;
+        }),
+    },
+    extraReducers(builder) {
+        builder
+            .addCase(fetchConfirmationAccount.pending, (state: Draft<UserState>) => {
+                state.status = "pending";
+            })
+            .addCase(fetchConfirmationAccount.rejected, (state: Draft<UserState>, action) => {
+                state.status = "rejected";
+                state.error = "Случилась неизвестная ошибка";
+            })
+            .addCase(fetchConfirmationAccount.fulfilled, (state: Draft<UserState>, action: PayloadAction<IUser | void>) => {
+                state.status = "received";
+                if (action.payload)
+                    state.user = action.payload;
+            })
+            .addCase(fetchLoginAccount.pending, (state: Draft<UserState>) => {
+                state.status = "pending";
+            })
+            .addCase(fetchLoginAccount.rejected, (state: Draft<UserState>, action) => {
+                state.status = "rejected";
+                state.error = "Случилась неизвестная ошибка";
+            })
+            .addCase(fetchLoginAccount.fulfilled, (state: Draft<UserState>, action: PayloadAction<IUser | void>) => {
+                state.status = "received";
+                if (action.payload)
+                    state.user = action.payload;
+            });
+    },
 });
+
+export const {actionClearError} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

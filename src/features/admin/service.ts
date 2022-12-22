@@ -1,13 +1,15 @@
-import api from "service/axios"
+import apiClient from "service/axios"
+
+const axios = new apiClient();
 
 const service = {
-  getRoles() {
-    return api.roles()
-  },
+    getRoles() {
+        return axios.roles()
+    },
 
-  getUserRoles(userId: string) {
-    return api.userRoles(userId)
-  }
+    getUserRoles(userId: string) {
+        return axios.userRoles(userId)
+    }
 }
 
 export default service
