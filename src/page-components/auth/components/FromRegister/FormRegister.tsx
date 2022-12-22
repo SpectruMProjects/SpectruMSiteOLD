@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Card, Button, Input } from "components";
-import { HttpClient } from "service";
+import axios from "service/axios";
 import { useNotification } from "utils/hooks";
 
 import FormRegisterProps from "./FormRegister.props";
@@ -13,7 +13,6 @@ export function FormRegister({
   ...props
 }: FormRegisterProps) {
   const notification = useNotification();
-  const axios = new HttpClient();
 
   const textError = (text: string, num: number): string =>
     `${text} должен быть не меньше ${
