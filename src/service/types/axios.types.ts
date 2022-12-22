@@ -195,3 +195,32 @@ export type HasUserPassResponse =
   | {
       code: "noPass";
     };
+
+export type RolesResponse = 
+  | {
+      code: "ok",
+      roles: string[]
+    }
+  | {
+      code: "notAllowed"
+    }
+  | {
+      code: "error"
+    }
+
+export type UserRolesResponse = 
+  | {
+      code: "ok",
+      roles: string[]
+    }
+  | {
+      code: "notAllowed"
+    }
+  | {
+      code: "error"
+    }
+  | {
+      code: "notFound"
+    }
+  
+      

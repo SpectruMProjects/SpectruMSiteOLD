@@ -18,6 +18,8 @@ import {
   GetHardcoreStatResponse,
   GetUserByIdResponse,
   HasUserPassResponse,
+  RolesResponse,
+  UserRolesResponse,
 } from "./types";
 
 const url = env.server_url;
@@ -405,6 +407,37 @@ const apiClient = {
       if (e instanceof AxiosError && e.status === 400)
         return { code: "noPass" };
       return { code: "error" };
+    }
+  },
+
+  async roles(): Promise<RolesResponse> {
+    try {
+      const res = await this.get('/roles')
+      return {
+        code: "ok",
+        roles: res.data.roles
+      }
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 403)
+        return { code: "notAllowed" }
+      return { code: "error" }
+    }
+  },
+
+  async userRoles(userId: string): Promise<UserRolesResponse> {
+    try {
+      const res = await this.get(`/roles/${userId}`)
+      return {
+        code: "ok",
+        roles: res.data.roles
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 403) return { code: "notAllowed" }
+        if (error.response?.status === 404) return { code: "notFound" }
+      }
+
+      return { code: "error" }
     }
   }
 }
