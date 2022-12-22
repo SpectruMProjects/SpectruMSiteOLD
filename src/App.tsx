@@ -10,6 +10,7 @@ import {
   ConfirmationPage,
   HardcorePage
 } from "pages";
+import { AdminPage } from "features/admin";
 
 export const routes = [
   { path: "/", element: () => <HomePage /> },
@@ -18,7 +19,8 @@ export const routes = [
   { path: "profile", element: () => <ProfilePage /> },
   { path: "auth", element: () => <AuthPage /> },
   { path: "auth/activate/reg/:code", element: () => <ConfirmationPage /> },
-  { path: "hardcore", element: () => <HardcorePage/> }
+  { path: "hardcore", element: () => <HardcorePage/> },
+  { path: "admin", element: () => <AdminPage/> }
 ];
 
 const router = createBrowserRouter([
