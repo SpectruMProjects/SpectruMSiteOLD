@@ -23,31 +23,29 @@ export const notificationSlice = createSlice({
   name: "@@notificationSlice",
   reducers: {
     actionClearNotification: () => initialState,
-    actionAddLoading: (state, action) => {
+    actionAddLoading: (state, action: { payload: INotify }) => {
       state.loading = action.payload;
     },
-    actionAddCopy: (state, action) => {
+    actionAddCopy: (state, action: { payload: INotify }) => {
       state.copy = action.payload;
     },
-    actionAddFetch: (state, action) => {
+    actionAddFetch: (state, action: { payload: INotify }) => {
       state.fetch = action.payload;
     },
-    actionAddError: (state, action) => {
+    actionAddError: (state, action: { payload: IError }) => {
       state.errors.push(action.payload);
     },
-    actionDeleteError: (state, action) => {
+    actionDeleteError: (state, action: { payload: string }) => {
       state.errors = state.errors.filter(
-        (error) => String(error.id) !== String(action.payload)
+        (error) => error.id !== action.payload
       );
     },
-    actionAddAction: (state, action) => {
-      state.action = state.action.filter(
-        (actio) => String(actio.id) !== String(action.payload)
-      );
+    actionAddAction: (state, action: { payload: IAction }) => {
+      state.action.push(action.payload)
     },
-    actionDeleteAction: (state, action) => {
+    actionDeleteAction: (state, action: { payload: string }) => {
       state.action = state.action.filter(
-        (actio) => String(actio.id) !== String(action.payload)
+        (_) => _.id !== action.payload
       );
     },
   },
