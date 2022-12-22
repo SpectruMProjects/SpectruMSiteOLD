@@ -28,7 +28,7 @@ function composeUrl(uri: string): string {
   return url + (uri.startsWith("/") ? uri : "/" + uri);
 }
 
-const apiClient = {
+class ApiClient {
   async get(uri: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     const accessToken = localStorage.getItem("accessToken");
     const header = accessToken
@@ -55,7 +55,7 @@ const apiClient = {
       }
       throw e;
     }
-  },
+  }
 
   async post(
     uri: string,
@@ -87,7 +87,7 @@ const apiClient = {
       }
       throw e;
     }
-  },
+  }
 
   async put(
     uri: string,
@@ -119,7 +119,7 @@ const apiClient = {
       }
       throw e;
     }
-  },
+  }
 
   async delete(
     uri: string,
@@ -150,7 +150,7 @@ const apiClient = {
       }
       throw e;
     }
-  },
+  }
 
   async refreshToken() {
     const refreshToken = localStorage.getItem("refreshToken");
@@ -167,7 +167,7 @@ const apiClient = {
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("accessToken");
     }
-  },
+  }
 
   async login({ password, login }: LoginDto): Promise<LoginReponse> {
     try {
@@ -181,7 +181,7 @@ const apiClient = {
       return {
         code: "ok",
         ...data,
-      };
+      }
     } catch (e) {
       if (e instanceof AxiosError) {
         const message = e.response?.data?.message;
@@ -190,7 +190,8 @@ const apiClient = {
       }
       return { code: "error" };
     }
-  },
+  }
+
 
   async auth(): Promise<AuthReponse> {
     try {
@@ -211,7 +212,7 @@ const apiClient = {
         code: "error",
       };
     }
-  },
+  }
 
   /**
    * Запрос на регистрацию. Код для активации придёт на почту
@@ -240,7 +241,7 @@ const apiClient = {
         code: "error",
       };
     }
-  },
+  }
 
   /**
    * Отправка кода регистрации. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
@@ -268,7 +269,7 @@ const apiClient = {
 
       return { code: "error" };
     }
-  },
+  }
 
   /**
    * Запрос на смену пароля. Код для активации придёт на почту
@@ -285,7 +286,7 @@ const apiClient = {
         return { code: e.response.data.code };
       return { code: "error" };
     }
-  },
+  }
 
   /**
    * Отправка кода смены пароля. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
@@ -311,7 +312,7 @@ const apiClient = {
         return { code: e.response.data.code };
       return { code: "error" };
     }
-  },
+  }
 
   async getWhiteList({
     server,
@@ -328,7 +329,7 @@ const apiClient = {
       }
       return { code: "error" };
     }
-  },
+  }
 
   async getWhiteListUserStatus({
     server,
@@ -345,7 +346,7 @@ const apiClient = {
       }
       return { code: "error" };
     }
-  },
+  }
 
   async getHardcoreStat(username: string): Promise<GetHardcoreStatResponse> {
     try {
@@ -360,21 +361,21 @@ const apiClient = {
       }
       return { code: "error" };
     }
-  },
+  }
 
   /**
    * Возращает url для скачивания скина игрока
    */
   getUserSkinUrl(userId: string): string {
     return composeUrl(`/users/${userId}/skin`);
-  },
+  }
 
   /**
    * Возращает url для скачивания плаща игрока
    */
   getUserCapeUrl(userId: string): string {
     return composeUrl(`/users/${userId}/cape`);
-  },
+  }
 
   async getUserById(userId: string): Promise<GetUserByIdResponse> {
     try {
@@ -392,7 +393,7 @@ const apiClient = {
     } catch (e) {
       return { code: "error" };
     }
-  },
+  }
 
   async hasUserPass(
     server: string,
@@ -408,7 +409,7 @@ const apiClient = {
         return { code: "noPass" };
       return { code: "error" };
     }
-  },
+  }
 
   async roles(): Promise<RolesResponse> {
     try {
@@ -422,7 +423,7 @@ const apiClient = {
         return { code: "notAllowed" }
       return { code: "error" }
     }
-  },
+  }
 
   async userRoles(userId: string): Promise<UserRolesResponse> {
     try {
@@ -442,4 +443,5 @@ const apiClient = {
   }
 }
 
-export default apiClient
+const client = new ApiClient()
+export default client
