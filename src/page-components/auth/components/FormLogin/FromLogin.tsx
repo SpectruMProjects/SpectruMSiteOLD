@@ -2,6 +2,7 @@ import { useState } from "react";
 import cn from "classnames";
 
 import { Card, Button, Input } from "components";
+import { useNotification } from "utils/hooks";
 
 import FormLoginProps from "./FormLogin.props";
 import styles from "./FormLogin.module.scss";
@@ -11,6 +12,7 @@ export function FormLogin({
   setForm,
   ...props
 }: FormLoginProps): JSX.Element {
+  const notification = useNotification();
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -19,12 +21,22 @@ export function FormLogin({
 
   const handleLogin = () => {
     if (login.replaceAll(" ", "").length < 3) {
+      notification(
+        "error",
+        { text: "Логин должна содержать не меньше 3-х симоволов" },
+        5000
+      );
       setLoginError(true);
     }
     if (login.replaceAll(" ", "").length >= 3) {
       setLoginError(false);
     }
     if (password.replaceAll(" ", "").length < 8) {
+      notification(
+        "error",
+        { text: "Пароль должна содержать не меньше 8-х симоволов" },
+        5000
+      );
       setPasswordError(true);
     }
     if (password.replaceAll(" ", "").length >= 8) {

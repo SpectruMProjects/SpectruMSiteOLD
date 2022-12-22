@@ -6,7 +6,7 @@ import {
   Info,
 } from "@mui/icons-material";
 
-import { useAppSelector } from "utils/hooks";
+import { useAppSelector, useNotificationOff } from "utils/hooks";
 import {
   getAction,
   getCopy,
@@ -14,8 +14,13 @@ import {
   getFetch,
   getLoading,
 } from "store/select";
-import { IAction, IError } from "utils/interface";
-import { actionDeleteAction, actionDeleteError } from "store/slice";
+import {
+  actionAddCopy,
+  actionAddFetch,
+  actionAddLoading,
+  actionDeleteAction,
+  actionDeleteError,
+} from "store/slice";
 import { LoadingIcon } from "assets/svg";
 import { NotifyCard } from "components";
 
@@ -26,57 +31,75 @@ export const Notification = ({
   className,
   ...props
 }: NotificationProps): JSX.Element => {
-  const errors: IError[] = useAppSelector(getErrors);
-  const action: IAction[] = useAppSelector(getAction);
-  const loading: boolean = useAppSelector(getLoading);
-  const copy: boolean = useAppSelector(getCopy);
-  const fetch: boolean = useAppSelector(getFetch);
+  const notificationObject = useNotificationOff("object");
+  const notificationArray = useNotificationOff("array");
+
+  const errors = useAppSelector(getErrors);
+  const action = useAppSelector(getAction);
+  const loading = useAppSelector(getLoading);
+  const copy = useAppSelector(getCopy);
+  const fetch = useAppSelector(getFetch);
+
+  notificationObject(loading, actionAddLoading);
+  notificationObject(copy, actionAddCopy);
+  notificationObject(fetch, actionAddFetch);
 
   return (
     <section className={cn(className, styles.notificationWrapper)} {...props}>
       {action !== null &&
-        action.map(({ id, text, action }) => (
-          <NotifyCard
-            key={id}
-            icon={<QuestionMark />}
-            text={text}
-            color={"mauve"}
-            remove={{ id, action: actionDeleteAction }}
-            action={
-              action && {
-                func: action?.func,
-                text: action?.text,
+        action.map(({ id, text, action, time }) => {
+          notificationArray({ id, time, text, action }, actionDeleteAction);
+          return (
+            <NotifyCard
+              key={id}
+              icon={<QuestionMark />}
+              time={time}
+              text={text}
+              color={"mauve"}
+              remove={{ id, action: actionDeleteAction }}
+              action={
+                action && {
+                  func: action.func,
+                  text: action.text,
+                }
               }
-            }
-          />
-        ))}
+            />
+          );
+        })}
       {errors !== null &&
-        errors.map((error) => (
-          <NotifyCard
-            key={error?.id}
-            icon={<Info />}
-            text={error.text}
-            color={"danger"}
-            remove={{ id: error.id, action: actionDeleteError }}
-          />
-        ))}
-      {copy && (
+        errors.map(({ id, time, text }) => {
+          notificationArray({ id, time, text }, actionDeleteError);
+          return (
+            <NotifyCard
+              key={id}
+              time={time}
+              icon={<Info />}
+              text={text}
+              color={"danger"}
+              remove={{ id, action: actionDeleteError }}
+            />
+          );
+        })}
+      {copy.pending && (
         <NotifyCard
           icon={<ContentCopy />}
+          time={copy.time}
           text={"Строка скопирована"}
           color={"success"}
         />
       )}
-      {loading && (
+      {loading.pending && (
         <NotifyCard
           icon={<LoadingIcon />}
+          time={loading.time}
           text={"Загрузка данных..."}
           color={"secondary"}
         />
       )}
-      {fetch && (
+      {fetch.pending && (
         <NotifyCard
           icon={<PublicOff />}
+          time={fetch.time}
           text={"Нету подключения к серверу..."}
           color={"warning"}
         />

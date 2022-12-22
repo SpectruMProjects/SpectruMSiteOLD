@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 import { Card, Button, Input } from "components";
-import axios from "service/axios";
+import { HttpClient } from "service";
+import { useNotification } from "utils/hooks";
 
 import FormRegisterProps from "./FormRegister.props";
 import styles from "./FormRegister.module.scss";
@@ -11,6 +12,14 @@ export function FormRegister({
   setForm,
   ...props
 }: FormRegisterProps) {
+  const notification = useNotification();
+  const axios = new HttpClient();
+
+  const textError = (text: string, num: number): string =>
+    `${text} должен быть не меньше ${
+      num > 4 ? num + "-и" : num + "-х"
+    } символов, а так же содержать латинские буквы или цифры.`;
+
   const [username, setUsername] = useState<string>("");
   const [usernameError, setUsernameError] = useState<boolean>(false);
   const [mail, setEmail] = useState<string>("");
@@ -27,6 +36,7 @@ export function FormRegister({
       username.replaceAll(" ", "").length < 3 ||
       username.replace(/^.*[a-zA-Z0-9]$/g, "") !== ""
     ) {
+      notification("error", { text: textError("Ник", 3) }, 5000);
       setUsernameError(true);
     }
 
@@ -34,6 +44,7 @@ export function FormRegister({
       mail.replace(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g, "") !== "" ||
       mail.replaceAll(" ", "").length === 0
     ) {
+      notification("error", { text: "Введите корректно почту." }, 5000);
       setEmailError(true);
     }
 
@@ -44,6 +55,7 @@ export function FormRegister({
         ""
       ) !== ""
     ) {
+      notification("error", { text: textError("Пароль", 8) }, 5000);
       setPasswordError(true);
     }
 

@@ -1,57 +1,57 @@
 .wrapperNavBar {
-	position: absolute;
-	top: 100px;
-	left: -150px;
-	width: 100%;
-	max-width: 65px;
-	padding: 25px 10px;
-	background: var(--background4);
-	align-items: left;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	border-radius: var(--radius);
-	box-shadow: 0px 0px 5px var(--shadow-opacity01);
-	transition: var(--transition);
-	z-index: 1;
-	user-select: none;
-	padding-bottom: 0px;
+  position: absolute;
+  top: 100px;
+  left: -150px;
+  width: 100%;
+  max-width: 65px;
+  padding: 25px 10px;
+  background: var(--background4);
+  align-items: left;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  box-shadow: 0px 0px 5px var(--shadow-opacity01);
+  transition: var(--transition);
+  z-index: 1;
+  user-select: none;
+  padding-bottom: 0px;
 }
 
 .wrapperNavBarOn {
-	transition: var(--transition);
-	max-width: 200px;
+  transition: var(--transition);
+  max-width: 200px;
 }
 
 .titleWrapper {
-	display: flex;
-	padding: 10px;
-	gap: 20px;
-	color: var(--text4);
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+  color: var(--text4);
 }
 
 .titleNavBar {
-	color: var(--text4);
-	font-weight: 700;
-	user-select: none;
-	margin-bottom: 10px;
-	font-size: 18px;
-	width: 20px;
-	overflow: hidden;
-	transform: translateX(-40px);
-	transition: var(--transition);
-	opacity: 0;
+  color: var(--text4);
+  font-weight: 700;
+  user-select: none;
+  margin-bottom: 10px;
+  font-size: 18px;
+  width: 20px;
+  overflow: hidden;
+  transform: translateX(-40px);
+  transition: var(--transition);
+  opacity: 0;
 }
 
 .titleNavBarOn {
-	width: 100%;
-	opacity: 1;
-	transform: translateX(0px);
-	transition: var(--transition);
+  width: 100%;
+  opacity: 1;
+  transform: translateX(0px);
+  transition: var(--transition);
 }
 
-@media screen and (max-width:1600px ) {
-	.wrapperNavBar {
-		left: 50px;
-	}
+@media screen and (max-width: 1600px) {
+  .wrapperNavBar {
+    left: 50px;
+  }
 }
