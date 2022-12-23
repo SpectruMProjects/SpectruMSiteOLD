@@ -16,14 +16,14 @@ export const CardNavTheme = ({
   return (
     <div className={cn(className, styles.wrapperCardMenu)} {...props}>
       <span className={cn(styles.iconWrap)}>{icon}</span>
-      <p
+      <div
         className={cn(styles.wrapperText, {
           [styles.wrapperTextOn]: activeMenu,
         })}
       >
         {text}
         <InputTheme theme={theme} />
-      </p>
+      </div>
     </div>
   )
 }

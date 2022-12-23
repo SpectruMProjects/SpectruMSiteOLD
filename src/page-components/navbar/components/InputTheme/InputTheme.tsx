@@ -9,7 +9,14 @@ export const InputTheme = ({ theme, className, ...props }: InputProps): JSX.Elem
   return (
     <div className={cn(className)}>
       <div className={styles.checkBox}>
-        <input type='checkbox' checked={theme} {...props} />
+        <input
+          type='checkbox'
+          checked={theme}
+          onChange={() => {
+            console.log('')
+          }}
+          {...props}
+        />
         <label>
           {theme ? <Dark className={styles.icon} /> : <Light className={styles.icon} />}
         </label>

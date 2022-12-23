@@ -58,7 +58,7 @@ export const notificationSlice = createSlice({
         const id = uuidv4()
 
         state.status = 'rejected'
-        state.errors.push({ id, text: String(action.payload || action.meta) })
+        state.errors.push({ id, text: String(action.error.message), time: 10000 })
       })
       .addCase(
         fetchRegistrationAccount.fulfilled,

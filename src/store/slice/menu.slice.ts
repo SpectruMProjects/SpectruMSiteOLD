@@ -1,43 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {
-  Home,
-  SupervisedUserCircle as Auth,
-  VerifiedUser as Profile,
-  HeartBroken,
-} from '@mui/icons-material'
-import { MenuListState } from 'utils/interface'
+
+import { IMenu } from 'utils/interface'
+
+interface MenuListState {
+  menuList: IMenu[]
+}
 
 const initialState: MenuListState = {
   menuList: [
     {
       text: 'Главная',
       to: '/',
-      icon: Home,
+      icon: 'home',
     },
     {
       text: 'Хардкор',
       to: '/hardcore',
-      icon: HeartBroken,
+      icon: 'heart',
     },
     // {
     //   text: "Лаунчер",
     //   to: "/launcher",
-    //   icon: Launch,
+    //   icon: "launch",
     // },
     // {
     //   text: "Пропуск",
     //   to: "/pass",
-    //   icon: ShoppingCart,
+    //   icon: "shop",
     // },
     {
       text: 'Профиль',
       to: '/profile',
-      icon: Profile,
+      icon: 'profile',
     },
     {
       text: 'Авторизация',
       to: '/auth',
-      icon: Auth,
+      icon: 'auth',
     },
   ],
 }

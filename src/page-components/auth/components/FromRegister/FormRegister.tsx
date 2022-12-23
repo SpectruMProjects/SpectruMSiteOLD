@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import cn from 'classnames'
 
 import { Card, Button, Input } from 'components'
 import { useAppDispatch, useNotification } from 'utils/hooks'
@@ -7,7 +8,7 @@ import { fetchRegistrationAccount } from 'store/thunk'
 import FormRegisterProps from './FormRegister.props'
 import styles from './FormRegister.module.scss'
 
-export function FormRegister({ className, setForm, ...props }: FormRegisterProps) {
+export function FormRegister({ className, setForm, ...props }: FormRegisterProps): JSX.Element {
   const notification = useNotification()
   const dispatch = useAppDispatch()
 
@@ -15,6 +16,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
     `${text} должен быть не меньше ${
       num > 4 ? num + '-и' : num + '-х'
     } символов, а так же содержать латинские буквы или цифры.`
+  const time = 10000
 
   const [username, setUsername] = useState('')
   const [usernameError, setUsernameError] = useState(false)
@@ -29,30 +31,30 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
     setPasswordError(false)
 
     if (username.trim().length < 3 || username.match(/^.*[a-zA-Z0-9]$/g) === null) {
-      notification('error', { text: textError('Ник', 3) }, 5000)
       setUsernameError(true)
+      notification('error', { text: textError('Ник', 3) }, time, usernameError)
     }
 
     if (mail.match(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g) === null || mail.trim().length === 0) {
-      notification('error', { text: 'Введите корректно почту.' }, 5000)
       setEmailError(true)
+      notification('error', { text: 'Введите корректно почту.' }, time, mailError)
     }
 
     if (
       password.trim().length < 8 ||
       password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/g) === null
     ) {
-      notification('error', { text: textError('Пароль', 8) }, 5000)
       setPasswordError(true)
+      notification('error', { text: textError('Пароль', 8) }, time, passwordError)
     }
-
+    //console.log(flag)
     if (!usernameError && !mailError && !passwordError) {
       await dispatch(fetchRegistrationAccount({ mail, username, password }))
     }
   }
 
   return (
-    <div className={styles.wrapperFormRegister} {...props}>
+    <div className={cn(className, styles.wrapperFormRegister)} {...props}>
       <Card>
         <h2 className={styles.title}>Регистрация</h2>
         <Input

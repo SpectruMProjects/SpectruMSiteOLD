@@ -1,20 +1,35 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Diversity1 as Logo, NightsStay as Dark, LightMode as Light } from '@mui/icons-material'
+import {
+  Diversity1 as Logo,
+  NightsStay as Dark,
+  LightMode as Light,
+  Home,
+  SupervisedUserCircle as Auth,
+  VerifiedUser as Profile,
+  HeartBroken,
+} from '@mui/icons-material'
 import cn from 'classnames'
 
-import { IUser } from 'utils/interface'
+import { actionChangeTheme } from 'store/slice'
+import { IMenu, IUser } from 'utils/interface'
 import { useAppDispatch, useAppSelector } from 'utils/hooks'
 import { getMenuList, getTheme, getUser } from 'store/select'
 
 import { CardNavBar, CardNavTheme, CircleMenuMove } from './components'
 import NavBarProps from './NavBar.props'
 import styles from './NavBar.module.scss'
-import { actionChangeTheme } from 'store/slice'
 
 export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   const { pathname } = useLocation()
   const dispatch = useAppDispatch()
+
+  const handleIconReturn = (val: string): React.ReactNode => {
+    if (val === 'home') return <Home />
+    if (val === 'auth') return <Auth />
+    if (val === 'profile') return <Profile />
+    if (val === 'heart') return <HeartBroken />
+  }
 
   const user: IUser | undefined = useAppSelector(getUser)
   const menuList = useAppSelector(getMenuList)
@@ -29,27 +44,17 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
     dispatch(actionChangeTheme(!theme))
   }
 
-  const filterMenuList = (menu: any): boolean => {
+  const filterMenuList = (menu: IMenu): boolean => {
     if (user === undefined) {
-      if (menu.to === '/profile') {
-        return false
-      } else {
-        return true
-      }
+      return menu.to !== '/profile'
+    } else {
+      return menu.to !== '/auth'
     }
-    if (user !== undefined) {
-      if (menu.to === '/auth') {
-        return false
-      } else {
-        return true
-      }
-    }
-    return true
   }
 
   return (
     <div
-      className={cn(styles.wrapperNavBar, {
+      className={cn(className, styles.wrapperNavBar, {
         [styles.wrapperNavBarOn]: activeMenu,
       })}
       onMouseEnter={() => setActiveMenu(true)}
@@ -69,15 +74,15 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
       <CircleMenuMove top={top} activeMenu={activeMenu} menuOff={menuOff} />
       {menuList
         .filter((menu) => filterMenuList(menu))
-        .map((menu, index) => {
+        .map(({ icon, text, to }, index) => {
           return (
             <CardNavBar
               key={index}
-              text={menu.text}
-              to={menu.to}
+              text={text}
+              to={to}
               index={index}
-              icon={<menu.icon />}
-              selected={pathname === menu.to}
+              icon={handleIconReturn(icon)}
+              selected={pathname === to}
               activeMenu={activeMenu}
               setTop={setTop}
             />

@@ -1,9 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { v4 as uuidv4 } from 'uuid'
 
-import { useNotification } from 'utils/hooks'
 import { IUser } from 'utils/interface'
 import { ActivateRegCodeResponse, LoginDto, LoginReponse } from 'service/types'
 import apiClient from 'service/axios'
+
+import { actionAddError } from '../slice'
 
 const axios = new apiClient()
 
@@ -17,12 +19,13 @@ const notifyConfirmationError = {
 
 export const fetchConfirmationAccount = createAsyncThunk(
   '@@user/confirmationAccount',
-  async (code: string): Promise<IUser | void> => {
-    const notification = useNotification()
+  async (code: string, thunkAPI): Promise<IUser | void> => {
+    const id = uuidv4()
+
     const res: ActivateRegCodeResponse = await axios.activateRegCode(code)
 
     if (res.code !== 'ok') {
-      notification('error', notifyConfirmationError[res.code], 5000)
+      thunkAPI.dispatch(actionAddError({ id, ...notifyConfirmationError[res.code], time: 10000 }))
     }
 
     if (res.code === 'ok') return res.user
@@ -40,12 +43,13 @@ const notifyLoginError = {
 
 export const fetchLoginAccount = createAsyncThunk(
   '@@user/loginAccount',
-  async ({ login, password }: LoginDto): Promise<IUser | void> => {
-    const notification = useNotification()
+  async ({ login, password }: LoginDto, thunkAPI): Promise<IUser | void> => {
+    const id = uuidv4()
+
     const res: LoginReponse = await axios.login({ login, password })
 
     if (res.code !== 'ok') {
-      notification('error', notifyLoginError[res.code], 5000)
+      thunkAPI.dispatch(actionAddError({ id, ...notifyLoginError[res.code], time: 10000 }))
     }
 
     if (res.code === 'ok') return res.user

@@ -30,7 +30,7 @@ export const userSlice = createSlice({
       })
       .addCase(fetchConfirmationAccount.rejected, (state: Draft<UserState>, action) => {
         state.status = 'rejected'
-        state.error = 'Случилась неизвестная ошибка'
+        state.error = String(action.error.message)
       })
       .addCase(
         fetchConfirmationAccount.fulfilled,
@@ -44,7 +44,7 @@ export const userSlice = createSlice({
       })
       .addCase(fetchLoginAccount.rejected, (state: Draft<UserState>, action) => {
         state.status = 'rejected'
-        state.error = 'Случилась неизвестная ошибка'
+        state.error = String(action.error.message)
       })
       .addCase(
         fetchLoginAccount.fulfilled,

@@ -16,37 +16,67 @@ export function useNotification() {
     object: 'loading' | 'copy' | 'fetch' | 'error' | 'action',
     type: { action?: { func: () => void; text: string }; text: string },
     time = 3000,
+    flag?: boolean,
   ): void {
     const id = uuidv4()
 
     if (object) {
       switch (object) {
         case 'loading': {
-          dispatch(actionAddLoading({ pending: true, time }))
+          if (flag !== undefined) {
+            if (!flag) dispatch(actionAddLoading({ pending: true, time }))
+          } else {
+            dispatch(actionAddLoading({ pending: true, time }))
+          }
           break
         }
         case 'copy': {
-          dispatch(actionAddCopy({ pending: true, time }))
+          if (flag !== undefined) {
+            if (!flag) dispatch(actionAddCopy({ pending: true, time }))
+          } else {
+            dispatch(actionAddCopy({ pending: true, time }))
+          }
           break
         }
         case 'fetch': {
-          dispatch(actionAddFetch({ pending: true, time }))
+          if (flag !== undefined) {
+            if (!flag) dispatch(actionAddFetch({ pending: true, time }))
+          } else {
+            dispatch(actionAddFetch({ pending: true, time }))
+          }
           break
         }
         case 'error': {
-          if (type) dispatch(actionAddError({ id, text: type.text, time }))
+          if (flag !== undefined) {
+            if (!flag) if (type) dispatch(actionAddError({ id, text: type.text, time }))
+          } else {
+            if (type) dispatch(actionAddError({ id, text: type.text, time }))
+          }
           break
         }
         case 'action': {
-          if (type)
-            dispatch(
-              actionAddAction({
-                id,
-                text: type.text,
-                time,
-                action: type.action,
-              }),
-            )
+          if (flag !== undefined) {
+            if (!flag)
+              if (type)
+                dispatch(
+                  actionAddAction({
+                    id,
+                    text: type.text,
+                    time,
+                    action: type.action,
+                  }),
+                )
+          } else {
+            if (type)
+              dispatch(
+                actionAddAction({
+                  id,
+                  text: type.text,
+                  time,
+                  action: type.action,
+                }),
+              )
+          }
           break
         }
       }

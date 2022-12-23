@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { RegisterDto, RegisterResponse } from 'service/types'
 import { IError } from 'utils/interface'
 import apiClient from 'service/axios'
+import { actionAddAction, actionAddError } from '../slice'
 
 const axios = new apiClient()
 
@@ -19,12 +20,22 @@ const notifyError = {
 
 export const fetchRegistrationAccount = createAsyncThunk(
   '@@notification/registrationAccount',
-  async ({ mail, password, username }: RegisterDto): Promise<IError | void> => {
+  async ({ mail, password, username }: RegisterDto, thunkAPI): Promise<IError | void> => {
     const res: RegisterResponse = await axios.register({ mail, password, username })
     const id = uuidv4()
 
     if (res.code !== 'ok') {
-      return { id, ...notifyError[res.code], time: 5000 }
+      thunkAPI.dispatch(actionAddError({ id, ...notifyError[res.code], time: 10000 }))
+    }
+
+    if (res.code === 'ok') {
+      thunkAPI.dispatch(
+        actionAddAction({
+          id,
+          text: 'Вы создали аккаунт, перейдие на почту для подтверждения.',
+          time: 10000,
+        }),
+      )
     }
   },
 )

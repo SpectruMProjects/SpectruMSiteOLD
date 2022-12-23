@@ -24,15 +24,25 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
 
   const handleLogin = async () => {
     if (login.trim().length < 3) {
-      notification('error', { text: 'Логин должна содержать не меньше 3-х симоволов' }, 5000)
       setLoginError(true)
+      notification(
+        'error',
+        { text: 'Логин должна содержать не меньше 3-х симоволов' },
+        10000,
+        loginError,
+      )
     }
     if (login.trim().length >= 3) {
       setLoginError(false)
     }
     if (password.trim().length < 8) {
-      notification('error', { text: 'Пароль должна содержать не меньше 8-х симоволов' }, 5000)
       setPasswordError(true)
+      notification(
+        'error',
+        { text: 'Пароль должна содержать не меньше 8-х симоволов' },
+        10000,
+        passwordError,
+      )
     }
     if (password.trim().length >= 8) {
       setPasswordError(false)

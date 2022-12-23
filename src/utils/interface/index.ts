@@ -1,3 +1,3 @@
 export * from './IUser'
-export * from './IMenuList'
+export * from './IMenu'
 export * from './INotification'
