@@ -1,9 +1,9 @@
-import { Context } from "react";
-import { BehaviorSubject } from "rxjs";
+import { Context } from 'react'
+import { BehaviorSubject } from 'rxjs'
 
 export abstract class VM<T, This extends VM<T, This>> extends BehaviorSubject<T> {
   private _old: T
-  
+
   constructor(init: T) {
     super(init)
     this._old = init
@@ -12,7 +12,7 @@ export abstract class VM<T, This extends VM<T, This>> extends BehaviorSubject<T>
       this._old = next
     })
   }
-  
+
   get state(): T {
     return this.value
   }

@@ -1,26 +1,19 @@
-import { NightsStay as Dark, LightMode as Light } from "@mui/icons-material";
-import cn from "classnames";
+import React from 'react'
+import { NightsStay as Dark, LightMode as Light } from '@mui/icons-material'
+import cn from 'classnames'
 
-import InputProps from "./InputTheme.props";
-import styles from "./InputTheme.module.scss";
+import InputProps from './InputTheme.props'
+import styles from './InputTheme.module.scss'
 
-export const InputTheme = ({
-  theme,
-  className,
-  ...props
-}: InputProps): JSX.Element => {
+export const InputTheme = ({ theme, className, ...props }: InputProps): JSX.Element => {
   return (
-    <div className={cn(className, styles.inputWrapper)}>
+    <div className={cn(className)}>
       <div className={styles.checkBox}>
-        <input type='checkbox' checked={theme} onChange={() => {}} {...props} />
+        <input type='checkbox' checked={theme} {...props} />
         <label>
-          {theme ? (
-            <Dark className={styles.icon} />
-          ) : (
-            <Light className={styles.icon} />
-          )}
+          {theme ? <Dark className={styles.icon} /> : <Light className={styles.icon} />}
         </label>
       </div>
     </div>
-  );
-};
+  )
+}

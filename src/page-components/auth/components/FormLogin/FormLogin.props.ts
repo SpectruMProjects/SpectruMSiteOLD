@@ -1,6 +1,6 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
 export default interface FormLoginProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  setForm: (form: boolean) => void;
+  setForm: (form: boolean) => void
 }

@@ -1,9 +1,6 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
 export default interface ButtonProps
-  extends DetailedHTMLProps<
-    HTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
-  text?: string;
+  extends DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+  text?: string
 }

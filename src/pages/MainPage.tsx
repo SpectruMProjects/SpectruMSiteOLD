@@ -1,5 +1,7 @@
-import { Main } from "page-components/main";
+import React from 'react'
+
+import { Main } from 'page-components/main'
 
 export const MainPage = (): JSX.Element => {
-  return <Main />;
-};
+  return <Main />
+}

@@ -1,2 +1,2 @@
-export * from "./FormLogin";
-export * from "./FromRegister";
+export * from './FormLogin'
+export * from './FromRegister'

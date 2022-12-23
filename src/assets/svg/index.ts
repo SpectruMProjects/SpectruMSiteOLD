@@ -1,3 +1,3 @@
-import { ReactComponent as Loading } from "./loading.svg";
+import { ReactComponent as Loading } from './loading.svg'
 
-export const LoadingIcon = Loading;
+export const LoadingIcon = Loading

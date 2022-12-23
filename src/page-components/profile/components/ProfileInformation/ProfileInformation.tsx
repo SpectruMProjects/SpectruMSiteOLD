@@ -1,12 +1,12 @@
-import { Card } from "components/card";
+import React from 'react'
 
-import { Skin } from "../";
+import { Card } from 'components/card'
 
-import { profileInformationProps } from "./ProfileInformation.props";
+import { Skin } from '../'
 
-export function ProfileInformation({
-  user,
-}: profileInformationProps): JSX.Element {
+import { profileInformationProps } from './ProfileInformation.props'
+
+export function ProfileInformation({ user }: profileInformationProps): JSX.Element {
   return (
     <Card>
       <div>
@@ -16,10 +16,7 @@ export function ProfileInformation({
           <p>{user.mail}</p>
         </div>
       </div>
-      <div>
-        Здесь будет разная статистика и информация о группах, друзьях, странах и
-        т.д.
-      </div>
+      <div>Здесь будет разная статистика и информация о группах, друзьях, странах и т.д.</div>
     </Card>
-  );
+  )
 }

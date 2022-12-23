@@ -1,7 +1,9 @@
-import { CardPage } from "components";
+import React from 'react'
 
-import styles from "./Launcher.module.scss";
+import { CardPage } from 'components'
+
+//import styles from './Launcher.module.scss'
 
 export const Launcher = (): JSX.Element => {
-  return <CardPage className={styles.wrapperLauncher}>LauncherPage</CardPage>;
-};
+  return <CardPage>LauncherPage</CardPage>
+}

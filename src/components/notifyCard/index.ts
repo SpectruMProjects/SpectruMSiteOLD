@@ -1,1 +1,1 @@
-export * from "./NotifyCard";
+export * from './NotifyCard'

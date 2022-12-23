@@ -1,3 +1,1 @@
-export class AdminVM {
-  
-}
+export class AdminVM {}

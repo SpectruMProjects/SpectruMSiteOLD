@@ -1,28 +1,34 @@
 .wrapperNotification {
   display: flex;
-  flex-direction: column;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px var(--shadow-opacity03);
-  transition: var(--transition);
-  width: 100%;
-  color: var(--text5);
   overflow: hidden;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 15px;
+
+  transition: var(--transition);
+
+  color: var(--text5);
+  border-radius: 10px;
+  box-shadow: 0 0 5px var(--shadow-opacity03);
 }
 
 .wrapperUpNotification {
-  width: 100%;
   display: flex;
-  gap: 20px;
   align-items: center;
   justify-content: space-between;
+
+  width: 100%;
+
   text-align: left;
+  gap: 20px;
 }
 
 .notificationIcon {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
   width: 30px;
   height: 30px;
 }
@@ -37,60 +43,73 @@
 }
 
 .text {
-  font-size: 16px;
-  color: var(--text5);
-  word-break: break-all;
   width: 100%;
+
+  word-break: break-all;
+
+  color: var(--text5);
+
+  font-size: 16px;
 }
 
 .buttonWrapperCancel {
   width: 35px;
   height: 35px;
-  border-radius: 50%;
-  border: none;
-  background: none;
+
   cursor: pointer;
-  pointer-events: fill;
   user-select: all;
+  pointer-events: fill;
+
+  border: none;
+  border-radius: 50%;
+  background: none;
 }
 
 .cancelIcon {
   min-width: 35px;
   min-height: 35px;
   padding: 5px;
+
   transition: var(--transition);
-  border-radius: 50%;
+
   color: var(--text5);
+  border-radius: 50%;
 }
 
 .cancelIcon:hover {
   transition: var(--transition);
+
   background-color: var(--shadow-opacity03);
 }
 
 .wrapperActionButton {
   display: flex;
-  width: 100%;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
 }
 
 .actionButton {
-  border: none;
-  outline: none;
-  background: none;
   padding: 5px 10px;
-  font-weight: 600;
-  font-size: 18px;
-  border-radius: var(--radius);
+
   cursor: pointer;
-  pointer-events: fill;
   user-select: inherit;
   transition: var(--transition);
+  pointer-events: fill;
+
   color: var(--text5);
+  border: none;
+  border-radius: var(--radius);
+  outline: none;
+  background: none;
+
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .actionButton:hover {
   transition: var(--transition);
+
   background-color: var(--shadow-opacity03);
 }

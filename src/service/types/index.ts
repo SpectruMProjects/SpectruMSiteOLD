@@ -1,3 +1,3 @@
-export * from "./minecraftDeathReason.types";
-export * from "./axios.response";
-export * from "./axios.dto"
+export * from './minecraftDeathReason.types'
+export * from './axios.response'
+export * from './axios.dto'

@@ -1,14 +1,17 @@
 .notificationWrapper {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  z-index: 10;
   position: fixed;
-  left: 20px;
+  z-index: 10;
   bottom: 20px;
-  padding: 5px;
-  max-width: 420px;
-  pointer-events: none;
-  user-select: none;
+  left: 20px;
+
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
+  max-width: 420px;
+  padding: 5px;
+
+  user-select: none;
+  pointer-events: none;
+  gap: 10px;
 }

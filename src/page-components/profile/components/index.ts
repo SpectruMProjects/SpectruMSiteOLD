@@ -1,2 +1,2 @@
-export * from "./ProfileInformation";
-export * from "./Skin";
+export * from './ProfileInformation'
+export * from './Skin'

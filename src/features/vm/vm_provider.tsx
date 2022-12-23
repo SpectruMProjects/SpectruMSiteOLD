@@ -1,5 +1,5 @@
-import { ReactNode, useEffect, useState } from "react"
-import { VM } from "./vm"
+import React, { ReactNode, useEffect, useState } from 'react'
+import { VM } from './vm'
 
 interface props<T, This extends VM<T, This>> {
   create: () => This
@@ -7,7 +7,8 @@ interface props<T, This extends VM<T, This>> {
 }
 
 export default function GomnoProvider<T, This extends VM<T, This>>({
-  children, create
+  children,
+  create,
 }: props<T, This>) {
   const [gomno] = useState(create())
 
@@ -18,10 +19,6 @@ export default function GomnoProvider<T, This extends VM<T, This>>({
       gomno.onDestroy()
     }
   })
-  
-  return (
-    <gomno.context.Provider value={gomno}>
-      {children}
-    </gomno.context.Provider>  
-  )
+
+  return <gomno.context.Provider value={gomno}>{children}</gomno.context.Provider>
 }

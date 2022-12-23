@@ -1,5 +1,5 @@
+import React from 'react'
+
 export function AdminPage() {
-  return (
-    <div>AdminPage</div>
-  )
+  return <div>AdminPage</div>
 }

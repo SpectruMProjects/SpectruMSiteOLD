@@ -1,7 +1,9 @@
-import { CardPage } from "components";
+import React from 'react'
 
-import styles from "./Home.module.scss";
+import { CardPage } from 'components'
+
+//import styles from './Home.module.scss'
 
 export const Home = (): JSX.Element => {
-  return <CardPage className={styles.wrapperHome}>HomePage</CardPage>;
-};
+  return <CardPage>HomePage</CardPage>
+}

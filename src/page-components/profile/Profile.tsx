@@ -1,12 +1,14 @@
-import { CardPage } from "components";
+import React from 'react'
 
-import styles from "./Profile.module.scss";
+import { CardPage } from 'components'
+
+//import styles from './Profile.module.scss'
 
 export const Profile = (): JSX.Element => {
   return (
-    <CardPage className={styles.wrapperProfile}>
+    <CardPage>
       Profile
       <div>{/* <ProfileInformation user={user}/> */}</div>
     </CardPage>
-  );
-};
+  )
+}

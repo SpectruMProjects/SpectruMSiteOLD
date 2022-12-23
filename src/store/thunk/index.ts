@@ -1,2 +1,2 @@
-export * from "./user.thunk"
-export * from "./notification.thunk"
+export * from './user.thunk'
+export * from './notification.thunk'

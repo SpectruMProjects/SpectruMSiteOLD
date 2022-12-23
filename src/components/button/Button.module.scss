@@ -1,25 +1,29 @@
 .buttonWrapper {
-	outline: none;
-	border: none;
-	background: var(--primary);
-	color: var(--text5);
-	border-radius: var(--radius);
-	padding: 10px;
-	width: 100%;
-	font-size: 18px;
-	font-weight: 500;
-	transition: var(--transition);
-	cursor: pointer;
-	user-select: none;
+  width: 100%;
+  padding: 10px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition);
+
+  color: var(--text5);
+  border: none;
+  border-radius: var(--radius);
+  outline: none;
+  background: var(--primary);
+
+  font-size: 18px;
+  font-weight: 500;
 }
+
 .buttonWrapper:hover {
-	transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .buttonWrapperOn {
-	transform: scale(0.97);
+  transform: scale(0.97);
 }
 
 .buttonWrapperOn:hover {
-	transform: scale(0.97); 
+  transform: scale(0.97);
 }

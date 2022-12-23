@@ -1,7 +1,8 @@
-import cn from "classnames";
+import React from 'react'
+import cn from 'classnames'
 
-import CircleMenuMoveProps from "./CircleMenuMove.props";
-import styles from "./CircleMenuMove.module.scss";
+import CircleMenuMoveProps from './CircleMenuMove.props'
+import styles from './CircleMenuMove.module.scss'
 
 export const CircleMenuMove = ({
   menuOff,
@@ -38,5 +39,5 @@ export const CircleMenuMove = ({
         ></span>
       </div>
     </div>
-  );
-};
+  )
+}

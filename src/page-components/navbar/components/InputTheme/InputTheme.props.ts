@@ -1,9 +1,6 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
 export default interface InputThemeProps
-  extends DetailedHTMLProps<
-    HTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {
-  theme: boolean;
+  extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  theme: boolean
 }

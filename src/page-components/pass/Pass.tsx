@@ -1,7 +1,9 @@
-import { CardPage } from "components";
+import React from 'react'
 
-import styles from "./Pass.module.scss";
+import { CardPage } from 'components'
+
+//import styles from './Pass.module.scss'
 
 export const Pass = (): JSX.Element => {
-  return <CardPage className={styles.wrapperPass}>PassPage</CardPage>;
-};
+  return <CardPage>PassPage</CardPage>
+}

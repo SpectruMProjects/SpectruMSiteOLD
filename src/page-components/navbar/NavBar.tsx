@@ -1,56 +1,51 @@
-import { useState } from "react";
-import {
-  Diversity1 as Logo,
-  NightsStay as Dark,
-  LightMode as Light,
-} from "@mui/icons-material";
-import cn from "classnames";
-import { useLocation } from "react-router-dom";
+import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { Diversity1 as Logo, NightsStay as Dark, LightMode as Light } from '@mui/icons-material'
+import cn from 'classnames'
 
-import { IUser } from "utils/interface";
-import { useAppDispatch, useAppSelector } from "utils/hooks";
-import { getMenuList, getTheme, getUser } from "store/select";
+import { IUser } from 'utils/interface'
+import { useAppDispatch, useAppSelector } from 'utils/hooks'
+import { getMenuList, getTheme, getUser } from 'store/select'
 
-import { CardNavBar, CardNavTheme, CircleMenuMove } from "./components";
-import NavBarProps from "./NavBar.props";
-import styles from "./NavBar.module.scss";
-import { actionChangeTheme } from "store/slice";
+import { CardNavBar, CardNavTheme, CircleMenuMove } from './components'
+import NavBarProps from './NavBar.props'
+import styles from './NavBar.module.scss'
+import { actionChangeTheme } from 'store/slice'
 
 export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
-  const { pathname } = useLocation();
-  const dispatch = useAppDispatch();
+  const { pathname } = useLocation()
+  const dispatch = useAppDispatch()
 
-  const user: IUser | undefined = useAppSelector(getUser);
-  const menuList = useAppSelector(getMenuList);
-  const theme: boolean = useAppSelector(getTheme);
+  const user: IUser | undefined = useAppSelector(getUser)
+  const menuList = useAppSelector(getMenuList)
+  const theme: boolean = useAppSelector(getTheme)
 
-  const [activeMenu, setActiveMenu] = useState<boolean>(false);
-  const [top, setTop] = useState<number>(0);
+  const [activeMenu, setActiveMenu] = useState<boolean>(false)
+  const [top, setTop] = useState<number>(0)
 
-  const menuOff: boolean =
-    menuList.find((menu) => menu.to === pathname) === undefined;
+  const menuOff: boolean = menuList.find((menu) => menu.to === pathname) === undefined
 
   const handleChangeTheme = (): void => {
-    dispatch(actionChangeTheme(!theme));
-  };
+    dispatch(actionChangeTheme(!theme))
+  }
 
   const filterMenuList = (menu: any): boolean => {
     if (user === undefined) {
-      if (menu.to === "/profile") {
-        return false;
+      if (menu.to === '/profile') {
+        return false
       } else {
-        return true;
+        return true
       }
     }
     if (user !== undefined) {
-      if (menu.to === "/auth") {
-        return false;
+      if (menu.to === '/auth') {
+        return false
       } else {
-        return true;
+        return true
       }
     }
-    return true;
-  };
+    return true
+  }
 
   return (
     <div
@@ -86,15 +81,15 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
               activeMenu={activeMenu}
               setTop={setTop}
             />
-          );
+          )
         })}
       <CardNavTheme
         icon={theme ? <Dark /> : <Light />}
-        text={"Тема"}
+        text={'Тема'}
         activeMenu={activeMenu}
         theme={theme}
         onClick={handleChangeTheme}
       />
     </div>
-  );
+  )
 }

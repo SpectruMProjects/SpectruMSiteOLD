@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import cn from "classnames";
+import React, { useState } from 'react'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import cn from 'classnames'
 
-import InputProps from "./Input.props";
-import styles from "./Input.module.scss";
+import InputProps from './Input.props'
+import styles from './Input.module.scss'
 
 export function Input({
   value,
@@ -15,16 +15,16 @@ export function Input({
   label,
   ...props
 }: InputProps): JSX.Element {
-  const [focus, setFocus] = useState<boolean>(false);
-  const [visibility, setVisibility] = useState<boolean>(false);
+  const [focus, setFocus] = useState<boolean>(false)
+  const [visibility, setVisibility] = useState<boolean>(false)
 
   const focusStyle = (): boolean => {
-    if (focus) return true;
-    else {
-      if (value.replaceAll(" ", "").length !== 0) return true;
-      else return false;
+    if (focus) {
+      return true
+    } else {
+      return value.trim().length !== 0
     }
-  };
+  }
 
   return (
     <div className={styles.wrapperInput}>
@@ -45,17 +45,14 @@ export function Input({
         onBlurCapture={() => setFocus(false)}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        type={password ? (visibility ? "text" : "password") : type}
+        type={password ? (visibility ? 'text' : 'password') : type}
         {...props}
       />
       {password ? (
-        <button
-          className={styles.visibilityIcon}
-          onClick={() => setVisibility(!visibility)}
-        >
+        <button className={styles.visibilityIcon} onClick={() => setVisibility(!visibility)}>
           {!visibility ? <Visibility /> : <VisibilityOff />}
         </button>
       ) : null}
     </div>
-  );
+  )
 }

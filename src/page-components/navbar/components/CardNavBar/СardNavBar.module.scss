@@ -1,57 +1,72 @@
 .wrapperCardMenu {
-	position: relative;
-	display: flex;
-	color: var(--text4);
-	padding: 10px;
-	gap: 20px;
-	cursor: pointer;
-	user-select: none;
-	transition: var(--transition);
+  position: relative;
+
+  display: flex;
+
+  padding: 10px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition);
+
+  color: var(--text4);
+  gap: 20px;
 }
+
 .wrapperCardMenu:hover {
-	color: var(--secondary);
-	transition: var(--transition-fast);
+  transition: var(--transition-fast);
+
+  color: var(--secondary);
 }
 
 .iconWrap {
-	z-index: 3;
-	transition: var(--transition);
+  z-index: 3;
+
+  transition: var(--transition);
 }
 
 .iconOn {
-	transform: scale(1.2);
-	color: var(--primary);
+  transform: scale(1.2);
+
+  color: var(--primary);
 }
 
 .iconActive {
-	transition: var(--transition);
-	transform: translateX(-30px) scale(1.2);
+  transition: var(--transition);
+  transform: translateX(-30px) scale(1.2);
 }
 
 .wrapperText {
-	z-index: 1;
-	font-size: 16px;
-	opacity: 0;
-	text-align: left;
-	width: 20px;
-	overflow: hidden;
-	transform: translateX(-40px);
-	transition: var(--transition);
+  z-index: 1;
+
+  overflow: hidden;
+
+  width: 20px;
+
+  transition: var(--transition);
+  transform: translateX(-40px);
+  text-align: left;
+
+  opacity: 0;
+
+  font-size: 16px;
 }
 
 .wrapperTextOn {
-	width: 100%;
-	transform: translateX(0px);
-	transition: var(--transition);
-	opacity: 1;
-	
+  width: 100%;
+
+  transition: var(--transition);
+  transform: translateX(0);
+
+  opacity: 1;
 }
 
-.wrapperCardMenuSelect{
-	color: var(--primary);
-	padding: 15px 10px;
+.wrapperCardMenuSelect {
+  padding: 15px 10px;
+
+  color: var(--primary);
 }
 
-.wrapperCardMenuSelect:hover{
-	color: var(--primary);
+.wrapperCardMenuSelect:hover {
+  color: var(--primary);
 }

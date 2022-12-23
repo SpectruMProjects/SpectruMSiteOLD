@@ -1,89 +1,109 @@
 .wrapperConf {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .loadWrapper {
-	position: absolute;
-	background: var(--background4);
-	border-radius: var(--radius);
-	padding: 20px;
-	display: flex;
-	gap: 20px;
-	align-items: center;
-	text-align: left;
-	width: min-content;
-	top: 80%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	transition: var(--transition);
-	opacity: 0;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  
+  display: flex;
+  align-items: center;
+
+  width: min-content;
+  padding: 20px;
+
+  transition: var(--transition);
+  transform: translate(-50%, -50%);
+  text-align: left;
+
+  opacity: 0;
+  border-radius: var(--radius);
+  background: var(--background4);
+  gap: 20px;
 }
 
 .loadWrapperOn {
-	opacity: 1;
-	transition: var(--transition);
-	top: 50%;
+  top: 50%;
+
+  transition: var(--transition);
+
+  opacity: 1;
 }
 
 .loadWrapper p {
-	color: var(--text4);
-	font-size: 18px;
-	white-space: nowrap;
+  white-space: nowrap;
+
+  color: var(--text4);
+
+  font-size: 18px;
 }
 
 .loadicon {
-	width: 50px;
-	height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .loadicon circle {
-	stroke: var(--primary);
+  stroke: var(--primary);
 }
 
 .loadWrapperAccess {
-	position: absolute;
-	background: var(--background4);
-	border-radius: var(--radius);
-	display: flex;
-	padding: 20px;
-	flex-direction: column;
-	gap: 20px;
-	text-align: center;
-	align-items: center;
-	top: 30%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	transition: var(--transition);
-	opacity: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 20px;
+
+  transition: var(--transition);
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  opacity: 0;
+  border-radius: var(--radius);
+  background: var(--background4);
+  gap: 20px;
 }
 
 .loadWrapperAccessOn {
-	opacity: 1;
-	transition: var(--transition);
-	top: 50%;
+  top: 50%;
+
+  transition: var(--transition);
+
+  opacity: 1;
 }
 
 .loadWrapperAccessOff {
-	transition: var(--transition);
-	opacity: 0;
-	top: 80%;
+  top: 80%;
+
+  transition: var(--transition);
+
+  opacity: 0;
 }
 
 .textName {
-	display: flex;
-	align-items: center;
-	color: var(--text4);
-	font-size: 35px;
+  display: flex;
+  align-items: center;
+
+  color: var(--text4);
+
+  font-size: 35px;
 }
 
 .textName p {
-	color: var(--secondary);
-	font-size: 35px;
+  color: var(--secondary);
+
+  font-size: 35px;
 }
 
 .textBottom {
-	color: var(--text4);
-	font-size: 16px;
+  color: var(--text4);
+
+  font-size: 16px;
 }

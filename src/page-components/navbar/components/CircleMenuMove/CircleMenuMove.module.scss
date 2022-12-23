@@ -1,99 +1,126 @@
 .checkMenuOff {
   transition: var(--transition);
+
   opacity: 0;
 }
 
 .checkMenuWrapper {
   position: absolute;
   left: 5px;
-  transition: var(--transition);
+
   width: 55px;
   height: 55px;
+
+  transition: var(--transition);
 }
 
 .wrapperCircle {
   position: relative;
-  transition: var(--transition);
+
   width: 100%;
   height: 100%;
+
+  transition: var(--transition);
 }
 
 .checkMenu {
   position: absolute;
+  z-index: 2;
+  left: 0;
+
   width: 55px;
   height: 55px;
-  left: 0px;
-  background-color: var(--background4);
-  border-radius: 50%;
-  box-shadow: 0px 0px 0px 6px var(--background1);
+
   transition: var(--transition);
-  z-index: 2;
+
+  border-radius: 50%;
+  background-color: var(--background4);
+  box-shadow: 0 0 0 6px var(--background1);
 }
 
 .checkMenuOn {
   left: -25px;
+
   transition: var(--transition);
 }
 
 .checkMenuTop {
   position: absolute;
-  width: 119%;
-  height: 10px;
+  z-index: 1;
   top: -16px;
   left: -5px;
-  background-color: var(--background4);
-  border-radius: 0px 0px 10px 10px;
-  z-index: 1;
+
+  width: 119%;
+  height: 10px;
+
   transition: var(--transition);
+
+  border-radius: 0 0 10px 10px;
+  background-color: var(--background4);
 }
 
 .checkMenuMain {
   position: absolute;
-  width: 200%;
-  height: 85px;
+  z-index: 0;
   top: -15px;
   left: -30px;
-  background: var(--background1);
-  z-index: 0;
+
+  width: 200%;
+  height: 85px;
+
   transition: var(--transition-slow);
+
   border-radius: 15px;
+  background: var(--background1);
 }
 
 .checkMenuBottom {
   position: absolute;
-  width: 119%;
-  height: 10px;
+  z-index: 1;
   bottom: -16px;
   left: -5px;
-  background-color: var(--background4);
-  border-radius: 10px 10px 0px 0px;
-  z-index: 1;
+
+  width: 119%;
+  height: 10px;
+
   transition: var(--transition);
+
+  border-radius: 10px 10px 0 0;
+  background-color: var(--background4);
 }
 
 .checkMenuTopOn {
+  left: 25px;
+
   width: 20px;
   height: 12px;
-  border-radius: 0px 0px 0px 10px;
-  left: 25px;
+
   transition: var(--transition);
-  box-shadow: -5px 3px 0px var(--background1);
+
+  border-radius: 0 0 0 10px;
+  box-shadow: -5px 3px 0 var(--background1);
 }
 
 .checkMenuMainOn {
+  top: 0;
+  left: 0;
+
   width: 55px;
   height: 55px;
-  left: 0px;
-  top: 0px;
-  border-radius: 50%;
+
   transition: var(--transition);
+
+  border-radius: 50%;
 }
 
 .checkMenuBottomOn {
+  left: 25px;
+
   width: 20px;
   height: 12px;
-  left: 25px;
+
   transition: var(--transition);
-  border-radius: 10px 0px 0px 0px;
-  box-shadow: -5px -3px 0px var(--background1);
+
+  border-radius: 10px 0 0;
+  box-shadow: -5px -3px 0 var(--background1);
 }

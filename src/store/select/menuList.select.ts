@@ -1,3 +1,3 @@
-import { RootState } from "../store";
+import { RootState } from '../store'
 
-export const getMenuList = (state: RootState) => state.menuList.menuList;
+export const getMenuList = (state: RootState) => state.menuList.menuList

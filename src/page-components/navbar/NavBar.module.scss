@@ -1,53 +1,66 @@
 .wrapperNavBar {
   position: absolute;
+  z-index: 1;
   top: 100px;
   left: -150px;
+
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+
   width: 100%;
   max-width: 65px;
   padding: 25px 10px;
-  background: var(--background4);
-  align-items: left;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--radius);
-  box-shadow: 0px 0px 5px var(--shadow-opacity01);
-  transition: var(--transition);
-  z-index: 1;
+  padding-bottom: 0;
+
   user-select: none;
-  padding-bottom: 0px;
+  transition: var(--transition);
+  text-align: center;
+
+  border-radius: var(--radius);
+  background: var(--background4);
+  box-shadow: 0 0 5px var(--shadow-opacity01);
 }
 
 .wrapperNavBarOn {
-  transition: var(--transition);
   max-width: 200px;
+
+  transition: var(--transition);
 }
 
 .titleWrapper {
   display: flex;
+
   padding: 10px;
   gap: 20px;
+
   color: var(--text4);
 }
 
 .titleNavBar {
-  color: var(--text4);
-  font-weight: 700;
-  user-select: none;
-  margin-bottom: 10px;
-  font-size: 18px;
-  width: 20px;
   overflow: hidden;
-  transform: translateX(-40px);
+
+  width: 20px;
+  margin-bottom: 10px;
+
+  user-select: none;
   transition: var(--transition);
+  transform: translateX(-40px);
+
   opacity: 0;
+  color: var(--text4);
+
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .titleNavBarOn {
   width: 100%;
-  opacity: 1;
-  transform: translateX(0px);
+
   transition: var(--transition);
+  transform: translateX(0);
+
+  opacity: 1;
 }
 
 @media screen and (max-width: 1600px) {

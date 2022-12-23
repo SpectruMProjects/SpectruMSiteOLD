@@ -1,5 +1,7 @@
-import { Auth } from "page-components/auth";
+import React from 'react'
+
+import { Auth } from 'page-components/auth'
 
 export function AuthPage() {
-  return <Auth />;
+  return <Auth />
 }

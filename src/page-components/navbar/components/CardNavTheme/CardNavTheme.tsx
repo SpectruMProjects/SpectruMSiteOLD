@@ -1,8 +1,9 @@
-import cn from "classnames";
+import React from 'react'
+import cn from 'classnames'
 
-import { InputTheme } from "..";
-import CardNavThemeProps from "./CardNavTheme.props";
-import styles from "./CardNavTheme.module.scss";
+import { InputTheme } from '..'
+import CardNavThemeProps from './CardNavTheme.props'
+import styles from './CardNavTheme.module.scss'
 
 export const CardNavTheme = ({
   text,
@@ -24,5 +25,5 @@ export const CardNavTheme = ({
         <InputTheme theme={theme} />
       </p>
     </div>
-  );
-};
+  )
+}

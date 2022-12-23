@@ -1,5 +1,5 @@
-import { ReactNode, useEffect, useState } from "react"
-import { BehaviorSubject, skip } from "rxjs"
+import React, { ReactNode, useEffect, useState } from 'react'
+import { BehaviorSubject, skip } from 'rxjs'
 
 interface Props<T> {
   children: {
@@ -9,42 +9,42 @@ interface Props<T> {
     effect?: (state: T) => void
 
     needRebuild?: ((old: T, next: T) => boolean) | (keyof T)[]
-    builder: (state: T) => ReactNode,
+    builder: (state: T) => ReactNode
   }
 }
 
-export default function VMBuilder<T>({ children: {
+export default function VMBuilder<T>({
+  children: {
     vm,
-    
-    needEffect = () => true, 
+
+    needEffect = () => true,
     effect = () => {},
-  
-    needRebuild = () => true, 
+
+    needRebuild = () => true,
     builder,
-} }: Props<T>) {
+  },
+}: Props<T>) {
   const [state, setState] = useState(vm.value)
 
   useEffect(() => {
     const sub = vm.pipe(skip(1)).subscribe((newState) => {
-      let rebuild = typeof needRebuild === "function" 
-        ? needRebuild(state, newState)
-        : needRebuild.reduce((acc, key) => acc || (state[key] !== newState[key]), false)
+      const rebuild =
+        typeof needRebuild === 'function'
+          ? needRebuild(state, newState)
+          : needRebuild.reduce((acc, key) => acc || state[key] !== newState[key], false)
       if (rebuild) setState(newState)
-      
-      let newEffect = typeof needEffect === "function" 
-        ? needEffect(state, newState)
-        : needEffect.reduce((acc, key) => acc || (state[key] !== newState[key]), false)
+
+      const newEffect =
+        typeof needEffect === 'function'
+          ? needEffect(state, newState)
+          : needEffect.reduce((acc, key) => acc || state[key] !== newState[key], false)
       if (newEffect) effect(newState)
     })
-    
+
     return () => {
       sub.unsubscribe()
     }
   })
-  
-  return (
-    <>
-      {builder(state)}
-    </>
-  )
+
+  return <>{builder(state)}</>
 }

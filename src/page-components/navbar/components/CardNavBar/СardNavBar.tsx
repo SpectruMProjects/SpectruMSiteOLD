@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import cn from "classnames";
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import cn from 'classnames'
 
-import CardNavBardProps from "./СardNavBar.props";
-import styles from "./СardNavBar.module.scss";
+import CardNavBardProps from './СardNavBar.props'
+import styles from './СardNavBar.module.scss'
 
 export const CardNavBar = ({
   selected,
@@ -14,13 +14,13 @@ export const CardNavBar = ({
   index,
   setTop,
 }: CardNavBardProps): JSX.Element => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (selected) {
-      setTop(index);
+      setTop(index)
     }
-  }, [index, selected, setTop]);
+  }, [index, selected, setTop])
 
   return (
     <div
@@ -29,8 +29,8 @@ export const CardNavBar = ({
       })}
       key={text}
       onClick={() => {
-        setTop(index);
-        navigate(to);
+        setTop(index)
+        navigate(to)
       }}
     >
       <span
@@ -49,5 +49,5 @@ export const CardNavBar = ({
         {text}
       </p>
     </div>
-  );
-};
+  )
+}
