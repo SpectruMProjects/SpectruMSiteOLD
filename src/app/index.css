@@ -1,0 +1,94 @@
+@import url("./styles");
+
+body {
+  transition: var(--transition);
+
+  color: var(--text1);
+  background: var(--background1);
+}
+
+body[data-theme="light"] {
+  --secondary: #94e2d5;
+  --text1: #1e1e2e;
+  --text2: #181825;
+  --text3: #11111b;
+  --text4: #cdd6f4;
+  --text5: #11111b;
+  --border1: #9399b2;
+  --border2: #7f849c;
+  --border3: #6c7086;
+  --background1: #cdd6f4;
+  --background2: #bac2de;
+  --background3: #a6adc8;
+  --background4: #1e1e2e;
+  --shadow-opacity03: rgb(17 17 27 / 30%);
+  --shadow-opacity01: rgb(17 17 27 / 10%);
+  transition: var(--transition);
+}
+
+body[data-theme="dark"] {
+  --secondary: #fab387;
+  --text1: #a6adc8;
+  --text2: #bac2de;
+  --text3: #cdd6f4;
+  --text4: #cdd6f4;
+  --text5: #11111b;
+  --border1: #585b70;
+  --border2: #45475a;
+  --border3: #313244;
+  --background1: #11111b;
+  --background2: #181825;
+  --background3: #1e1e2e;
+  --background4: #1e1e2e;
+  --shadow-opacity03: rgb(205 214 244 / 30%);
+  --shadow-opacity01: rgb(205 214 244 / 10%);
+  transition: var(--transition);
+}
+
+.page {
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+}
+
+.page-enter {
+  top: -300px;
+
+  transform: scale(1.3);
+
+  opacity: 0;
+}
+
+.page-enter-active {
+  top: 0;
+
+  transition: var(--transition);
+  transform: scale(1);
+
+  opacity: 1;
+}
+
+.page-exit {
+  top: 0;
+
+  transform: scale(1);
+
+  opacity: 1;
+}
+
+.page-exit-active {
+  top: 300px;
+
+  transition: var(--transition);
+  transform: scale(0.7);
+
+  opacity: 0;
+}
+
+/* <div>
+<iframe
+src="https://giphy.com/embed/I1J3g7UzyNGL7NdULG"
+width="100%"
+height="100%" ></iframe>
+</div> */

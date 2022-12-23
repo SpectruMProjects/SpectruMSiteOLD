@@ -19,19 +19,40 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
-      "components":["components"],
-      "utils": ["utils"],
-      "pages":["pages"],
-      "store":["store"],
-      "service": ["service"],
-      "pages-components":["pages-components"],
-      "assets":["assets"],
+      "widgets": [
+        "widgets"
+      ],
+      "processes": [
+        "processes"
+      ],
+      "pages": [
+        "pages"
+      ],
+      "shared": [
+        "shared"
+      ],
+      "features": [
+        "features"
+      ],
+      "entities": [
+        "pages-components"
+      ],
+      "app": [
+        "app"
+      ]
     },
-    "plugins": [{ "name": "typescript-plugin-css-modules" }, { "name": "ts-plugin-scss-modules" }],
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      },
+      {
+        "name": "ts-plugin-scss-modules"
+      }
+    ]
   },
   "include": [
     "src"
-, "delete/rxjs", "vm.tsx"  ]
+  ]
 }
