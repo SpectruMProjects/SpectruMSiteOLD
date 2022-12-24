@@ -76,7 +76,7 @@ export default class ApiClient {
         if (e.response?.status === 401) {
           localStorage.removeItem('accessToken')
           await this.refreshToken()
-          if (localStorage.getItem('accessToken')) return await this.get(uri, config)
+          if (localStorage.getItem('accessToken')) return await this.post(uri, body, config)
         }
         throw e
       }

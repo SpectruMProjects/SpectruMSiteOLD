@@ -1,0 +1,75 @@
+.wrapperHome {
+  padding: 20px 0;
+}
+
+.titleHomeWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+
+  justify-content: center;
+
+  padding: 75px 20px 30px;
+
+  color: var(--text3);
+
+  border-radius: var(--radius);
+
+  background: var(--background3);
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titleHomeWrapper h2 {
+  max-width: 600px;
+
+  text-align: center;
+
+  font-size: 40px;
+  gap: 10px;
+}
+
+.titleHomeWrapper h2 p {
+  color: var(--primary);
+}
+
+.mainText {
+  max-width: 700px;
+
+  text-align: center;
+
+  font-size: 20px;
+}
+
+.wrapperButton {
+  display: flex;
+
+  padding: 20px;
+  gap: 30px;
+}
+
+.buttonBuy,
+.buttonCopy {
+  display: flex;
+  align-items: center;
+
+  padding: 12px 30px;
+
+  white-space: nowrap;
+
+  background: var(--mauve);
+
+  font-size: 19px;
+  font-weight: 500;
+  gap: 10px;
+}
+
+.buttonCopy {
+  background: var(--background5);
+}

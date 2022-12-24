@@ -5,11 +5,7 @@ import ButtonProps from './Button.props'
 import styles from './Button.module.scss'
 import { useState } from 'react'
 
-//----------------------------------------------------------------
-//нужно будет добавить чилдер чтобы можно было в кнопку прокидывать любые компоненты
-//----------------------------------------------------------------
-
-export function Button({ text, className, ...props }: ButtonProps): JSX.Element {
+export function Button({ children, className, ...props }: ButtonProps): JSX.Element {
   const [click, setClick] = useState(false)
 
   return (
@@ -25,7 +21,7 @@ export function Button({ text, className, ...props }: ButtonProps): JSX.Element 
       })}
       {...props}
     >
-      {text}
+      {children}
     </button>
   )
 }

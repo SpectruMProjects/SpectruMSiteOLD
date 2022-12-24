@@ -10,8 +10,7 @@
 
   width: 100%;
   max-width: 65px;
-  padding: 25px 10px;
-  padding-bottom: 0;
+  padding: 25px 10px 0;
 
   user-select: none;
   transition: var(--transition);
@@ -29,6 +28,8 @@
 }
 
 .titleWrapper {
+  position: relative;
+
   display: flex;
 
   padding: 10px;
@@ -63,7 +64,7 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and ( max-width: 1600px ) {
   .wrapperNavBar {
     left: 50px;
   }

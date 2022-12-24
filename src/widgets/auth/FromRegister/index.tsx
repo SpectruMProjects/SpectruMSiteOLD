@@ -73,7 +73,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
           setValue={setPassword}
           password={true}
         />
-        <Button onClick={handleRegistration} text='Подтвердить' />
+        <Button onClick={handleRegistration}>Подтвердить</Button>
       </Card>
       <Card className={styles.cardWrap}>
         <p>Уже зарегистрированы?</p>
@@ -88,8 +88,9 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
             setPassword('')
             setPasswordError(false)
           }}
-          text='Войти'
-        />
+        >
+          Войти
+        </Button>
       </Card>
     </div>
   )

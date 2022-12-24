@@ -9,10 +9,12 @@ import { actionClearError } from 'processes/store/slice'
 
 import FormLoginProps from './FormLogin.props'
 import styles from './FormLogin.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX.Element {
   const dispatch = useAppDispatch()
   const notification = useNotification()
+  const navigate = useNavigate()
 
   const userError = useAppSelector(getUserError)
 
@@ -49,7 +51,9 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
     }
 
     if (!loginError && !passwordError) {
-      await dispatch(fetchLoginAccount({ login, password }))
+      await dispatch(fetchLoginAccount({ login, password })).then(() => {
+        navigate('/profile')
+      })
     }
   }
   useEffect(() => {
@@ -78,8 +82,9 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
             e.preventDefault()
             handleLogin()
           }}
-          text='Подтвердить'
-        />
+        >
+          Подтвердить
+        </Button>
       </Card>
       <Card className={styles.cardWrap}>
         <p>Нет аккаунта?</p>
@@ -92,8 +97,9 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
             setPassword('')
             setPasswordError(false)
           }}
-          text='Регистрация'
-        />
+        >
+          Регистрация
+        </Button>
       </Card>
     </div>
   )

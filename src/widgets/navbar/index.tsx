@@ -12,9 +12,9 @@ import {
 import cn from 'classnames'
 
 import { actionChangeTheme } from 'processes/store/slice'
-import { IMenu, IUser } from 'processes/interface'
+import { IMenu } from 'processes/interface'
 import { useAppDispatch, useAppSelector } from 'processes/hooks'
-import { getMenuList, getTheme, getUser } from 'processes/store/select'
+import { getMenuList, getTheme } from 'processes/store/select'
 import { CardNavBar } from 'features/cardNavBar'
 import { CardNavTheme, CircleMenuMove } from 'entities/navbar'
 
@@ -32,7 +32,7 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
     if (val === 'heart') return <HeartBroken />
   }
 
-  const user: IUser | undefined = useAppSelector(getUser)
+  const token: string | null = localStorage.getItem('accessToken')
   const menuList = useAppSelector(getMenuList)
   const theme: boolean = useAppSelector(getTheme)
 
@@ -46,7 +46,7 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   }
 
   const filterMenuList = (menu: IMenu): boolean => {
-    if (user === undefined) {
+    if (token === null) {
       return menu.to !== '/profile'
     } else {
       return menu.to !== '/auth'

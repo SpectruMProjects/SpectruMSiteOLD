@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 @import url("./styles");
 
 body {
@@ -14,6 +15,7 @@ body[data-theme="light"] {
   --text3: #11111b;
   --text4: #cdd6f4;
   --text5: #11111b;
+  --text6: #cdd6f4;
   --border1: #9399b2;
   --border2: #7f849c;
   --border3: #6c7086;
@@ -21,6 +23,7 @@ body[data-theme="light"] {
   --background2: #bac2de;
   --background3: #a6adc8;
   --background4: #1e1e2e;
+  --background5: #11111b;
   --shadow-opacity03: rgb(17 17 27 / 30%);
   --shadow-opacity01: rgb(17 17 27 / 10%);
   transition: var(--transition);
@@ -33,6 +36,7 @@ body[data-theme="dark"] {
   --text3: #cdd6f4;
   --text4: #cdd6f4;
   --text5: #11111b;
+  --text6: #11111b;
   --border1: #585b70;
   --border2: #45475a;
   --border3: #313244;
@@ -40,6 +44,7 @@ body[data-theme="dark"] {
   --background2: #181825;
   --background3: #1e1e2e;
   --background4: #1e1e2e;
+  --background5: #cdd6f4;
   --shadow-opacity03: rgb(205 214 244 / 30%);
   --shadow-opacity01: rgb(205 214 244 / 10%);
   transition: var(--transition);
@@ -86,9 +91,32 @@ body[data-theme="dark"] {
   opacity: 0;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+
+  border-radius: 10px;
+  background: var(--border1);
+  scroll-behavior: smooth;
+}
+
 /* <div>
 <iframe
 src="https://giphy.com/embed/I1J3g7UzyNGL7NdULG"
 width="100%"
-height="100%" ></iframe>
-</div> */
+height="100%">
+</iframe> */
+
+/*
+<iframe
+src="https://giphy.com/embed/r8GMmlV8qGrfZ3txfX"
+width="480"
+height="270"
+frameBorder="0"
+class="giphy-embed"
+allowFullScreen>
+</iframe> */
