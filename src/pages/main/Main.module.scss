@@ -2,12 +2,11 @@
   position: relative;
 
   display: flex;
+  overflow-y: overlay;
   align-items: center;
   justify-content: center;
 
   width: 100%;
-  max-width: 1200px;
   height: 100vh;
-  margin: 0 auto;
   padding: 0 20px;
 }

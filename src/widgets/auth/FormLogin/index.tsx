@@ -51,9 +51,12 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
     }
 
     if (!loginError && !passwordError) {
-      await dispatch(fetchLoginAccount({ login, password })).then(() => {
+      await dispatch(fetchLoginAccount({ login, password }))
+      const token = localStorage.getItem('accessToken')
+
+      if (token) {
         navigate('/profile')
-      })
+      }
     }
   }
   useEffect(() => {

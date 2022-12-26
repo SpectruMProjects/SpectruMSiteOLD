@@ -6,7 +6,33 @@
   flex-direction: column;
 
   width: 100%;
+  max-width: 1400px;
   height: 100vh;
+  margin: 0 auto;
   padding: 20px;
   gap: 30px;
+}
+
+@media screen and ( max-width: 1900px ) {
+  .wrapperCard {
+    max-width: 1200px;
+  }
+}
+
+@media screen and ( max-width: 1800px ) {
+  .wrapperCard {
+    max-width: 1000px;
+  }
+}
+
+@media screen and ( max-width: 1300px ) {
+  .wrapperCard {
+    max-width: 800px;
+  }
+}
+
+@media screen and ( max-width: 1100px ) {
+  .wrapperCard {
+    max-width: 700px;
+  }
 }

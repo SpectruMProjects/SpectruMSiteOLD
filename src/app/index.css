@@ -1,5 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 @import url("./styles");
+
+@font-face {
+  font-family: Manrope;
+  font-weight: normal;
+  font-style: normal;
+  src:
+    url("./fonts/otf/Manrope-Bold.otf") format("opentype"),
+    url("./fonts/otf/Manrope-ExtraBold.otf") format("opentype"),
+    url("./fonts/otf/Manrope-ExtraLight.otf") format("opentype"),
+    url("./fonts/otf/Manrope-Light.otf") format("opentype"),
+    url("./fonts/otf/Manrope-Medium.otf") format("opentype"),
+    url("./fonts/otf/Manrope-Regular.otf") format("opentype"),
+    url("./fonts/otf/Manrope-SemiBold.otf") format("opentype"),
+    url("./fonts/woff/Manrope-Bold.woff2") format("woff"),
+    url("./fonts/woff/Manrope-ExtraBold.woff2") format("woff"),
+    url("./fonts/woff/Manrope-ExtraLight.woff2") format("woff"),
+    url("./fonts/woff/Manrope-Light.woff2") format("woff"),
+    url("./fonts/woff/Manrope-Medium.woff2") format("woff"),
+    url("./fonts/woff/Manrope-Regular.woff2") format("woff"),
+    url("./fonts/woff/Manrope-SemiBold.woff2") format("woff"),
+    url("./fonts/ttf/Manrope-Bold.ttf") format("truetype"),
+    url("./fonts/ttf/Manrope-ExtraBold.ttf") format("truetype"),
+    url("./fonts/ttf/Manrope-ExtraLight.ttf") format("truetype"),
+    url("./fonts/ttf/Manrope-Light.ttf") format("truetype"),
+    url("./fonts/ttf/Manrope-Medium.ttf") format("truetype"),
+    url("./fonts/ttf/Manrope-Regular.ttf") format("truetype"),
+    url("./fonts/ttf/Manrope-SemiBold.ttf") format("truetype");
+}
+
+* {
+  font-family: Manrope, sans-serif;
+}
 
 body {
   transition: var(--transition);
