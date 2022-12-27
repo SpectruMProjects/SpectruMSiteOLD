@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation, useNavigate, useOutlet } from 'react-router-dom'
+import { useLocation, useOutlet } from 'react-router-dom'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 
 import { NavBar } from 'widgets/navbar'
@@ -10,20 +10,10 @@ import { Notification } from 'widgets/notification'
 import styles from './Main.module.scss'
 
 const MainPage = (): JSX.Element => {
-  const navigate = useNavigate()
   const location = useLocation()
   const currentOutlet = useOutlet()
 
   const theme: boolean = useAppSelector(getTheme)
-  const token: string | null = localStorage.getItem('accessToken')
-
-  useEffect(() => {
-    if (token) {
-      navigate('/profile')
-    } else {
-      navigate('/')
-    }
-  }, [token])
 
   //keeps track of the theme of the system
   useEffect(() => {
@@ -31,15 +21,20 @@ const MainPage = (): JSX.Element => {
   }, [theme])
 
   return (
-    <main className={styles.mainWrapper}>
-      <Notification />
-      <NavBar />
-      <SwitchTransition>
-        <CSSTransition key={location.pathname} timeout={300} classNames='page' unmountOnExit>
-          <div className='page'>{currentOutlet}</div>
-        </CSSTransition>
-      </SwitchTransition>
-    </main>
+    <>
+      <div className={styles.mainWrapper}>
+        <Notification />
+        <NavBar />
+        <SwitchTransition>
+          <CSSTransition key={location.pathname} timeout={300} classNames='page' unmountOnExit>
+            <section className='page'>
+              {currentOutlet}
+              <footer className={styles.footerWrapper}>hello</footer>
+            </section>
+          </CSSTransition>
+        </SwitchTransition>
+      </div>
+    </>
   )
 }
 

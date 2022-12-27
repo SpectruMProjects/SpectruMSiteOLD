@@ -1,7 +1,7 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit'
 
 import { IUser } from 'processes/interface'
-import { fetchConfirmationAccount, fetchLoginAccount } from '../thunk'
+import { fetchConfirmationAccount, fetchGetUser, fetchLoginAccount } from '../thunk'
 
 export interface UserState {
   status: 'idle' | 'pending' | 'rejected' | 'received'
@@ -43,6 +43,20 @@ export const userSlice = createSlice({
         state.status = 'pending'
       })
       .addCase(fetchLoginAccount.rejected, (state: Draft<UserState>, action) => {
+        state.status = 'rejected'
+        state.error = String(action.error.message)
+      })
+      .addCase(
+        fetchGetUser.fulfilled,
+        (state: Draft<UserState>, action: PayloadAction<IUser | void>) => {
+          state.status = 'received'
+          if (action.payload) state.user = action.payload
+        },
+      )
+      .addCase(fetchGetUser.pending, (state: Draft<UserState>) => {
+        state.status = 'pending'
+      })
+      .addCase(fetchGetUser.rejected, (state: Draft<UserState>, action) => {
         state.status = 'rejected'
         state.error = String(action.error.message)
       })

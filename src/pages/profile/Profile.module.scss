@@ -1,0 +1,42 @@
+.wrapperProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 20px;
+
+  border-radius: var(--radius);
+
+  background: var(--background2);
+}
+
+.wrapperProfile > h2 {
+  font-size: 30px;
+}
+
+.wrapperInfoProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 500px;
+}
+
+.wrapperInfoProfile p {
+  display: flex;
+  gap: 20px;
+
+  align-items: center;
+}
+
+.wrapperButton {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+
+  color: var(--text1);
+
+  background: var(--background3);
+}

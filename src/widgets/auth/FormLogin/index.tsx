@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 
 import { Card, Button, Input } from 'shared'
@@ -9,7 +10,6 @@ import { actionClearError } from 'processes/store/slice'
 
 import FormLoginProps from './FormLogin.props'
 import styles from './FormLogin.module.scss'
-import { useNavigate } from 'react-router-dom'
 
 export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX.Element {
   const dispatch = useAppDispatch()
@@ -29,8 +29,8 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
       setLoginError(true)
       notification(
         'error',
+        5000,
         { text: 'Логин должна содержать не меньше 3-х симоволов' },
-        10000,
         loginError,
       )
     }
@@ -41,8 +41,8 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
       setPasswordError(true)
       notification(
         'error',
+        5000,
         { text: 'Пароль должна содержать не меньше 8-х симоволов' },
-        10000,
         passwordError,
       )
     }
@@ -61,7 +61,7 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
   }
   useEffect(() => {
     if (userError) {
-      notification('error', { text: userError }, 5000)
+      notification('error', 5000, { text: userError })
       dispatch(actionClearError())
       setLoginError(true)
       setPasswordError(true)

@@ -71,23 +71,43 @@
   justify-content: center;
 }
 
-.buttonServer1 {
+.buttonServer {
+  position: relative;
+
   display: flex;
+  overflow: hidden;
   align-items: center;
   flex-direction: column;
 
   width: 100%;
 
   max-width: 400px;
-  padding: 30px;
+  height: 200px;
+  padding: 0;
 
-  background: var(--rosewater);
+  background: var(--primary-dark);
+  box-shadow: 0 0 10px var(--primary-opacity01);
 
   font-size: 22px;
-  gap: 20px;
 }
 
-.buttonServer1 img {
+.buttonServer > p {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+
+  padding: 5px 15px;
+
+  color: var(--text5);
+  border-radius: var(--radius);
+  background: var(--primary-dark);
+}
+
+.buttonServer img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+
   border-radius: var(--radius);
 }
 
@@ -398,12 +418,4 @@
   font-size: 19px;
   font-weight: 500;
   gap: 10px;
-}
-
-.footer {
-  width: 100%;
-  padding: 40px;
-
-  border-radius: var(--radius);
-  background: var(--background2);
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import {
-  Diversity1 as Logo,
   NightsStay as Dark,
   LightMode as Light,
   Home,
@@ -17,6 +16,7 @@ import { useAppDispatch, useAppSelector } from 'processes/hooks'
 import { getMenuList, getTheme } from 'processes/store/select'
 import { CardNavBar } from 'features/cardNavBar'
 import { CardNavTheme, CircleMenuMove } from 'entities/navbar'
+import { logo } from 'app/assets/webp'
 
 import NavBarProps from './NavBar.props'
 import styles from './NavBar.module.scss'
@@ -54,7 +54,7 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   }
 
   return (
-    <div
+    <section
       className={cn(className, styles.wrapperNavBar, {
         [styles.wrapperNavBarOn]: activeMenu,
       })}
@@ -63,7 +63,7 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
       {...props}
     >
       <span className={styles.titleWrapper}>
-        <Logo />
+        <img src={logo} alt={logo} />
         <h1
           className={cn(styles.titleNavBar, {
             [styles.titleNavBarOn]: activeMenu,
@@ -75,20 +75,18 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
       <CircleMenuMove top={top} activeMenu={activeMenu} menuOff={menuOff} />
       {menuList
         .filter((menu) => filterMenuList(menu))
-        .map(({ icon, text, to }, index) => {
-          return (
-            <CardNavBar
-              key={index}
-              text={text}
-              to={to}
-              index={index}
-              icon={handleIconReturn(icon)}
-              selected={pathname === to}
-              activeMenu={activeMenu}
-              setTop={setTop}
-            />
-          )
-        })}
+        .map(({ icon, text, to }, index) => (
+          <CardNavBar
+            key={index}
+            text={text}
+            to={to}
+            index={index}
+            icon={handleIconReturn(icon)}
+            selected={pathname === to}
+            activeMenu={activeMenu}
+            setTop={setTop}
+          />
+        ))}
       <CardNavTheme
         icon={theme ? <Dark /> : <Light />}
         text={'Тема'}
@@ -96,6 +94,6 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
         theme={theme}
         onClick={handleChangeTheme}
       />
-    </div>
+    </section>
   )
 }

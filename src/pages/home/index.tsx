@@ -1,6 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
-import { SportsEsports, ContentCopy } from '@mui/icons-material'
+import { SportsEsports } from '@mui/icons-material'
 
 import { CardPage } from 'shared/cardPage'
 import { Button } from 'shared'
@@ -25,13 +25,13 @@ const HomePage = ({ className, ...props }: HomeProps): JSX.Element => {
         <iframe className={styles.frog} src='https://giphy.com/embed/1MOuaXcM4XnjvY88I7' />
       </div>
       <div className={styles.wrapperServer}>
-        <Button className={styles.buttonServer1}>
+        <Button className={styles.buttonServer}>
           <img src={server1} alt='server' />
-          <p>Первый сервер</p>
+          <p>Server #1</p>
         </Button>
-        <Button className={styles.buttonServer1} aria-disabled={true}>
+        <Button className={styles.buttonServer} aria-disabled={true}>
           <img src={server1} alt='server' />
-          <p>Второй сервер</p>
+          <p>Server #2</p>
         </Button>
       </div>
       <div className={styles.wrapperInfo}>
@@ -100,7 +100,6 @@ const HomePage = ({ className, ...props }: HomeProps): JSX.Element => {
           <p>Приобристи доступ на сервер</p>
         </Button>
       </div>
-      <div className={styles.footer}>footer</div>
     </CardPage>
   )
 }

@@ -18,6 +18,7 @@ import Tick from './tick.webp'
 import Tool from './tool.webp'
 import Trophy from './trophy.webp'
 import Server1 from './server1.webp'
+import Logo from './logo.webp'
 
 export const dollar = Dollar
 export const computer = Computer
@@ -39,3 +40,4 @@ export const tick = Tick
 export const tool = Tool
 export const trophy = Trophy
 export const server1 = Server1
+export const logo = Logo

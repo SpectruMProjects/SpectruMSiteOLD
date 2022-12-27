@@ -48,7 +48,7 @@ const ConfirmationPage = (): JSX.Element => {
 
   useEffect(() => {
     if (userError) {
-      notification('error', { text: userError }, 5000)
+      notification('error', 5000, { text: userError })
       dispatch(actionClearError())
     }
   }, [userError])

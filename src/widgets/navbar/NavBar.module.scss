@@ -31,18 +31,27 @@
   position: relative;
 
   display: flex;
+  align-items: center;
 
-  padding: 10px;
-  gap: 20px;
+  padding: 5px 5px 17px;
+
+  user-select: none;
 
   color: var(--text4);
+  gap: 20px;
+}
+
+.titleWrapper img {
+  display: block;
+
+  min-width: 35px;
+  height: 35px;
 }
 
 .titleNavBar {
   overflow: hidden;
 
   width: 20px;
-  margin-bottom: 10px;
 
   user-select: none;
   transition: var(--transition);

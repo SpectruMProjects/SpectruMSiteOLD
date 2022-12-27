@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
 import { IUser } from 'processes/interface'
-import { ActivateRegCodeResponse, LoginDto, LoginReponse } from 'processes/types'
+import { ActivateRegCodeResponse, AuthReponse, LoginDto, LoginReponse } from 'processes/types'
 import apiClient from 'processes/service/axios'
 
 import { actionAddError } from '../slice'
@@ -50,6 +50,25 @@ export const fetchLoginAccount = createAsyncThunk(
 
     if (res.code !== 'ok') {
       thunkAPI.dispatch(actionAddError({ id, ...notifyLoginError[res.code], time: 10000 }))
+    }
+
+    if (res.code === 'ok') return res.user
+  },
+)
+
+const getUser = {
+  error: { text: 'Неизвестная ошибка' },
+}
+
+export const fetchGetUser = createAsyncThunk(
+  '@@user/getUser',
+  async (arg: null, thunkAPI): Promise<IUser | void> => {
+    const id = uuidv4()
+
+    const res: AuthReponse = await axios.auth()
+
+    if (res.code !== 'ok') {
+      thunkAPI.dispatch(actionAddError({ id, ...getUser[res.code], time: 10000 }))
     }
 
     if (res.code === 'ok') return res.user

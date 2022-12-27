@@ -14,8 +14,8 @@ export function useNotification() {
 
   return function (
     object: 'loading' | 'copy' | 'fetch' | 'error' | 'action',
-    type: { action?: { func: () => void; text: string }; text: string },
     time = 3000,
+    type?: { action?: { func: () => void; text: string }; text: string },
     flag?: boolean,
   ): void {
     const id = uuidv4()

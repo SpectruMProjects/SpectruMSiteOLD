@@ -2,11 +2,48 @@
   position: relative;
 
   display: flex;
-  overflow-y: overlay;
+
   align-items: center;
   justify-content: center;
 
   width: 100%;
-  height: 100vh;
   padding: 0 20px;
+}
+
+.footerWrapper {
+  display: flex;
+  align-content: center;
+
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  gap: 30px;
+
+  border-radius: var(--radius);
+  background: var(--background2);
+}
+
+@media screen and ( max-width: 1900px ) {
+  .footerWrapper {
+    max-width: 1200px;
+  }
+}
+
+@media screen and ( max-width: 1800px ) {
+  .footerWrapper {
+    max-width: 1000px;
+  }
+}
+
+@media screen and ( max-width: 1300px ) {
+  .footerWrapper {
+    max-width: 800px;
+  }
+}
+
+@media screen and ( max-width: 1100px ) {
+  .footerWrapper {
+    max-width: 700px;
+  }
 }

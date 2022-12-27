@@ -7,7 +7,7 @@ import styles from './InputTheme.module.scss'
 
 export const InputTheme = ({ theme, className, ...props }: InputProps): JSX.Element => {
   return (
-    <div className={cn(className)}>
+    <div className={cn(className, styles.wrapperInputTheme)}>
       <div className={styles.checkBox}>
         <input
           type='checkbox'

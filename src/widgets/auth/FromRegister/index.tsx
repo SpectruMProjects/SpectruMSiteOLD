@@ -32,12 +32,12 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
 
     if (username.trim().length < 3 || username.match(/^.*[a-zA-Z0-9]$/g) === null) {
       setUsernameError(true)
-      notification('error', { text: textError('Ник', 3) }, time, usernameError)
+      notification('error', time, { text: textError('Ник', 3) }, usernameError)
     }
 
     if (mail.match(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g) === null || mail.trim().length === 0) {
       setEmailError(true)
-      notification('error', { text: 'Введите корректно почту.' }, time, mailError)
+      notification('error', time, { text: 'Введите корректно почту.' }, mailError)
     }
 
     if (
@@ -45,7 +45,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
       password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/g) === null
     ) {
       setPasswordError(true)
-      notification('error', { text: textError('Пароль', 8) }, time, passwordError)
+      notification('error', time, { text: textError('Пароль', 8) }, passwordError)
     }
     //console.log(flag)
     if (!usernameError && !mailError && !passwordError) {

@@ -15,7 +15,7 @@ export const CardNavTheme = ({
   ...props
 }: CardNavThemeProps): JSX.Element => {
   return (
-    <div className={cn(className, styles.wrapperCardMenu)} {...props}>
+    <button className={cn(className, styles.wrapperCardMenu)} {...props}>
       <span className={cn(styles.iconWrap)}>{icon}</span>
       <div
         className={cn(styles.wrapperText, {
@@ -25,6 +25,6 @@ export const CardNavTheme = ({
         {text}
         <InputTheme theme={theme} />
       </div>
-    </div>
+    </button>
   )
 }

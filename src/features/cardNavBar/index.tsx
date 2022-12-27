@@ -13,6 +13,7 @@ export const CardNavBar = ({
   activeMenu,
   index,
   setTop,
+  ...props
 }: CardNavBardProps): JSX.Element => {
   const navigate = useNavigate()
 
@@ -23,15 +24,15 @@ export const CardNavBar = ({
   }, [index, selected, setTop])
 
   return (
-    <div
+    <button
       className={cn(styles.wrapperCardMenu, {
         [styles.wrapperCardMenuSelect]: selected,
       })}
-      key={text}
       onClick={() => {
         setTop(index)
         navigate(to)
       }}
+      {...props}
     >
       <span
         className={cn(styles.iconWrap, {
@@ -48,6 +49,6 @@ export const CardNavBar = ({
       >
         {text}
       </p>
-    </div>
+    </button>
   )
 }
