@@ -81,6 +81,9 @@ export type ChangePassResponse =
     }
   | {
       code: 'tooManyChangePassRequests'
+    } 
+  | {
+      code: 'incorrectForm'
     }
 
 export type ActivateChangePassReponse =

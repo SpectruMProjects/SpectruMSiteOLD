@@ -266,8 +266,10 @@ export default class ApiClient {
       await this.post('/auth/changePass', { mail, newPass })
       return { code: 'ok' }
     } catch (e) {
-      if (e instanceof AxiosError && e.response?.status === 400)
-        return { code: e.response.data.code }
+      if (e instanceof AxiosError && e.response?.status === 400) {
+        if (e.response.data.code) return { code: e.response.data.code }
+        if (e.response.data.message) return { code: 'incorrectForm' }
+      }
       return { code: 'error' }
     }
   }
