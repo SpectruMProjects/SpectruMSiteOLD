@@ -25,7 +25,7 @@ export const fetchConfirmationAccount = createAsyncThunk(
     const res: ActivateRegCodeResponse = await axios.activateRegCode(code)
 
     if (res.code !== 'ok') {
-      thunkAPI.dispatch(actionAddError({ id, ...notifyConfirmationError[res.code], time: 10000 }))
+      thunkAPI.dispatch(actionAddError({ id, ...notifyConfirmationError[res.code], time: 5000 }))
     }
 
     if (res.code === 'ok') return res.user
@@ -49,7 +49,7 @@ export const fetchLoginAccount = createAsyncThunk(
     const res: LoginReponse = await axios.login({ login, password })
 
     if (res.code !== 'ok') {
-      thunkAPI.dispatch(actionAddError({ id, ...notifyLoginError[res.code], time: 10000 }))
+      thunkAPI.dispatch(actionAddError({ id, ...notifyLoginError[res.code], time: 5000 }))
     }
 
     if (res.code === 'ok') return res.user
@@ -68,7 +68,7 @@ export const fetchGetUser = createAsyncThunk(
     const res: AuthReponse = await axios.auth()
 
     if (res.code !== 'ok') {
-      thunkAPI.dispatch(actionAddError({ id, ...getUser[res.code], time: 10000 }))
+      thunkAPI.dispatch(actionAddError({ id, ...getUser[res.code], time: 5000 }))
     }
 
     if (res.code === 'ok') return res.user

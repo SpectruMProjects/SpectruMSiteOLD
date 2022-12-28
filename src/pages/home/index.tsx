@@ -6,12 +6,11 @@ import { CardPage } from 'shared/cardPage'
 import { Button } from 'shared'
 import { medal, flag, flash, pin, star, tool, minecraft, server1, dollar } from 'app/assets/webp'
 
-import HomeProps from './Home.props'
 import styles from './Home.module.scss'
 
-const HomePage = ({ className, ...props }: HomeProps): JSX.Element => {
+const HomePage = (): JSX.Element => {
   return (
-    <CardPage className={cn(className, styles.wrapperHome)} {...props}>
+    <CardPage className={styles.wrapperHome}>
       <div className={styles.titleHomeWrapper}>
         <div className={styles.titleWrapper}>
           <h2>

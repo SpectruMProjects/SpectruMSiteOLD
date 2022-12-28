@@ -46,7 +46,7 @@ body[data-theme="light"] {
   --text1: #1e1e2e;
   --text2: #181825;
   --text3: #11111b;
-  --text4: #cdd6f4;
+  --text4: #a6adc8;
   --text5: #11111b;
   --text6: #cdd6f4;
   --border1: #9399b2;
@@ -64,10 +64,10 @@ body[data-theme="light"] {
 
 body[data-theme="dark"] {
   --secondary: #fab387;
-  --text1: #a6adc8;
+  --text1: #cdd6f4;
   --text2: #bac2de;
-  --text3: #cdd6f4;
-  --text4: #cdd6f4;
+  --text3: #a6adc8;
+  --text4: #a6adc8;
   --text5: #11111b;
   --text6: #11111b;
   --border1: #585b70;

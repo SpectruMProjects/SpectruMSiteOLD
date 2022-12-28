@@ -152,6 +152,10 @@ export default class ApiClient {
     }
   }
 
+  /**
+   * Сделал
+   */
+
   async login({ password, login }: LoginDto): Promise<LoginReponse> {
     try {
       const res = await this.post('/auth/', { password, login })
@@ -175,6 +179,10 @@ export default class ApiClient {
     }
   }
 
+  /**
+   * Сделал
+   */
+
   async auth(): Promise<AuthReponse> {
     try {
       const res = await this.get('/users/me')
@@ -197,7 +205,7 @@ export default class ApiClient {
   }
 
   /**
-   * Запрос на регистрацию. Код для активации придёт на почту
+   * Сделал
    */
   async register({ mail, password, username }: RegisterDto): Promise<RegisterResponse> {
     try {
@@ -222,7 +230,7 @@ export default class ApiClient {
   }
 
   /**
-   * Отправка кода регистрации. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
+   * Сделал
    */
   async activateRegCode(code: string): Promise<ActivateRegCodeResponse> {
     try {

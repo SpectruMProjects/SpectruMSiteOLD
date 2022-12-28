@@ -4,14 +4,13 @@ import cn from 'classnames'
 import { CardPage } from 'shared/cardPage'
 import { FormLogin, FormRegister } from 'widgets/auth'
 
-import AuthProps from './Auth.props'
 import styles from './Auth.module.scss'
 
-const AuthPage = ({ className, ...props }: AuthProps): JSX.Element => {
+const AuthPage = (): JSX.Element => {
   const [form, setForm] = useState(false)
 
   return (
-    <CardPage className={cn(className, styles.wrapperAuth)} {...props}>
+    <CardPage className={styles.wrapperAuth}>
       <div className={styles.wrapperFormWrap}>
         <div
           className={cn(styles.wrapperFormTop, {

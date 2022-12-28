@@ -1,15 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
-import { RegisterDto, RegisterResponse } from 'processes/types'
-import { IError } from 'processes/interface'
+import { ChangePassDto, ChangePassResponse, RegisterDto, RegisterResponse } from 'processes/types'
 import apiClient from 'processes/service/axios'
 import { actionAddAction, actionAddError } from 'processes/store/slice'
 
 const axios = new apiClient()
 
 const notifyError = {
-  error: { text: 'Error' },
+  error: { text: 'Неизвестная ошибка' },
   usernameNotExistsInMojang: { text: 'Имя пользователя не существует в Mojang' },
   tooManyRegRequests: { text: 'Слишком много запросов' },
   userWithSameUsernameOrEmailExists: {
@@ -20,12 +19,12 @@ const notifyError = {
 
 export const fetchRegistrationAccount = createAsyncThunk(
   '@@notification/registrationAccount',
-  async ({ mail, password, username }: RegisterDto, thunkAPI): Promise<IError | void> => {
+  async ({ mail, password, username }: RegisterDto, thunkAPI): Promise<void> => {
     const res: RegisterResponse = await axios.register({ mail, password, username })
     const id = uuidv4()
 
     if (res.code !== 'ok') {
-      thunkAPI.dispatch(actionAddError({ id, ...notifyError[res.code], time: 10000 }))
+      thunkAPI.dispatch(actionAddError({ id, ...notifyError[res.code], time: 5000 }))
     }
 
     if (res.code === 'ok') {
@@ -33,7 +32,35 @@ export const fetchRegistrationAccount = createAsyncThunk(
         actionAddAction({
           id,
           text: 'Вы создали аккаунт, перейдие на почту для подтверждения.',
-          time: 10000,
+          time: 5000,
+        }),
+      )
+    }
+  },
+)
+
+const notifyChangeError = {
+  error: { text: 'Неизвестная ошибка' },
+  userWithSameEmailNotExists: { text: 'Пользователя с такой почтой не существует' },
+  tooManyChangePassRequests: { text: 'Слишком много запросов' },
+}
+
+export const fetchChangePassword = createAsyncThunk(
+  '@@notification/changePassword',
+  async ({ mail, newPass }: ChangePassDto, thunkAPI): Promise<void> => {
+    const res: ChangePassResponse = await axios.changePass({ mail, newPass })
+    const id = uuidv4()
+
+    if (res.code !== 'ok') {
+      thunkAPI.dispatch(actionAddError({ id, ...notifyChangeError[res.code], time: 5000 }))
+    }
+
+    if (res.code === 'ok') {
+      thunkAPI.dispatch(
+        actionAddAction({
+          id,
+          text: 'Пожалуйста подтвердите смену пароля через почту',
+          time: 5000,
         }),
       )
     }

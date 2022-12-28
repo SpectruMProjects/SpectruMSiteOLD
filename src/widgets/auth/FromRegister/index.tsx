@@ -47,7 +47,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
       setPasswordError(true)
       notification('error', time, { text: textError('Пароль', 8) }, passwordError)
     }
-    //console.log(flag)
+
     if (!usernameError && !mailError && !passwordError) {
       await dispatch(fetchRegistrationAccount({ mail, username, password }))
     }
