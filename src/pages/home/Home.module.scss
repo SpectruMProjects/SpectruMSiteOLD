@@ -1,6 +1,4 @@
 .wrapperHome {
-  align-items: center;
-
   height: 100%;
   padding: 20px 0;
 }
@@ -375,6 +373,7 @@
   flex-direction: column;
 
   max-width: 900px;
+  margin: 0 auto;
   padding: 30px 60px;
 
   text-align: center;

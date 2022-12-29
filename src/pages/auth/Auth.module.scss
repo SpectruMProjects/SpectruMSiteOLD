@@ -10,7 +10,6 @@
   display: flex;
 
   width: 450px;
-  height: calc(100vh - 40px);
 }
 
 .wrapperFormTop,
@@ -50,10 +49,4 @@
   transform: scale(1);
 
   opacity: 1;
-}
-
-@media screen and ( min-width: 2000px ) {
-  .wrapperAuth {
-    height: 100vh;
-  }
 }
