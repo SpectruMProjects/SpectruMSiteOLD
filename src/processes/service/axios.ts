@@ -268,7 +268,7 @@ export default class ApiClient {
     } catch (e) {
       if (e instanceof AxiosError && e.response?.status === 400) {
         if (e.response.data.code) return { code: e.response.data.code }
-        if (e.response.data.message) return { code: 'incorrectForm' }
+        if (e.response.data.message) return { code: 'incorrectForm', codes: [e.response.data.message] }
       }
       return { code: 'error' }
     }

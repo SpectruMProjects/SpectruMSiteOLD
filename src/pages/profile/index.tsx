@@ -38,16 +38,11 @@ const ProfilePage = (): JSX.Element => {
         },
         passwordError,
       )
-    }
-    if (
-      password.trim().length > 8 &&
-      password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/g) !== null &&
-      password.trim().length !== 0 &&
-      user
-    ) {
+    } else {
       setPassword('')
       setPasswordError(false)
-      dispatch(fetchChangePassword({ mail: user.mail, newPass: password }))
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      dispatch(fetchChangePassword({ mail: user!.mail, newPass: password }))
     }
   }
 

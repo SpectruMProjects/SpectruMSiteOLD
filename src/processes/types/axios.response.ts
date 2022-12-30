@@ -83,7 +83,8 @@ export type ChangePassResponse =
       code: 'tooManyChangePassRequests'
     } 
   | {
-      code: 'incorrectForm'
+      code: 'incorrectForm',
+      codes: ('mail must be an email' | 'password.incorrect')[]
     }
 
 export type ActivateChangePassReponse =
