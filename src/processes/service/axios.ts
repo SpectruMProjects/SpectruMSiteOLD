@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-import { env } from 'processes/constants'
 import {
   LoginDto,
   LoginReponse,
@@ -22,7 +21,7 @@ import {
   UserRolesResponse,
 } from '../types'
 
-const url = env.server_url
+const url = process.env.REACT_APP_SERVER_URL
 
 function composeUrl(uri: string): string {
   return url + (uri.startsWith('/') ? uri : '/' + uri)
@@ -268,7 +267,8 @@ export default class ApiClient {
     } catch (e) {
       if (e instanceof AxiosError && e.response?.status === 400) {
         if (e.response.data.code) return { code: e.response.data.code }
-        if (e.response.data.message) return { code: 'incorrectForm', codes: [e.response.data.message] }
+        if (e.response.data.message)
+          return { code: 'incorrectForm', codes: [e.response.data.message] }
       }
       return { code: 'error' }
     }

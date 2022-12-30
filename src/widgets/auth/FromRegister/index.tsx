@@ -50,6 +50,9 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
 
     if (!usernameError && !mailError && !passwordError) {
       await dispatch(fetchRegistrationAccount({ mail, username, password }))
+      setUsername('')
+      setEmail('')
+      setPassword('')
     }
   }
 

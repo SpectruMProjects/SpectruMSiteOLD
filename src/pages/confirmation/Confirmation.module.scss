@@ -8,12 +8,12 @@
   position: absolute;
   top: 80%;
   left: 50%;
-  
+
   display: flex;
   align-items: center;
 
   width: min-content;
-  padding: 20px;
+  padding: 40px;
 
   transition: var(--transition);
   transform: translate(-50%, -50%);
@@ -59,7 +59,7 @@
   align-items: center;
   flex-direction: column;
 
-  padding: 20px;
+  padding: 40px;
 
   transition: var(--transition);
   transform: translate(-50%, -50%);

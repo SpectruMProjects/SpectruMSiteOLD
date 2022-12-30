@@ -22,6 +22,7 @@ export const userSlice = createSlice({
     actionClearError: (state: Draft<UserState>) => {
       state.error = null
     },
+    actionClearUser: () => initialState,
   },
   extraReducers(builder) {
     builder
@@ -70,6 +71,6 @@ export const userSlice = createSlice({
   },
 })
 
-export const { actionClearError } = userSlice.actions
+export const { actionClearError, actionClearUser } = userSlice.actions
 
 export const userReducer = userSlice.reducer

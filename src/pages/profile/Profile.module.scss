@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 20px;
 
-  padding: 20px;
+  padding: 30px 40px;
 
   border-radius: var(--radius);
 
@@ -60,11 +60,17 @@
   margin-top: 20px;
 }
 
+.wrapperOut {
+  margin-top: 50px;
+
+  background: var(--secondary);
+}
+
 .changePassword {
   display: flex;
   flex-direction: column;
 
-  margin-top: 30px;
+  margin-top: 50px;
   gap: 10px;
 }
 

@@ -2,7 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
 import { IUser } from 'processes/interface'
-import { ActivateRegCodeResponse, AuthReponse, LoginDto, LoginReponse } from 'processes/types'
+import {
+  ActivateChangePassReponse,
+  ActivateRegCodeResponse,
+  AuthReponse,
+  LoginDto,
+  LoginReponse,
+} from 'processes/types'
 import apiClient from 'processes/service/axios'
 
 import { actionAddError } from '../slice'
@@ -10,7 +16,7 @@ import { actionAddError } from '../slice'
 const axios = new apiClient()
 
 const notifyConfirmationError = {
-  error: { text: 'Ошибка' },
+  error: { text: 'Неизвестная ошибка' },
   userWithSameUsernameOrEmailExists: {
     text: 'Пользователь с таким никнеймом или почтой уже существует',
   },
@@ -33,7 +39,7 @@ export const fetchConfirmationAccount = createAsyncThunk(
 )
 
 const notifyLoginError = {
-  error: { text: 'Ошибка' },
+  error: { text: 'Неизвестная ошибка' },
   userWithSameUsernameOrEmailNotExists: {
     text: 'Пользователь с таким логином или почтой не найден',
   },
@@ -69,6 +75,31 @@ export const fetchGetUser = createAsyncThunk(
 
     if (res.code !== 'ok') {
       thunkAPI.dispatch(actionAddError({ id, ...getUser[res.code], time: 5000 }))
+    }
+
+    if (res.code === 'ok') return res.user
+  },
+)
+
+const notifyConfirmationPassError = {
+  error: { text: 'Неизвестная ошибка' },
+  userNotFound: {
+    text: 'Пользователь не найден',
+  },
+  tokenExpired: { text: 'Время для подтверждения закончилось!' },
+}
+
+export const fetchConfirmationPassAccount = createAsyncThunk(
+  '@@user/confirmationAccount',
+  async (code: string, thunkAPI): Promise<IUser | void> => {
+    const id = uuidv4()
+
+    const res: ActivateChangePassReponse = await axios.activateChangePassCode(code)
+
+    if (res.code !== 'ok') {
+      thunkAPI.dispatch(
+        actionAddError({ id, ...notifyConfirmationPassError[res.code], time: 5000 }),
+      )
     }
 
     if (res.code === 'ok') return res.user

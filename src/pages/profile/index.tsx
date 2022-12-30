@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { ContentCopy } from '@mui/icons-material'
 
 import { CardPage } from 'shared/cardPage'
-import { useAppDispatch, useAppSelector, useNotification } from 'processes/hooks'
+import { useAppDispatch, useAppSelector, useExitAccount, useNotification } from 'processes/hooks'
 import { fetchChangePassword, fetchGetUser } from 'processes/store/thunk'
 import { getUser } from 'processes/store/select'
 import { Button, Input } from 'shared'
 
 import styles from './Profile.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 const ProfilePage = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const notification = useNotification()
+  const navigate = useNavigate()
+  const exitAccount = useExitAccount()
 
   const [password, setPassword] = useState('')
   const [passwordError, setPasswordError] = useState(false)
@@ -44,6 +47,10 @@ const ProfilePage = (): JSX.Element => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       dispatch(fetchChangePassword({ mail: user!.mail, newPass: password }))
     }
+  }
+  const handleExit = () => {
+    exitAccount()
+    navigate('/auth')
   }
 
   useEffect(() => {
@@ -86,6 +93,9 @@ const ProfilePage = (): JSX.Element => {
                 Подтвердить
               </Button>
             </div>
+            <Button className={styles.wrapperOut} onClick={() => handleExit()}>
+              Выйти из аккаунта
+            </Button>
           </div>
         )}
       </div>

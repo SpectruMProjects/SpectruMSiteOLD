@@ -216,11 +216,20 @@
 
   text-align: justify;
 
-  color: var(--text5);
+  color: var(--text3);
+
   border-radius: var(--radius);
-  background: var(--pink);
+  background: var(--background2);
 
   font-size: 20px;
+}
+
+.bottomWrapperFirst p {
+  padding: 0 20px;
+
+  border-right: 3px solid var(--pink);
+
+  border-left: 3px solid var(--pink);
 }
 
 .bottomWrapperSecond {

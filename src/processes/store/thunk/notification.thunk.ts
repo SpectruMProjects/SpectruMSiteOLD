@@ -22,7 +22,6 @@ export const fetchRegistrationAccount = createAsyncThunk(
   async ({ mail, password, username }: RegisterDto, thunkAPI): Promise<void> => {
     const res: RegisterResponse = await axios.register({ mail, password, username })
     const id = uuidv4()
-    console.log(res)
 
     if (res.code !== 'ok') {
       thunkAPI.dispatch(actionAddError({ id, ...notifyError[res.code], time: 5000 }))
