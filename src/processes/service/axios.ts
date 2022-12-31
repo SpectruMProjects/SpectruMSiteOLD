@@ -258,7 +258,7 @@ export default class ApiClient {
   }
 
   /**
-   * Запрос на смену пароля. Код для активации придёт на почту
+   * Сделал
    */
   async changePass({ mail, newPass }: ChangePassDto): Promise<ChangePassResponse> {
     try {
@@ -275,7 +275,7 @@ export default class ApiClient {
   }
 
   /**
-   * Отправка кода смены пароля. Если всё прошло успешно, то возращает токены и юзера (сохранять их не нужно)
+   * Сделал
    */
   async activateChangePassCode(code: string): Promise<ActivateChangePassReponse> {
     try {
@@ -298,6 +298,9 @@ export default class ApiClient {
     }
   }
 
+  /**
+   * возвращает всех игроков которые могут посетить сервер
+   */
   async getWhiteList({ server }: GetWhiteListDto): Promise<GetWhiteListResponse> {
     try {
       const res = await this.get(`/pass/${server}/whiteList`)
@@ -313,6 +316,9 @@ export default class ApiClient {
     }
   }
 
+  /**
+   * получение возможности посетить сервер по юзеру
+   */
   async getWhiteListUserStatus({
     server,
     username,
@@ -330,6 +336,9 @@ export default class ApiClient {
     }
   }
 
+  /**
+   * получение статистики по хардкору
+   */
   async getHardcoreStat(username: string): Promise<GetHardcoreStatResponse> {
     try {
       const res = await this.get(`/hardcore/${username}`)
@@ -359,6 +368,9 @@ export default class ApiClient {
     return composeUrl(`/users/${userId}/cape`)
   }
 
+  /**
+   * получение информацию о другом юзере
+   */
   async getUserById(userId: string): Promise<GetUserByIdResponse> {
     try {
       const res = await this.get(`/users/${userId}`)
@@ -377,6 +389,9 @@ export default class ApiClient {
     }
   }
 
+  /**
+   * есть ли у юзера пропуск на сервер
+   */
   async hasUserPass(server: string, username: string): Promise<HasUserPassResponse> {
     try {
       await this.get(`/pass/${server}/whiteList/${username}`)
@@ -389,6 +404,9 @@ export default class ApiClient {
     }
   }
 
+  /**
+   * получение ролей для себя
+   */
   async roles(): Promise<RolesResponse> {
     try {
       const res = await this.get('/roles')
@@ -402,6 +420,10 @@ export default class ApiClient {
       return { code: 'error' }
     }
   }
+
+  /**
+   * Получение ролей для другого пользователя
+   */
 
   async userRoles(userId: string): Promise<UserRolesResponse> {
     try {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ContentCopy } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 import { CardPage } from 'shared/cardPage'
 import { useAppDispatch, useAppSelector, useExitAccount, useNotification } from 'processes/hooks'
@@ -8,7 +9,6 @@ import { getUser } from 'processes/store/select'
 import { Button, Input } from 'shared'
 
 import styles from './Profile.module.scss'
-import { useNavigate } from 'react-router-dom'
 
 const ProfilePage = (): JSX.Element => {
   const dispatch = useAppDispatch()
@@ -22,8 +22,7 @@ const ProfilePage = (): JSX.Element => {
   const user = useAppSelector(getUser)
 
   const handleCopy = (value: string): void => {
-    navigator.clipboard.writeText(value)
-    notification('copy', 5000)
+    navigator.clipboard.writeText(value).then(() => notification('copy', 5000))
   }
 
   const handleChangePassword = (value: string, setPasswordError: (val: boolean) => void): void => {
@@ -63,20 +62,20 @@ const ProfilePage = (): JSX.Element => {
         <h2>Профиль</h2>
         {user && (
           <div className={styles.wrapperInfoProfile}>
-            <p>
+            <span>
               Никнейм:{' '}
               <button className={styles.wrapperButton} onClick={() => handleCopy(user.username)}>
                 <ContentCopy />
                 <span>{user.username}</span>
               </button>
-            </p>
-            <p>
+            </span>
+            <span>
               Почта:{' '}
               <button className={styles.wrapperButton} onClick={() => handleCopy(user.mail)}>
                 <ContentCopy />
                 <span>{user.mail}</span>
               </button>
-            </p>
+            </span>
             <div className={styles.changePassword}>
               <p>Смена пароля</p>
               <Input

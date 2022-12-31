@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { Close } from '@mui/icons-material'
 
@@ -9,15 +9,29 @@ export const NotifyCard = ({
   icon,
   text,
   color,
+  time,
   remove,
   action,
   className,
   ...props
 }: NotifyCardProps): JSX.Element => {
+  const [timer, setTimer] = useState(false)
+
+  useEffect(() => {
+    if (time) {
+      setTimer(true)
+      setTimeout(() => {
+        setTimer(false)
+      }, time - 250)
+    }
+  }, [])
+
   return (
     <div
       style={{ background: `var(--${color})` }}
-      className={cn(className, styles.wrapperNotification)}
+      className={cn(className, styles.wrapperNotification, {
+        [styles.wrapperNotificationOn]: timer,
+      })}
       {...props}
     >
       <div className={styles.wrapperUpNotification}>
@@ -36,6 +50,10 @@ export const NotifyCard = ({
           </button>
         </div>
       )}
+      <span
+        className={cn(styles.timeline, { [styles.timelineOn]: timer })}
+        style={{ transitionDuration: `${time / 1000}s` }}
+      ></span>
     </div>
   )
 }

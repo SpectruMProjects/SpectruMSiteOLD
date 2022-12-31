@@ -15,9 +15,9 @@ interface INotificationState {
 
 const initialState: INotificationState = {
   status: 'idle',
-  loading: { pending: false },
-  fetch: { pending: false },
-  copy: { pending: false },
+  loading: { pending: false, time: 0 },
+  fetch: { pending: false, time: 0 },
+  copy: { pending: false, time: 0 },
   errors: [],
   action: [],
 }
