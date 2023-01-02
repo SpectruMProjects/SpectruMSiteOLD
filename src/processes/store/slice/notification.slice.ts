@@ -58,7 +58,7 @@ export const notificationSlice = createSlice({
         const id = uuidv4()
 
         state.status = 'rejected'
-        state.errors.push({ id, text: String(action.error.message), time: 10000 })
+        state.errors.push({ id, text: String(action.error.message), time: 5000 })
       })
       .addCase(fetchRegistrationAccount.fulfilled, (state: Draft<INotificationState>) => {
         state.status = 'received'
@@ -70,7 +70,7 @@ export const notificationSlice = createSlice({
         const id = uuidv4()
 
         state.status = 'rejected'
-        state.errors.push({ id, text: String(action.error.message), time: 10000 })
+        state.errors.push({ id, text: String(action.error.message), time: 5000 })
       })
       .addCase(fetchChangePassword.fulfilled, (state: Draft<INotificationState>) => {
         state.status = 'received'

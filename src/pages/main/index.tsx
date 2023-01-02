@@ -24,7 +24,7 @@ const MainPage = (): JSX.Element => {
   }, [theme])
 
   useEffect(() => {
-    if (token === null) {
+    if (!token) {
       if (pathname === '/profile') navigate('/auth')
     } else {
       if (pathname === '/auth') navigate('/profile')

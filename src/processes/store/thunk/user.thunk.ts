@@ -8,6 +8,7 @@ import {
   AuthReponse,
   LoginDto,
   LoginReponse,
+  RolesResponse,
 } from 'processes/types'
 import apiClient from 'processes/service/axios'
 
@@ -68,7 +69,7 @@ const getUser = {
 
 export const fetchGetUser = createAsyncThunk(
   '@@user/getUser',
-  async (arg: null, thunkAPI): Promise<IUser | void> => {
+  async (_, thunkAPI): Promise<IUser | void> => {
     const id = uuidv4()
 
     const res: AuthReponse = await axios.auth()
@@ -103,5 +104,29 @@ export const fetchConfirmationPassAccount = createAsyncThunk(
     }
 
     if (res.code === 'ok') return res.user
+  },
+)
+
+const notifyConfirmationRolesError = {
+  error: { text: 'Неизвестная ошибка' },
+  notAllowed: {
+    text: 'Не найдено',
+  },
+}
+
+export const fetchConfirmationRoles = createAsyncThunk(
+  '@@user/confirmationAccount',
+  async (_, thunkAPI): Promise<string[] | void> => {
+    const id = uuidv4()
+
+    const res: RolesResponse = await axios.roles()
+
+    if (res.code !== 'ok') {
+      thunkAPI.dispatch(
+        actionAddError({ id, ...notifyConfirmationRolesError[res.code], time: 5000 }),
+      )
+    }
+
+    if (res.code === 'ok') return res.roles
   },
 )

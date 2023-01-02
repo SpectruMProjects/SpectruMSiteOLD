@@ -16,7 +16,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
     `${text} должен быть не меньше ${
       num > 4 ? num + '-и' : num + '-х'
     } символов, а так же содержать латинские буквы или цифры.`
-  const time = 10000
+  const time = 5000
 
   const [username, setUsername] = useState('')
   const [usernameError, setUsernameError] = useState(false)

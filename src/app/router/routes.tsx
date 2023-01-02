@@ -7,6 +7,7 @@ import ProfilePage from 'pages/profile'
 import AuthPage from 'pages/auth'
 import ConfirmationPage from 'pages/confirmation'
 import HardcorePage from 'pages/hardcore'
+import AdminPage from 'pages/admin'
 
 export const routes = [
   { path: '/', element: () => <HomePage /> },
@@ -17,5 +18,6 @@ export const routes = [
   { path: 'auth/activate/reg/:code', element: () => <ConfirmationPage type={'account'} /> },
   { path: 'auth/activate/changePass/:code', element: () => <ConfirmationPage type={'password'} /> },
   { path: 'hardcore', element: () => <HardcorePage /> },
+  { path: 'admin', element: () => <AdminPage /> },
   //{ path: 'admin', element: () => <AdminPage /> },
 ]

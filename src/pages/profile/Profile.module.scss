@@ -79,3 +79,19 @@
 
   font-size: 20px;
 }
+
+.adminWrapper {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 30px;
+  gap: 10px;
+}
+
+.adminWrapper p {
+  font-size: 20px;
+}
+
+.wrapperButtonAdmin {
+  background: var(--mauve);
+}

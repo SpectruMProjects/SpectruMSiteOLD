@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { CardPage } from 'shared/cardPage'
 import { useAppDispatch, useAppSelector, useExitAccount, useNotification } from 'processes/hooks'
-import { fetchChangePassword, fetchGetUser } from 'processes/store/thunk'
-import { getUser } from 'processes/store/select'
+import { fetchChangePassword, fetchConfirmationRoles, fetchGetUser } from 'processes/store/thunk'
+import { getUser, getUserRoles } from 'processes/store/select'
 import { Button, Input } from 'shared'
 
 import styles from './Profile.module.scss'
@@ -20,6 +20,7 @@ const ProfilePage = (): JSX.Element => {
   const [passwordError, setPasswordError] = useState(false)
 
   const user = useAppSelector(getUser)
+  const userRoles = useAppSelector(getUserRoles)
 
   const handleCopy = (value: string): void => {
     navigator.clipboard.writeText(value).then(() => notification('copy', 5000))
@@ -53,13 +54,14 @@ const ProfilePage = (): JSX.Element => {
   }
 
   useEffect(() => {
-    dispatch(fetchGetUser(null))
+    dispatch(fetchGetUser())
+    dispatch(fetchConfirmationRoles())
   }, [])
 
   return (
     <CardPage>
       <div className={styles.wrapperProfile}>
-        <h2>Профиль</h2>
+        <h2>Профиль {userRoles && userRoles.includes('admin') && ' (Админ)'}</h2>
         {user && (
           <div className={styles.wrapperInfoProfile}>
             <span>
@@ -92,6 +94,14 @@ const ProfilePage = (): JSX.Element => {
                 Подтвердить
               </Button>
             </div>
+            {userRoles && userRoles.includes('admin') && (
+              <div className={styles.adminWrapper}>
+                <p>Админ панель</p>
+                <Button className={styles.wrapperButtonAdmin} onClick={() => navigate('/admin')}>
+                  Перейти
+                </Button>
+              </div>
+            )}
             <Button className={styles.wrapperOut} onClick={() => handleExit()}>
               Выйти из аккаунта
             </Button>
