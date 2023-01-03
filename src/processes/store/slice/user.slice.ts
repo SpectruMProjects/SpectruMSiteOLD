@@ -55,6 +55,13 @@ export const userSlice = createSlice({
         state.error = String(action.error.message)
       })
       .addCase(
+        fetchLoginAccount.fulfilled,
+        (state: Draft<UserState>, action: PayloadAction<IUser | void>) => {
+          state.status = 'received'
+          if (action.payload) state.user = action.payload
+        },
+      )
+      .addCase(
         fetchGetUser.fulfilled,
         (state: Draft<UserState>, action: PayloadAction<IUser | void>) => {
           state.status = 'received'
@@ -68,13 +75,6 @@ export const userSlice = createSlice({
         state.status = 'rejected'
         state.error = String(action.error.message)
       })
-      .addCase(
-        fetchLoginAccount.fulfilled,
-        (state: Draft<UserState>, action: PayloadAction<IUser | void>) => {
-          state.status = 'received'
-          if (action.payload) state.user = action.payload
-        },
-      )
       .addCase(fetchConfirmationRoles.pending, (state: Draft<UserState>) => {
         state.status = 'pending'
       })

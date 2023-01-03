@@ -115,7 +115,7 @@ const notifyConfirmationRolesError = {
 }
 
 export const fetchConfirmationRoles = createAsyncThunk(
-  '@@user/confirmationAccount',
+  '@@user/confirmationRoles',
   async (_, thunkAPI): Promise<string[] | void> => {
     const id = uuidv4()
 
