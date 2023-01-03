@@ -1,0 +1,49 @@
+.wrapperHardcore {
+  height: 100%;
+}
+
+.wrapperLife {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wrapperInfo {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 30px;
+
+  border-radius: var(--radius);
+
+  background: var(--background3);
+}
+
+.infoFirst {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  max-width: 300px;
+}
+
+.minecraftInfo {
+  display: flex;
+  gap: 10px;
+}
+
+.minecraftInfo > p {
+  color: var(--text1);
+}
+
+.infoSecond {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.infoSecond > h2:last-child {
+  color: var(--secondary);
+}
