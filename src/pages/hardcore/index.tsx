@@ -2,6 +2,7 @@ import React from 'react'
 
 import { CardPage } from 'shared/cardPage'
 import { Button } from 'shared'
+import { HeartIcon } from 'app/assets/svg'
 
 import styles from './styles.module.scss'
 
@@ -24,6 +25,28 @@ const HardcorePage = (): JSX.Element => {
             <h2>Vanilla Hardcore SMP</h2>
           </div>
         </section>
+        <section className={styles.wrapperHeart}>
+          <p>0</p>
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <HeartIcon />
+          <p>50</p>
+          <h3>Online</h3>
+        </section>
+      </section>
+      <section className={styles.wrapperServer}>
+        <h2>О сервере</h2>
+        <ul>
+          <li></li>
+        </ul>
       </section>
     </CardPage>
   )
