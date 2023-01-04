@@ -24,34 +24,37 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
   const [loginError, setLoginError] = useState<boolean>(false)
   const [passwordError, setPasswordError] = useState<boolean>(false)
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     if (login.trim().length < 3) {
       setLoginError(true)
       notification(
         'error',
         5000,
-        { text: 'Логин должна содержать не меньше 3-х симоволов' },
+        { text: 'Логин должeн содержать не меньше 3-х симоволов' },
         loginError,
       )
     }
-    if (login.trim().length >= 3) {
-      setLoginError(false)
-    }
+
     if (password.trim().length < 8) {
       setPasswordError(true)
       notification(
         'error',
         5000,
-        { text: 'Пароль должна содержать не меньше 8-х симоволов' },
+        { text: 'Пароль должeн содержать не меньше 8-х симоволов' },
         passwordError,
       )
     }
+
     if (password.trim().length >= 8) {
       setPasswordError(false)
     }
 
-    if (!loginError && !passwordError) {
-      await dispatch(fetchLoginAccount({ login, password }))
+    if (login.trim().length >= 3) {
+      setLoginError(false)
+    }
+
+    if (password.trim().length >= 8 && login.trim().length >= 3) {
+      dispatch(fetchLoginAccount({ login, password }))
       const token = localStorage.getItem('accessToken')
 
       if (token) {
@@ -59,6 +62,7 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
       }
     }
   }
+
   useEffect(() => {
     if (userError) {
       notification('error', 5000, { text: userError })

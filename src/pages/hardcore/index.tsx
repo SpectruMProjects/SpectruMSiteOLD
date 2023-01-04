@@ -6,11 +6,13 @@ import { Button } from 'shared'
 import { AppleIcon, BerriesIcon, CarrotIcon, HeartIcon, WatermelonIcon } from 'app/assets/svg'
 
 import styles from './styles.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 const HardcorePage = (): JSX.Element => {
+  const navigate = useNavigate()
+
   return (
     <CardPage className={styles.wrapperHardcore}>
-      <h2>Хардкор</h2>
       <section className={styles.wrapperLife}>
         <section className={styles.wrapperInfo}>
           <div className={styles.infoFirst}>
@@ -91,7 +93,8 @@ const HardcorePage = (): JSX.Element => {
               сервер, и другие плюшки. Регистрируйся и заходи на сервер!
             </p>
             <div>
-              <Button>Скопировать IP адрес</Button> или <Button>Перейти в личный кабинет</Button>
+              <Button>Скопировать IP адрес</Button> или{' '}
+              <Button onClick={() => navigate('/profile')}>Перейти в личный кабинет</Button>
             </div>
           </div>
         </div>

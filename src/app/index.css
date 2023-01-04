@@ -58,6 +58,7 @@ body[data-theme="light"] {
   --background3: #a6adc8;
   --background4: #1e1e2e;
   --background5: #11111b;
+  --background6: #cdd6f4;
   --shadow-opacity03: rgb(17 17 27 / 30%);
   --shadow-opacity01: rgb(17 17 27 / 10%);
   transition: var(--transition);
@@ -80,6 +81,7 @@ body[data-theme="dark"] {
   --background3: #1e1e2e;
   --background4: #1e1e2e;
   --background5: #cdd6f4;
+  --background6: #cdd6f4;
   --shadow-opacity03: rgb(205 214 244 / 30%);
   --shadow-opacity01: rgb(205 214 244 / 10%);
   transition: var(--transition);

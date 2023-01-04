@@ -15,7 +15,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
   const textError = (text: string, num: number): string =>
     `${text} должен быть не меньше ${
       num > 4 ? num + '-и' : num + '-х'
-    } символов, а так же содержать латинские буквы или цифры.`
+    } символов, а так же содержать латинские буквы или цифры`
   const time = 5000
 
   const [username, setUsername] = useState('')
@@ -25,7 +25,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
   const [password, setPassword] = useState('')
   const [passwordError, setPasswordError] = useState(false)
 
-  const handleRegistration = async () => {
+  const handleRegistration = () => {
     setUsernameError(false)
     setEmailError(false)
     setPasswordError(false)
@@ -37,7 +37,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
 
     if (mail.match(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g) === null || mail.trim().length === 0) {
       setEmailError(true)
-      notification('error', time, { text: 'Введите корректно почту.' }, mailError)
+      notification('error', time, { text: 'Введите корректно почту' }, mailError)
     }
 
     if (
@@ -48,8 +48,13 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
       notification('error', time, { text: textError('Пароль', 8) }, passwordError)
     }
 
-    if (!usernameError && !mailError && !passwordError) {
-      await dispatch(fetchRegistrationAccount({ mail, username, password }))
+    if (
+      (username.trim().length > 3 || username.match(/^.*[a-zA-Z0-9]$/g) !== null) &&
+      (mail.match(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g) !== null || mail.trim().length !== 0) &&
+      (password.trim().length > 8 ||
+        password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/g) !== null)
+    ) {
+      dispatch(fetchRegistrationAccount({ mail, username, password }))
       setUsername('')
       setEmail('')
       setPassword('')

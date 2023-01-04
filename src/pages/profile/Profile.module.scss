@@ -1,17 +1,19 @@
 .wrapperProfile {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 
   padding: 30px 40px;
 
+  color: var(--text7);
+
   border-radius: var(--radius);
 
-  background: var(--background2);
-}
+  background: var(--background4);
+  gap: 20px;
 
-.wrapperProfile > h2 {
-  font-size: 30px;
+  > h2 {
+    font-size: 30px;
+  }
 }
 
 .wrapperInfoProfile {
@@ -21,13 +23,13 @@
 
   width: 100%;
   max-width: 400px;
-}
 
-.wrapperInfoProfile span {
-  display: flex;
-  gap: 20px;
+  span {
+    display: flex;
+    gap: 20px;
 
-  align-items: center;
+    align-items: center;
+  }
 }
 
 .wrapperButton {
@@ -39,21 +41,29 @@
   padding: 10px;
 
   cursor: pointer;
+  transition: var(--transition);
 
-  color: var(--text1);
+  color: var(--text7);
   border: none;
   border-radius: var(--radius);
   outline: none;
+  background: transparent;
 
-  background: var(--background3);
   gap: 20px;
+
+  span {
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
-.wrapperButton span {
-  overflow: hidden;
+.wrapperButton:hover {
+  transition: var(--transition);
 
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  color: var(--text5);
+  background: var(--background6);
 }
 
 .wrapperChangePass {
@@ -72,12 +82,12 @@
 
   margin-top: 50px;
   gap: 10px;
-}
 
-.changePassword p {
-  margin-bottom: 20px;
+  p {
+    margin-bottom: 20px;
 
-  font-size: 20px;
+    font-size: 20px;
+  }
 }
 
 .adminWrapper {
@@ -86,10 +96,10 @@
 
   margin-top: 30px;
   gap: 10px;
-}
 
-.adminWrapper p {
-  font-size: 20px;
+  p {
+    font-size: 20px;
+  }
 }
 
 .wrapperButtonAdmin {
