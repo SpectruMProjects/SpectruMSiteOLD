@@ -81,10 +81,23 @@ const HardcorePage = (): JSX.Element => {
           <a href={''}>здесь</a>
         </span>
       </section>
+      <section className={styles.wrapperDownInfo}>
+        <h2>Ивенты, лёгкая сборка, и прочее...</h2>
+        <div>
+          <iframe src='https://giphy.com/embed/UdXlLBeKNW9xqemxYk' />
+          <div>
+            <p>
+              Сервер на Paper, дружелюбное комьюнити, полностью бесплатное пользование, Discord
+              сервер, и другие плюшки. Регистрируйся и заходи на сервер!
+            </p>
+            <div>
+              <Button>Скопировать IP адрес</Button> или <Button>Перейти в личный кабинет</Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </CardPage>
   )
 }
 
 export default HardcorePage
-
-//<iframe src="https://giphy.com/embed/UdXlLBeKNW9xqemxYk" />

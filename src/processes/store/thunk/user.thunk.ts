@@ -2,14 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
 import { IUser } from 'processes/interface'
-import {
-  ActivateChangePassReponse,
-  ActivateRegCodeResponse,
-  AuthReponse,
-  LoginDto,
-  LoginReponse,
-  RolesResponse,
-} from 'processes/types'
+import { LoginDto } from 'processes/types'
 import apiClient from 'processes/service/axios'
 
 import { actionAddError } from '../slice'
@@ -29,7 +22,7 @@ export const fetchConfirmationAccount = createAsyncThunk(
   async (code: string, thunkAPI): Promise<IUser | void> => {
     const id = uuidv4()
 
-    const res: ActivateRegCodeResponse = await axios.activateRegCode(code)
+    const res = await axios.activateRegCode(code)
 
     if (res.code !== 'ok') {
       thunkAPI.dispatch(actionAddError({ id, ...notifyConfirmationError[res.code], time: 5000 }))
@@ -53,7 +46,7 @@ export const fetchLoginAccount = createAsyncThunk(
   async ({ login, password }: LoginDto, thunkAPI): Promise<IUser | void> => {
     const id = uuidv4()
 
-    const res: LoginReponse = await axios.login({ login, password })
+    const res = await axios.login({ login, password })
 
     if (res.code !== 'ok') {
       thunkAPI.dispatch(actionAddError({ id, ...notifyLoginError[res.code], time: 5000 }))
@@ -72,7 +65,7 @@ export const fetchGetUser = createAsyncThunk(
   async (_, thunkAPI): Promise<IUser | void> => {
     const id = uuidv4()
 
-    const res: AuthReponse = await axios.auth()
+    const res = await axios.auth()
 
     if (res.code !== 'ok') {
       thunkAPI.dispatch(actionAddError({ id, ...getUser[res.code], time: 5000 }))
@@ -95,7 +88,7 @@ export const fetchConfirmationPassAccount = createAsyncThunk(
   async (code: string, thunkAPI): Promise<IUser | void> => {
     const id = uuidv4()
 
-    const res: ActivateChangePassReponse = await axios.activateChangePassCode(code)
+    const res = await axios.activateChangePassCode(code)
 
     if (res.code !== 'ok') {
       thunkAPI.dispatch(
@@ -119,7 +112,7 @@ export const fetchConfirmationRoles = createAsyncThunk(
   async (_, thunkAPI): Promise<string[] | void> => {
     const id = uuidv4()
 
-    const res: RolesResponse = await axios.roles()
+    const res = await axios.roles()
 
     if (res.code !== 'ok') {
       thunkAPI.dispatch(

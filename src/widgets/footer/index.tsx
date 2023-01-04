@@ -9,7 +9,7 @@ import styles from './styles.module.scss'
 export const Footer = (): JSX.Element => {
   return (
     <footer className={styles.footerWrapper}>
-      <div className={styles.topWrapFooter}>
+      <section className={styles.topWrapFooter}>
         <div className={styles.titleFooter}>
           <img src={logo} alt={'logo'} />
           <h2>SpectrumMine</h2>
@@ -32,9 +32,12 @@ export const Footer = (): JSX.Element => {
             <HeadsetMic />
           </a>
         </div>
-      </div>
-      <div className={styles.topWrapFooter}>
-        <p>Все права защищены.</p>
+      </section>
+      <section className={styles.topWrapFooter}>
+        <p>
+          Организация не имеет никакого отношения к Mojang AB. Все права на игру принадлежат Mojang
+          AB. Весь остальной контент принадлежит SpectruMTeam УНП: BE00000000
+        </p>
         <div className={styles.linksInfo}>
           <a
             href={'/'}
@@ -61,7 +64,7 @@ export const Footer = (): JSX.Element => {
             Пользовательское соглашение
           </a>
         </div>
-      </div>
+      </section>
     </footer>
   )
 }

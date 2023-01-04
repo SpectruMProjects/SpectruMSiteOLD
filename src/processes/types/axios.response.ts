@@ -20,7 +20,7 @@ export type ActivateRegCodeResponse =
 
 export type LoginFormFieldErrorCode = 'login.empty'
 
-export type LoginReponse =
+export type LoginResponse =
   | {
       code: 'ok'
       user: IUser
@@ -44,7 +44,7 @@ export type LoginReponse =
 export type RegisterFormFieldErrorCode =
   | 'mail.notMail'
   | 'username.empty'
-  | 'usename.incorrect'
+  | 'username.incorrect'
   | 'password.tooShort'
   | 'password.incorrect'
 
@@ -81,9 +81,9 @@ export type ChangePassResponse =
     }
   | {
       code: 'tooManyChangePassRequests'
-    } 
+    }
   | {
-      code: 'incorrectForm',
+      code: 'incorrectForm'
       codes: ('mail must be an email' | 'password.incorrect')[]
     }
 

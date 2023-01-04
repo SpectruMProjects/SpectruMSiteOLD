@@ -11,7 +11,7 @@ import styles from './Home.module.scss'
 const HomePage = (): JSX.Element => {
   return (
     <CardPage className={styles.wrapperHome}>
-      <div className={styles.titleHomeWrapper}>
+      <section className={styles.titleHomeWrapper}>
         <div className={styles.titleWrapper}>
           <h2>
             Добро пожаловать на <p className={styles.logoTitle}>SpectrumMine</p>
@@ -22,8 +22,8 @@ const HomePage = (): JSX.Element => {
         </div>
         <img src={minecraft} alt={'minecraft'} className={styles.minecraft} />
         <iframe className={styles.frog} src='https://giphy.com/embed/1MOuaXcM4XnjvY88I7' />
-      </div>
-      <div className={styles.wrapperServer}>
+      </section>
+      <section className={styles.wrapperServer}>
         <Button className={styles.buttonServer}>
           <img src={server1} alt='server' />
           <p>Server #1</p>
@@ -32,8 +32,8 @@ const HomePage = (): JSX.Element => {
           <img src={server1} alt='server' />
           <p>Server #2</p>
         </Button>
-      </div>
-      <div className={styles.wrapperInfo}>
+      </section>
+      <section className={styles.wrapperInfo}>
         <h2>О проекте</h2>
         <div className={styles.wrapperMainInfo}>
           <p className={styles.firstColor}>
@@ -69,16 +69,16 @@ const HomePage = (): JSX.Element => {
             последней версии Minecraft.
           </p>
         </div>
-      </div>
-      <div className={styles.bottomWrapperFirst}>
+      </section>
+      <section className={styles.bottomWrapperFirst}>
         <p>
           Почувствуйте ламповую и дружелюбную атмосферу, где все игроки чувствуют себя как дома. Мы
           разработали специальные функции и события, чтобы улучшить взаимодействие между игроками и
           создать уютную атмосферу. Мы также стремимся создать сообщество, которое является открытым
           и приветливым ко всем новым игрокам.
         </p>
-      </div>
-      <div className={styles.bottomWrapperSecond}>
+      </section>
+      <section className={styles.bottomWrapperSecond}>
         <span className={cn(styles.helper, styles.anim1)}></span>
         <span className={cn(styles.helper, styles.anim2)}></span>
         <span className={cn(styles.helper, styles.anim3)}></span>
@@ -89,8 +89,8 @@ const HomePage = (): JSX.Element => {
           у которых могут возникнуть. Мы надеемся, что вы почувствуете себя как дома на наших
           серверах и станете частью нашего уютного сообщества. Ждем вас на наших серверах!
         </p>
-      </div>
-      <div className={styles.wrapperBuy}>
+      </section>
+      <section className={styles.wrapperBuy}>
         <div className={styles.wrapperTitleBuy}>
           <img src={dollar} alt='dollar' />
           <h2>Стоимость доступа на Хардкор</h2>
@@ -100,7 +100,7 @@ const HomePage = (): JSX.Element => {
           <SportsEsports />
           <p>Приобристи доступ на сервер</p>
         </Button>
-      </div>
+      </section>
     </CardPage>
   )
 }

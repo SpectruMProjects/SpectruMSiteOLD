@@ -49,6 +49,7 @@ body[data-theme="light"] {
   --text4: #a6adc8;
   --text5: #11111b;
   --text6: #cdd6f4;
+  --text7: #cdd6f4;
   --border1: #9399b2;
   --border2: #7f849c;
   --border3: #6c7086;
@@ -70,6 +71,7 @@ body[data-theme="dark"] {
   --text4: #a6adc8;
   --text5: #11111b;
   --text6: #11111b;
+  --text7: #cdd6f4;
   --border1: #585b70;
   --border2: #45475a;
   --border3: #313244;

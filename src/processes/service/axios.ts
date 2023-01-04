@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 import {
   LoginDto,
-  LoginReponse,
+  LoginResponse,
   AuthReponse,
   RegisterDto,
   RegisterResponse,
@@ -21,7 +21,8 @@ import {
   UserRolesResponse,
 } from '../types'
 
-const url = process.env.REACT_APP_SERVER_URL
+const url = process.env.REACT_APP_SERVER_URL ?? 'http://localhost:3001'
+console.log(url)
 
 function composeUrl(uri: string): string {
   return url + (uri.startsWith('/') ? uri : '/' + uri)
@@ -155,7 +156,7 @@ export default class ApiClient {
    * Сделал
    */
 
-  async login({ password, login }: LoginDto): Promise<LoginReponse> {
+  async login({ password, login }: LoginDto): Promise<LoginResponse> {
     try {
       const res = await this.post('/auth/', { password, login })
       const { data } = res

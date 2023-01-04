@@ -14,17 +14,29 @@ const notifyError = {
   userWithSameUsernameOrEmailExists: {
     text: 'Пользователь с таким никнеймом или почтой уже существует',
   },
-  form: { text: 'Заполните корректно поля' },
+  form: {
+    'mail.notMail': 'Такой почты нету',
+    'username.empty': 'Никнейм пуст',
+    'username.incorrect': 'Введите корректно никнейм',
+    'password.tooShort': 'Пароль слишком короткий',
+    'password.incorrect': 'Введите корректно пароль',
+  },
 }
 
 export const fetchRegistrationAccount = createAsyncThunk(
   '@@notification/registrationAccount',
   async ({ mail, password, username }: RegisterDto, thunkAPI): Promise<void> => {
-    const res: RegisterResponse = await axios.register({ mail, password, username })
+    const res = await axios.register({ mail, password, username })
     const id = uuidv4()
 
     if (res.code !== 'ok') {
-      thunkAPI.dispatch(actionAddError({ id, ...notifyError[res.code], time: 5000 }))
+      if (res.code === 'form') {
+        res.codes.forEach((value) => {
+          thunkAPI.dispatch(actionAddError({ id, text: notifyError.form[value], time: 5000 }))
+        })
+      } else {
+        thunkAPI.dispatch(actionAddError({ id, ...notifyError[res.code], time: 5000 }))
+      }
     }
 
     if (res.code === 'ok') {
@@ -50,7 +62,7 @@ export const fetchChangePassword = createAsyncThunk(
   '@@notification/changePassword',
   async ({ mail, newPass }: ChangePassDto, thunkAPI): Promise<void> => {
     console.log(mail)
-    const res: ChangePassResponse = await axios.changePass({ mail: String(mail), newPass })
+    const res = await axios.changePass({ mail: String(mail), newPass })
     const id = uuidv4()
 
     if (res.code !== 'ok') {

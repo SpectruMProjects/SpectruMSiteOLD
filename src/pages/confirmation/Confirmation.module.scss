@@ -1,36 +1,19 @@
 .wrapperConf {
-  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .loadWrapper {
-  position: absolute;
-  top: 80%;
-  left: 50%;
-
   display: flex;
   align-items: center;
 
-  width: min-content;
-  padding: 40px;
+  padding: 30px 80px;
 
   transition: var(--transition);
-  transform: translate(-50%, -50%);
-  text-align: left;
 
-  opacity: 0;
   border-radius: var(--radius);
   background: var(--background4);
   gap: 20px;
-}
-
-.loadWrapperOn {
-  top: 50%;
-
-  transition: var(--transition);
-
-  opacity: 1;
 }
 
 .loadWrapper p {
@@ -38,7 +21,7 @@
 
   color: var(--text4);
 
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .loadIcon {
@@ -48,62 +31,4 @@
 
 .loadIcon circle {
   stroke: var(--primary);
-}
-
-.loadWrapperAccess {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  padding: 40px;
-
-  transition: var(--transition);
-  transform: translate(-50%, -50%);
-  text-align: center;
-
-  opacity: 0;
-  border-radius: var(--radius);
-  background: var(--background4);
-  gap: 20px;
-}
-
-.loadWrapperAccessOn {
-  top: 50%;
-
-  transition: var(--transition);
-
-  opacity: 1;
-}
-
-.loadWrapperAccessOff {
-  top: 80%;
-
-  transition: var(--transition);
-
-  opacity: 0;
-}
-
-.textName {
-  display: flex;
-  align-items: center;
-
-  color: var(--text4);
-
-  font-size: 35px;
-}
-
-.textName p {
-  color: var(--secondary);
-
-  font-size: 35px;
-}
-
-.textBottom {
-  color: var(--text4);
-
-  font-size: 16px;
 }
