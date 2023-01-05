@@ -1,5 +1,6 @@
 import React from 'react'
 import { HeadsetMic, Telegram } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 import { logo } from 'app/assets/webp'
 import { DiscordIcon } from 'app/assets/svg'
@@ -7,6 +8,8 @@ import { DiscordIcon } from 'app/assets/svg'
 import styles from './styles.module.scss'
 
 export const Footer = (): JSX.Element => {
+  const navigate = useNavigate()
+
   return (
     <footer className={styles.footerWrapper}>
       <section className={styles.topWrapFooter}>
@@ -36,33 +39,12 @@ export const Footer = (): JSX.Element => {
       <section className={styles.topWrapFooter}>
         <p>
           Организация не имеет никакого отношения к Mojang AB. Все права на игру принадлежат Mojang
-          AB. Весь остальной контент принадлежит SpectruMTeam УНП: BE00000000
+          AB. Весь остальной контент принадлежит SpectruMTeam.
         </p>
         <div className={styles.linksInfo}>
-          <a
-            href={'/'}
-            onClick={(e) => {
-              e.preventDefault()
-            }}
-          >
-            Контакты
-          </a>
-          <a
-            href={'/'}
-            onClick={(e) => {
-              e.preventDefault()
-            }}
-          >
-            Способы оплаты
-          </a>
-          <a
-            href={'/'}
-            onClick={(e) => {
-              e.preventDefault()
-            }}
-          >
-            Пользовательское соглашение
-          </a>
+          <button disabled={true}>Контакты</button>
+          <button disabled={true}>Способы оплаты</button>
+          <button onClick={() => navigate('/team/success')}>Пользовательское соглашение</button>
         </div>
       </section>
     </footer>

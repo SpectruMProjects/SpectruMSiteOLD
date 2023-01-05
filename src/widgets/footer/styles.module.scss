@@ -5,7 +5,7 @@
 
   width: 100%;
   max-width: 1400px;
-  margin: 30px auto;
+  margin: 0 auto;
   padding: 20px 30px;
 
   user-select: none;
@@ -68,8 +68,10 @@
   display: flex;
   gap: 10px;
 
-  > a {
+  > button {
     padding: 10px 15px;
+
+    cursor: pointer;
 
     transition: var(--transition);
 
@@ -77,10 +79,12 @@
     text-decoration: none;
 
     color: var(--text7);
+    border: none;
     border-radius: var(--radius);
+    background: transparent;
   }
 
-  > a:hover {
+  > button:hover {
     color: var(--secondary);
     background: var(--shadow-opacity03);
   }

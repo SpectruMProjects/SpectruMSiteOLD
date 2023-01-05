@@ -54,10 +54,11 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
       (password.trim().length > 8 ||
         password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/g) !== null)
     ) {
-      dispatch(fetchRegistrationAccount({ mail, username, password }))
-      setUsername('')
-      setEmail('')
-      setPassword('')
+      dispatch(fetchRegistrationAccount({ mail, username, password })).then(() => {
+        setUsername('')
+        setEmail('')
+        setPassword('')
+      })
     }
   }
 

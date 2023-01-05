@@ -54,12 +54,12 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
     }
 
     if (password.trim().length >= 8 && login.trim().length >= 3) {
-      dispatch(fetchLoginAccount({ login, password }))
-      const token = localStorage.getItem('accessToken')
-
-      if (token) {
-        navigate('/profile')
-      }
+      dispatch(fetchLoginAccount({ login, password })).then(() => {
+        const token = localStorage.getItem('accessToken')
+        if (token) {
+          navigate('/profile')
+        }
+      })
     }
   }
 

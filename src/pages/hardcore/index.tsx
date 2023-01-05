@@ -1,8 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 
-import { CardPage } from 'shared/cardPage'
-import { Button } from 'shared'
+import { Button, CardPage, CardInfo } from 'shared'
 import { AppleIcon, BerriesIcon, CarrotIcon, HeartIcon, WatermelonIcon } from 'app/assets/svg'
 
 import styles from './styles.module.scss'
@@ -13,7 +12,7 @@ const HardcorePage = (): JSX.Element => {
 
   return (
     <CardPage className={styles.wrapperHardcore}>
-      <section className={styles.wrapperLife}>
+      <CardInfo className={styles.wrapperLife}>
         <section className={styles.wrapperInfo}>
           <div className={styles.infoFirst}>
             <Button>Скопировать IP-адрес</Button>
@@ -44,8 +43,8 @@ const HardcorePage = (): JSX.Element => {
           <p>50</p>
           <h3>Online</h3>
         </section>
-      </section>
-      <section className={styles.wrapperServer}>
+      </CardInfo>
+      <CardInfo className={styles.wrapperServer} background={'dark-middle'}>
         <h2>О сервере</h2>
         <ul>
           <li>
@@ -68,8 +67,8 @@ const HardcorePage = (): JSX.Element => {
         <WatermelonIcon className={cn(styles.icon, styles.melon)} />
         <CarrotIcon className={cn(styles.icon, styles.carrot)} />
         <BerriesIcon className={cn(styles.icon, styles.berries)} />
-      </section>
-      <section className={styles.wrapperInfoHardcore}>
+      </CardInfo>
+      <CardInfo className={styles.wrapperInfoHardcore}>
         <h2>Как работает Hardcore режим?</h2>
         <p>
           Если вы прошаренный игрок в Minecraft, то вы знаете что режим Hardcore работает по
@@ -82,8 +81,8 @@ const HardcorePage = (): JSX.Element => {
           *Для того чтобы точно расчитать время возрождения, мы пользуемся формулой описанной{' '}
           <a href={''}>здесь</a>
         </span>
-      </section>
-      <section className={styles.wrapperDownInfo}>
+      </CardInfo>
+      <CardInfo className={styles.wrapperDownInfo} background={'dark-middle'}>
         <h2>Ивенты, лёгкая сборка, и прочее...</h2>
         <div>
           <iframe src='https://giphy.com/embed/UdXlLBeKNW9xqemxYk' />
@@ -98,7 +97,7 @@ const HardcorePage = (): JSX.Element => {
             </div>
           </div>
         </div>
-      </section>
+      </CardInfo>
     </CardPage>
   )
 }

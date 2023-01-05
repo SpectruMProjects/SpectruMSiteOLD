@@ -6,7 +6,7 @@ import { CardPage } from 'shared/cardPage'
 import { useAppDispatch, useAppSelector, useExitAccount, useNotification } from 'processes/hooks'
 import { fetchChangePassword, fetchConfirmationRoles, fetchGetUser } from 'processes/store/thunk'
 import { getUser, getUserRoles } from 'processes/store/select'
-import { Button, Input } from 'shared'
+import { Button, CardInfo, Input } from 'shared'
 
 import styles from './Profile.module.scss'
 
@@ -60,7 +60,7 @@ const ProfilePage = (): JSX.Element => {
 
   return (
     <CardPage>
-      <div className={styles.wrapperProfile}>
+      <CardInfo className={styles.wrapperProfile}>
         <h2>Профиль {userRoles && userRoles.includes('admin') && ' (Админ)'}</h2>
         {user && (
           <div className={styles.wrapperInfoProfile}>
@@ -107,7 +107,7 @@ const ProfilePage = (): JSX.Element => {
             </Button>
           </div>
         )}
-      </div>
+      </CardInfo>
     </CardPage>
   )
 }

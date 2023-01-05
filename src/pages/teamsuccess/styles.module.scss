@@ -1,0 +1,23 @@
+.wrapperTeamSuccess {
+  height: 100%;
+}
+
+.wrapperHeaderTeamSuccess {
+  color: var(--text1);
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.wrapperInfo {
+  ul {
+    li {
+      padding-left: 10px;
+
+      list-style-type: decimal;
+
+      text-align: justify;
+    }
+  }
+}

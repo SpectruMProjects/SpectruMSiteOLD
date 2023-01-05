@@ -52,7 +52,9 @@ export const fetchLoginAccount = createAsyncThunk(
       thunkAPI.dispatch(actionAddError({ id, ...notifyLoginError[res.code], time: 5000 }))
     }
 
-    if (res.code === 'ok') return res.user
+    if (res.code === 'ok') {
+      return res.user
+    }
   },
 )
 
