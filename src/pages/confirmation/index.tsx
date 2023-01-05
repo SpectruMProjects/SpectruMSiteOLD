@@ -2,9 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import cn from 'classnames'
 
-import { useAppDispatch, useAppSelector, useExitAccount, useNotification } from 'processes/hooks'
-import { IUser } from 'processes/interface'
-import { getUser } from 'processes/store/select'
+import { useAppDispatch, useExitAccount, useNotification } from 'processes/hooks'
 import { fetchConfirmationAccount, fetchConfirmationPassAccount } from 'processes/store/thunk'
 import { CardPage } from 'shared/cardPage'
 import { LoadingIcon } from 'app/assets/svg'
@@ -19,15 +17,14 @@ const ConfirmationPage = ({ type, className, ...props }: confirmationProps): JSX
   const notification = useNotification()
   const exitAccount = useExitAccount()
 
-  const user: IUser | undefined = useAppSelector(getUser)
-
   useEffect(() => {
     exitAccount()
     if (code) {
       if (type === 'account')
         dispatch(fetchConfirmationAccount(code))
           .then(() => {
-            if (user) {
+            const token = localStorage.get('accessToken')
+            if (token) {
               navigate('/profile')
               notification('action', 5000, { text: 'Аккаунт активирован!' })
             }
@@ -38,7 +35,8 @@ const ConfirmationPage = ({ type, className, ...props }: confirmationProps): JSX
       if (type === 'password')
         dispatch(fetchConfirmationPassAccount(code))
           .then(() => {
-            if (user) {
+            const token = localStorage.get('accessToken')
+            if (token) {
               navigate('/profile')
               notification('action', 5000, { text: 'Пароль был изменен!' })
             }
