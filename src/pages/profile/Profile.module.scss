@@ -7,16 +7,178 @@
 .wrapperInfoProfile {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 
   width: 100%;
-  max-width: 400px;
+  padding: 30px;
+
+  border-radius: var(--radius);
+  background: var(--background7);
+  gap: 10px;
 
   span {
     display: flex;
-    gap: 20px;
 
     align-items: center;
+    gap: 20px;
+  }
+}
+
+.wrapperSetting {
+  max-width: 350px;
+}
+
+.wrapperHardCore {
+  position: relative;
+
+  user-select: none;
+
+  > iframe {
+    position: absolute;
+    bottom: -100px;
+    left: -50px;
+
+    width: 300px;
+    height: 300px;
+
+    user-select: none;
+    transform: rotateZ(180deg) rotateX(180deg);
+    pointer-events: none;
+
+    border: none;
+    background: transparent;
+  }
+
+  > h3 {
+    color: var(--text7);
+
+    font-size: 22px;
+  }
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+
+      text-align: center;
+      gap: 20px;
+
+      > div:first-of-type {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        padding: 30px 0;
+
+        > p:first-of-type {
+          font-size: 20px;
+        }
+
+        > p:last-of-type {
+          color: var(--primary);
+
+          font-size: 35px;
+        }
+      }
+
+      > div:last-of-type {
+        text-align: left;
+
+        > p {
+          color: var(--text7);
+
+          font-size: 20px;
+        }
+      }
+    }
+
+    > div:last-of-type {
+      padding: 20px;
+
+      svg {
+        width: 250px;
+        height: 250px;
+      }
+
+      > p:first-of-type {
+        font-size: 20px;
+      }
+
+      > p:last-of-type {
+        color: var(--primary);
+
+        font-size: 35px;
+      }
+    }
+  }
+}
+
+.wrapperNav {
+  display: flex;
+  flex-direction: column;
+
+  .navLink {
+    display: flex;
+
+    padding: 0 20px;
+
+    > button {
+      position: relative;
+
+      padding: 5px 20px;
+
+      cursor: pointer;
+      transition: var(--transition-fast);
+
+      color: var(--text7);
+      border: none;
+
+      border-radius: 10px 10px 0 0;
+      outline: none;
+      background: transparent;
+
+      .firstT,
+      .secondT {
+        position: absolute;
+        z-index: 1;
+
+        bottom: 0;
+        left: -20px;
+
+        width: 20px;
+        height: 20px;
+
+        transition: var(--transition-fast);
+
+        opacity: 0;
+
+        border-radius: 50%;
+        background: transparent;
+
+        box-shadow: 10px 10px 0 var(--background7);
+      }
+
+      .secondT {
+        right: -20px;
+        left: auto;
+
+        box-shadow: -10px 10px 0 var(--background7);
+      }
+    }
+
+    .buttonOn {
+      transition: var(--transition-fast);
+
+      background: var(--background7);
+
+      .firstT,
+      .secondT {
+        opacity: 1;
+      }
+    }
   }
 }
 
@@ -39,7 +201,7 @@
 
   gap: 20px;
 
-  span {
+  > span {
     overflow: hidden;
 
     white-space: nowrap;

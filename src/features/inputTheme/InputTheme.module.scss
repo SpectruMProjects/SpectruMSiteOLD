@@ -15,7 +15,7 @@ input[type="checkbox"] {
   transition: var(--transition);
 
   border-radius: 50px;
-  background: var(--primary);
+  background: var(--secondary);
 }
 
 .checkBox label {
@@ -33,7 +33,7 @@ input[type="checkbox"] {
   cursor: pointer;
   transition: var(--transition);
 
-  border: 2px solid var(--primary);
+  border: 2px solid var(--secondary);
   border-radius: 50px;
   background: var(--background4);
 }
