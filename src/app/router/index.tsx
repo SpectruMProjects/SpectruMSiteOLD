@@ -36,13 +36,13 @@ const router = createBrowserRouter([
         ],
       },
       { path: 'hardcore', element: <HardcorePage /> },
-      { path: 'admin', element: <AdminPage /> },
       {
         path: 'team',
         children: [{ path: 'success', element: <TeamSuccessPage /> }],
       },
     ],
   },
+  { path: 'admin', element: <AdminPage /> },
 ])
 
 const AppRouter = () => <RouterProvider router={router} />

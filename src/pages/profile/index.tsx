@@ -129,6 +129,7 @@ const ProfilePage = (): JSX.Element => {
                     <div className={styles.adminWrapper}>
                       <p>Админ панель</p>
                       <Button
+                        color={'green'}
                         className={styles.wrapperButtonAdmin}
                         onClick={() => navigate('/admin')}
                       >
@@ -136,7 +137,11 @@ const ProfilePage = (): JSX.Element => {
                       </Button>
                     </div>
                   )}
-                  <Button className={styles.wrapperOut} onClick={() => handleExit()}>
+                  <Button
+                    color={'purple'}
+                    className={styles.wrapperOut}
+                    onClick={() => handleExit()}
+                  >
                     Выйти из аккаунта
                   </Button>
                 </div>
