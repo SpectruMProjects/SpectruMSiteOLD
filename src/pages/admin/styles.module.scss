@@ -127,6 +127,10 @@
   background: var(--mauve);
 }
 
+.changeBtn {
+  background: var(--success);
+}
+
 .wrapperUserInfo {
   padding: 20px;
 
@@ -137,25 +141,71 @@
     > section:last-of-type {
       gap: 30px;
 
+      > h3 {
+        user-select: none;
+
+        color: var(--text7);
+      }
+
       > section {
         display: flex;
 
         flex-direction: column;
-        gap: 10px;
+        gap: 20px;
+
+        > span {
+          user-select: none;
+
+          color: var(--text7);
+        }
 
         > div {
           display: flex;
           align-items: center;
           gap: 5px;
 
-          > span {
+          > h4 {
+            user-select: none;
+
+            color: var(--text7);
+          }
+
+          > span,
+          > button {
             padding: 2px 10px;
+
+            user-select: none;
 
             color: var(--text5);
 
             border-radius: var(--radius);
 
             background: var(--rosewater);
+          }
+
+          > button {
+            align-items: center;
+
+            padding: 2px 10px;
+
+            cursor: pointer;
+
+            transition: var(--transition);
+
+            border: none;
+
+            > svg {
+              display: block;
+
+              width: 25px;
+              height: 25px;
+            }
+          }
+
+          > button:hover {
+            transition: var(--transition);
+
+            background: var(--success);
           }
         }
       }

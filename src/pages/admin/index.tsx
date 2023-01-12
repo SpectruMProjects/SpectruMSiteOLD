@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Close } from '@mui/icons-material'
+import { Close, Add } from '@mui/icons-material'
 import cn from 'classnames'
 
 import { CardPage } from 'shared/cardPage'
@@ -21,6 +21,10 @@ const AdminPage = (): JSX.Element => {
   const [usersList, setUsersList] = useState(false)
   const [userInfoButton, setUserInfoButton] = useState(false)
   const [userInfo, setUserInfo] = useState(false)
+
+  const handleAddRoles = () => {
+    //!
+  }
 
   useEffect(() => {
     if (!token && !userRoles.includes('admin')) {
@@ -105,11 +109,15 @@ const AdminPage = (): JSX.Element => {
                 <section>
                   <span>Почта: sosiska@gmail.com</span>
                   <span>Никнейм: sosiska</span>
+                  <button className={cn(styles.buttonWrap, styles.changeBtn)}>Изменить</button>
                   <div>
                     <h4>Роли:</h4>
                     <span>Юзер</span>
                     <span>Админ</span>
                     <span>Чмо</span>
+                    <button onClick={handleAddRoles}>
+                      <Add />
+                    </button>
                   </div>
                 </section>
                 <section>
