@@ -10,7 +10,9 @@ export const CardInfo = ({
   children,
   ...props
 }: CardInfoProps): JSX.Element => {
-  const handleColor = (val: 'dark-dark' | 'dark-light' | 'dark-middle') => {
+  const handleColor = (
+    val: 'dark-dark' | 'dark-light' | 'dark-middle' | 'blue' | 'green' | 'opacity',
+  ) => {
     if (val === 'dark-middle') {
       return 'background7'
     }
@@ -19,6 +21,15 @@ export const CardInfo = ({
     }
     if (val === 'dark-light') {
       return 'background4'
+    }
+    if (val === 'blue') {
+      return 'primary'
+    }
+    if (val === 'green') {
+      return 'success'
+    }
+    if (val === 'opacity') {
+      return 'shadow-opacity-static03'
     }
   }
   return (

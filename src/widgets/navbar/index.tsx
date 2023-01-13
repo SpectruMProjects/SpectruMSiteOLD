@@ -34,7 +34,7 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
 
   const token: string | null = localStorage.getItem('accessToken')
   const menuList = useAppSelector(getMenuList)
-  const theme: boolean = useAppSelector(getTheme)
+  const theme = useAppSelector(getTheme)
 
   const [activeMenu, setActiveMenu] = useState<boolean>(false)
   const [top, setTop] = useState<number>(0)
