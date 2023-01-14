@@ -15,6 +15,8 @@
   max-width: 300px;
   padding: 0;
 
+  user-select: none;
+
   text-align: center;
 
   > div {
@@ -116,7 +118,7 @@
 }
 
 .buttonWrap:hover {
-  transform: scale(1.06);
+  transform: scale(1.02);
 }
 
 .infoBtn {
@@ -211,4 +213,71 @@
       }
     }
   }
+}
+
+.modalWrapperBan {
+  position: absolute;
+
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  align-items: center;
+
+  justify-content: center;
+
+  height: calc(100vh - 20px);
+
+  transition: var(--transition);
+  pointer-events: none;
+
+  opacity: 0;
+
+  > section {
+    align-items: center;
+
+    width: auto;
+    gap: 30px;
+
+    > div {
+      display: flex;
+      gap: 20px;
+
+      > button {
+        padding: 10px 35px;
+
+        cursor: pointer;
+        user-select: none;
+
+        border: none;
+        border-radius: var(--radius);
+        background-color: var(--maroon);
+      }
+
+      > button:last-of-type {
+        background-color: var(--success);
+      }
+    }
+
+    input {
+      width: 350px;
+    }
+
+    > p {
+      user-select: none;
+
+      color: var(--text5);
+
+      font-size: 20px;
+    }
+  }
+}
+
+.modalWrapperBanOn {
+  z-index: 1;
+
+  transition: var(--transition);
+  pointer-events: initial;
+
+  opacity: 1;
 }

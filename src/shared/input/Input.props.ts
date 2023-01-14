@@ -8,4 +8,5 @@ export default interface InputProps
   type?: 'text' | 'password'
   error?: boolean
   label: string
+  color?: 'dark' | 'light' | 'static-dark' | 'static-light'
 }

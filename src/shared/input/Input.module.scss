@@ -8,11 +8,9 @@
 
   transition: var(--transition);
 
-  color: var(--text1);
   border: none;
   border-radius: var(--radius);
   outline: none;
-  background: var(--background1);
   box-shadow: 0 0 0 2px var(--primary);
 }
 
@@ -56,7 +54,6 @@
   cursor: pointer;
   transition: var(--transition);
 
-  color: var(--text1);
   border: none;
   outline: none;
   background: transparent;
@@ -72,8 +69,6 @@
   user-select: none;
   transition: var(--transition);
   pointer-events: none;
-
-  color: var(--text1);
 
   font-size: 15px;
 }
