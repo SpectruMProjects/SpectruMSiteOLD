@@ -8,8 +8,6 @@ import { getTheme } from 'processes/store/select'
 import { Notification } from 'widgets/notification'
 import { Footer } from 'widgets/footer'
 
-import styles from './styles.module.scss'
-
 const MainPage = (): JSX.Element => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
@@ -17,6 +15,12 @@ const MainPage = (): JSX.Element => {
 
   const theme: boolean = useAppSelector(getTheme)
   const token = localStorage.getItem('accessToken')
+
+  const handlePage = (val: string) => {
+    if (val === '/hardcore' || val === '/') {
+      return 'page-resize'
+    } else return ''
+  }
 
   //keeps track of the theme of the system
   useEffect(() => {
@@ -33,18 +37,16 @@ const MainPage = (): JSX.Element => {
 
   return (
     <>
-      <div className={styles.mainWrapper}>
-        <Notification />
-        <NavBar />
-        <SwitchTransition>
-          <CSSTransition key={pathname} timeout={300} classNames='page' unmountOnExit>
-            <section className='page'>
-              {currentOutlet}
-              <Footer />
-            </section>
-          </CSSTransition>
-        </SwitchTransition>
-      </div>
+      <Notification />
+      {pathname !== '/admin' && <NavBar />}
+      <SwitchTransition>
+        <CSSTransition key={pathname} timeout={300} classNames='page' unmountOnExit>
+          <section className={`page ${handlePage(pathname)}`}>
+            {currentOutlet}
+            {pathname !== '/admin' && <Footer />}
+          </section>
+        </CSSTransition>
+      </SwitchTransition>
     </>
   )
 }

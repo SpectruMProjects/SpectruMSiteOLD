@@ -40,9 +40,9 @@ const router = createBrowserRouter([
         path: 'team',
         children: [{ path: 'success', element: <TeamSuccessPage /> }],
       },
+      { path: 'admin', element: <AdminPage /> },
     ],
   },
-  { path: 'admin', element: <AdminPage /> },
 ])
 
 const AppRouter = () => <RouterProvider router={router} />

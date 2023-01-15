@@ -96,12 +96,18 @@ body[data-theme="dark"] {
   top: 0;
 
   display: flex;
-  align-content: space-between;
   flex-direction: column;
 
   width: 100%;
-  padding: 30px 0;
+  height: 100vh;
+
+  padding: 30px;
+}
+
+.page-resize {
   gap: 30px;
+
+  height: auto;
 }
 
 .page-enter {

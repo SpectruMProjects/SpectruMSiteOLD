@@ -7,6 +7,7 @@ import {
   SupervisedUserCircle as Auth,
   VerifiedUser as Profile,
   HeartBroken,
+  Language,
 } from '@mui/icons-material'
 import cn from 'classnames'
 
