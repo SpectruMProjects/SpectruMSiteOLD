@@ -6,11 +6,11 @@ import { CardPage } from 'shared/cardPage'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'processes/hooks'
 import { getTheme, getUserRoles } from 'processes/store/select'
+import { actionChangeTheme } from 'processes/store/slice'
 import { Button, CardInfo, Input } from 'shared'
 import { InputTheme } from 'features/inputTheme'
 
 import styles from './styles.module.scss'
-import { actionChangeTheme } from '../../processes/store/slice'
 
 const AdminPage = (): JSX.Element => {
   const navigate = useNavigate()
@@ -40,6 +40,7 @@ const AdminPage = (): JSX.Element => {
   }
 
   const handleRemoveUser = (val: boolean): void => {
+    console.log(val)
     setRemoveModal(false)
   }
 
@@ -49,6 +50,7 @@ const AdminPage = (): JSX.Element => {
   }
 
   const handleChangeUser = (val: boolean) => {
+    console.log(val)
     setChangeModal(false)
   }
 
@@ -84,7 +86,7 @@ const AdminPage = (): JSX.Element => {
           background={'opacity'}
         >
           <CardInfo background={'blue'}>
-            <p>Вы уверены что хотите забанить пользователя?</p>
+            <p>Вы уверены что хотите {ban ? 'разбанить' : 'забанить'} пользователя?</p>
             <div>
               <button onClick={() => handleBanUser(false)}>Нет</button>
               <button onClick={() => handleBanUser(true)}>Да</button>

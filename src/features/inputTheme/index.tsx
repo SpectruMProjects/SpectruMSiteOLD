@@ -13,7 +13,7 @@ export const InputTheme = ({ theme, className, ...props }: InputProps): JSX.Elem
           type='checkbox'
           checked={theme}
           onChange={() => {
-            console.log('')
+            //
           }}
           {...props}
         />

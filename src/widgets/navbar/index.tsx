@@ -15,8 +15,8 @@ import { actionChangeTheme } from 'processes/store/slice'
 import { IMenu } from 'processes/interface'
 import { useAppDispatch, useAppSelector } from 'processes/hooks'
 import { getMenuList, getTheme } from 'processes/store/select'
-import { CardNavBar } from 'features/cardNavBar'
-import { CardNavTheme, CircleMenuMove } from 'entities/navbar'
+import { CardNavBar, InputTheme } from 'features'
+import { CardNav, CircleMenuMove } from 'entities/navbar'
 import { logo } from 'app/assets/webp'
 
 import NavBarProps from './NavBar.props'
@@ -25,6 +25,8 @@ import styles from './NavBar.module.scss'
 export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   const { pathname } = useLocation()
   const dispatch = useAppDispatch()
+
+  const language = navigator.language.split('').slice(0, 2).join('')
 
   const handleIconReturn = (val: string): React.ReactNode => {
     if (val === 'home') return <Home />
@@ -88,13 +90,24 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
             setTop={setTop}
           />
         ))}
-      <CardNavTheme
+      <CardNav
         icon={theme ? <Dark /> : <Light />}
-        text={'Тема'}
         activeMenu={activeMenu}
-        theme={theme}
         onClick={handleChangeTheme}
-      />
+      >
+        Тема
+        <InputTheme theme={theme} />
+      </CardNav>
+      <CardNav icon={<Language />} activeMenu={activeMenu}>
+        <div className={cn(className, styles.wrapperInputTheme)}>
+          <select className={styles.checkBox} defaultValue={language}>
+            <option value={'en'}>English</option>
+            <option value={'uk'}>Український</option>
+            <option value={'ru'}>Русский</option>
+            <option value={'be'}>Беларускі</option>
+          </select>
+        </div>
+      </CardNav>
     </section>
   )
 }

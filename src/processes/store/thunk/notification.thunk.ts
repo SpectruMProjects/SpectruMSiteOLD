@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
-import { ChangePassDto, ChangePassResponse, RegisterDto, RegisterResponse } from 'processes/types'
+import { ChangePassDto, RegisterDto } from 'processes/types'
 import apiClient from 'processes/service/axios'
 import { actionAddAction, actionAddError } from 'processes/store/slice'
 

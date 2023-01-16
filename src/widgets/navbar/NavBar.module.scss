@@ -83,3 +83,14 @@
     left: 50px;
   }
 }
+
+.wrapperInputTheme {
+  display: flex;
+}
+
+.checkBox {
+  padding: 5px 10px;
+
+  border-radius: var(--radius);
+  background-color: var(--background6);
+}

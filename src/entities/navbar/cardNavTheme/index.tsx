@@ -1,17 +1,14 @@
 import React from 'react'
 import cn from 'classnames'
 
-import { InputTheme } from 'features/inputTheme'
-
 import CardNavThemeProps from './CardNavTheme.props'
 import styles from './CardNavTheme.module.scss'
 
-export const CardNavTheme = ({
-  text,
+export const CardNav = ({
   icon,
-  theme,
   activeMenu,
   className,
+  children,
   ...props
 }: CardNavThemeProps): JSX.Element => {
   return (
@@ -22,8 +19,7 @@ export const CardNavTheme = ({
           [styles.wrapperTextOn]: activeMenu,
         })}
       >
-        {text}
-        <InputTheme theme={theme} />
+        {children}
       </div>
     </button>
   )
