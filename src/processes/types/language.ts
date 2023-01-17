@@ -86,6 +86,8 @@ export type textType = {
       head: string
       info: string
       or: string
+      button1: string
+      button2: string
     }
   }
   auth: {
@@ -141,6 +143,8 @@ export type textType = {
         }
         change: {
           info: string
+          email: string
+          login: string
           button1: string
           button2: string
         }
@@ -151,7 +155,7 @@ export type textType = {
         }
       }
       model: {
-        val: string
+        head: string
       }
       info: {
         head: string
@@ -159,17 +163,20 @@ export type textType = {
         nickname: string
         role: string
         buttonchange: string
-        buttonban: string
+        buttonban: {
+          ban: string
+          noban: string
+        }
         buttondel: string
       }
       statistic: {
-        val: string
+        head: string
       }
       bag: {
-        val: string
+        head: string
       }
       response: {
-        val: string
+        head: string
       }
     }
   }
@@ -236,6 +243,9 @@ export type textType = {
       15: string
     }
   }
+  confirmation: {
+    load: string
+  }
   error: {
     notifyError: {
       error: string
@@ -250,34 +260,34 @@ export type textType = {
         'password.incorrect': string
       }
     }
-  }
-  notifyChangeError: {
-    error: string
-    userWithSameEmailNotExists: string
-    tooManyChangePassRequests: string
-    incorrectForm: string
-  }
-  notifyConfirmationError: {
-    error: string
-    userWithSameUsernameOrEmailExists: string
-    invalideCode: string
-  }
-  notifyLoginError: {
-    error: string
-    userWithSameUsernameOrEmailNotExists: string
-    form: string
-    incorrectPassword: string
-  }
-  getUserError: {
-    error: string
-  }
-  notifyConfirmationPassError: {
-    error: string
-    userNotFound: string
-    tokenExpired: string
-  }
-  notifyConfirmationRolesError: {
-    error: string
-    notAllowed: string
+    notifyChangeError: {
+      error: string
+      userWithSameEmailNotExists: string
+      tooManyChangePassRequests: string
+      incorrectForm: string
+    }
+    notifyConfirmationError: {
+      error: string
+      userWithSameUsernameOrEmailExists: string
+      invalideCode: string
+    }
+    notifyLoginError: {
+      error: string
+      userWithSameUsernameOrEmailNotExists: string
+      form: string
+      incorrectPassword: string
+    }
+    getUserError: {
+      error: string
+    }
+    notifyConfirmationPassError: {
+      error: string
+      userNotFound: string
+      tokenExpired: string
+    }
+    notifyConfirmationRolesError: {
+      error: string
+      notAllowed: string
+    }
   }
 }

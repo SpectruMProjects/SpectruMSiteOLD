@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { SelectHTMLAttributes, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import {
   NightsStay as Dark,
@@ -21,6 +21,7 @@ import { logo } from 'app/assets/webp'
 
 import NavBarProps from './NavBar.props'
 import styles from './NavBar.module.scss'
+import { actionChangeLanguage } from '../../processes/store/slice/language.slice'
 
 export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   const { pathname } = useLocation()
@@ -43,6 +44,10 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   const [top, setTop] = useState<number>(0)
 
   const menuOff: boolean = menuList.find((menu) => menu.to === pathname) === undefined
+
+  const handleChangeLanguage = (e: any) => {
+    dispatch(actionChangeLanguage(e.target.value))
+  }
 
   const handleChangeTheme = (): void => {
     dispatch(actionChangeTheme(!theme))
@@ -99,7 +104,7 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
         <InputTheme theme={theme} />
       </CardNav>
       <CardNav icon={<Language />} activeMenu={activeMenu}>
-        <select className={styles.checkBox} defaultValue={language}>
+        <select className={styles.checkBox} defaultValue={language} onChange={handleChangeLanguage}>
           <option value={'en'}>English</option>
           <option value={'uk'}>Український</option>
           <option value={'ru'}>Русский</option>
