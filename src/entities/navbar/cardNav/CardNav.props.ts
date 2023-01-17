@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
-export default interface CardNavThemeProps
+export default interface CardNavProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   icon: React.ReactNode
   activeMenu: boolean

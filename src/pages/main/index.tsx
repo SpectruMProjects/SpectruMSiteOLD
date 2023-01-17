@@ -16,10 +16,11 @@ const MainPage = (): JSX.Element => {
   const theme: boolean = useAppSelector(getTheme)
   const token = localStorage.getItem('accessToken')
 
-  const handlePage = (val: string) => {
-    if (val === '/hardcore' || val === '/') {
+  const handlePage = (val: string): string => {
+    if (val === '/hardcore' || val === '/' || val === '/team/success') {
       return 'page-resize'
-    } else return ''
+    }
+    return ''
   }
 
   //keeps track of the theme of the system

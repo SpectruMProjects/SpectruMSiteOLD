@@ -21,7 +21,7 @@
 }
 
 .wrapperNavBarOn {
-  max-width: 200px;
+  max-width: 230px;
 
   transition: var(--transition);
 }
@@ -37,7 +37,7 @@
   user-select: none;
 
   color: var(--text7);
-  gap: 20px;
+  gap: 15px;
 }
 
 .titleWrapper img {
@@ -55,6 +55,7 @@
   user-select: none;
   transition: var(--transition);
   transform: translateX(-40px);
+  text-align: left;
 
   opacity: 0;
   color: var(--text7);
@@ -91,6 +92,9 @@
 .checkBox {
   padding: 5px 10px;
 
+  cursor: pointer;
+
   border-radius: var(--radius);
+  outline: none;
   background-color: var(--background6);
 }

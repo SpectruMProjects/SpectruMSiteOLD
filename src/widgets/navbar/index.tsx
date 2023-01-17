@@ -99,14 +99,12 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
         <InputTheme theme={theme} />
       </CardNav>
       <CardNav icon={<Language />} activeMenu={activeMenu}>
-        <div className={cn(className, styles.wrapperInputTheme)}>
-          <select className={styles.checkBox} defaultValue={language}>
-            <option value={'en'}>English</option>
-            <option value={'uk'}>Український</option>
-            <option value={'ru'}>Русский</option>
-            <option value={'be'}>Беларускі</option>
-          </select>
-        </div>
+        <select className={styles.checkBox} defaultValue={language}>
+          <option value={'en'}>English</option>
+          <option value={'uk'}>Український</option>
+          <option value={'ru'}>Русский</option>
+          <option value={'be'}>Беларускі</option>
+        </select>
       </CardNav>
     </section>
   )

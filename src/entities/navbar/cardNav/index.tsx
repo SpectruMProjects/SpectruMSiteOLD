@@ -1,8 +1,8 @@
 import React from 'react'
 import cn from 'classnames'
 
-import CardNavThemeProps from './CardNavTheme.props'
-import styles from './CardNavTheme.module.scss'
+import CardNavProps from './CardNav.props'
+import styles from './CardNav.module.scss'
 
 export const CardNav = ({
   icon,
@@ -10,7 +10,7 @@ export const CardNav = ({
   className,
   children,
   ...props
-}: CardNavThemeProps): JSX.Element => {
+}: CardNavProps): JSX.Element => {
   return (
     <button className={cn(className, styles.wrapperCardMenu)} {...props}>
       <span className={cn(styles.iconWrap)}>{icon}</span>

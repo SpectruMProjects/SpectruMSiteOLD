@@ -12,12 +12,13 @@ import {
 import storage from 'redux-persist/lib/storage'
 
 import { notificationReducer, menuListReducer, userReducer, themeReducer } from './slice'
+import { languageReducer } from './slice/language.slice'
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  blacklist: ['notification', 'theme', 'menuList'],
+  blacklist: ['notification', 'menuList'],
 }
 
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   menuList: menuListReducer,
   notification: notificationReducer,
   theme: themeReducer,
+  language: languageReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
