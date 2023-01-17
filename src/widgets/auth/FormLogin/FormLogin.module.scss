@@ -15,14 +15,12 @@
 }
 
 .title {
+  user-select: none;
+
   color: var(--text4);
 
   font-size: 20px;
   font-weight: 600;
-}
-
-.buttonRegister {
-  background-color: var(--secondary);
 }
 
 .cardWrap {

@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import cn from 'classnames'
 
 import { Card, Button, Input } from 'shared'
-import { useAppDispatch, useNotification } from 'processes/hooks'
+import { useAppDispatch, useAppSelector, useNotification } from 'processes/hooks'
 import { fetchRegistrationAccount } from 'processes/store/thunk'
+import { getLanguage } from 'processes/store/select'
 
 import FormRegisterProps from './FormRegister.props'
 import styles from './FormRegister.module.scss'
@@ -11,6 +12,8 @@ import styles from './FormRegister.module.scss'
 export function FormRegister({ className, setForm, ...props }: FormRegisterProps): JSX.Element {
   const notification = useNotification()
   const dispatch = useAppDispatch()
+
+  const { auth } = useAppSelector(getLanguage)
 
   const textError = (text: string, num: number): string =>
     `${text} должен быть не меньше ${
@@ -65,29 +68,35 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
   return (
     <div className={cn(className, styles.wrapperFormRegister)} {...props}>
       <Card>
-        <h2 className={styles.title}>Регистрация</h2>
+        <h2 className={styles.title}>{auth.registration.head}</h2>
         <Input
           type='text'
-          label='Логин'
+          label={auth.registration.login}
           value={username}
           error={usernameError}
           setValue={setUsername}
         />
-        <Input type='text' label='Почта' value={mail} error={mailError} setValue={setEmail} />
         <Input
           type='text'
-          label='Пароль'
+          label={auth.registration.email}
+          value={mail}
+          error={mailError}
+          setValue={setEmail}
+        />
+        <Input
+          type='text'
+          label={auth.registration.pass}
           value={password}
           error={passwordError}
           setValue={setPassword}
           password={true}
         />
-        <Button onClick={handleRegistration}>Подтвердить</Button>
+        <Button onClick={handleRegistration}>{auth.registration.successbutton}</Button>
       </Card>
       <Card className={styles.cardWrap}>
-        <p>Уже зарегистрированы?</p>
+        <p>{auth.registration.haveacc}</p>
         <Button
-          className={styles.buttonRegister}
+          color={'purple'}
           onClick={() => {
             setForm(false)
             setUsername('')
@@ -98,7 +107,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
             setPasswordError(false)
           }}
         >
-          Войти
+          {auth.registration.signup}
         </Button>
       </Card>
     </div>

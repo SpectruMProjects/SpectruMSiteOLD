@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { Card, Button, Input } from 'shared'
 import { useAppDispatch, useAppSelector, useNotification } from 'processes/hooks'
 import { fetchLoginAccount } from 'processes/store/thunk'
-import { getUserError } from 'processes/store/select'
+import { getLanguage, getUserError } from 'processes/store/select'
 import { actionClearError } from 'processes/store/slice'
 
 import FormLoginProps from './FormLogin.props'
@@ -17,6 +17,7 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
   const navigate = useNavigate()
 
   const userError = useAppSelector(getUserError)
+  const { auth } = useAppSelector(getLanguage)
 
   const [login, setLogin] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -75,14 +76,14 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
   return (
     <div className={cn(className, styles.wrapperFormLogin)} {...props}>
       <Card>
-        <h2 className={styles.title}>Авторизация</h2>
-        <Input value={login} setValue={setLogin} error={loginError} label='Логин' />
+        <h2 className={styles.title}>{auth.login.head}</h2>
+        <Input value={login} setValue={setLogin} error={loginError} label={auth.login.login} />
         <Input
           value={password}
           setValue={setPassword}
           error={passwordError}
           password={true}
-          label='Пароль'
+          label={auth.login.pass}
         />
         <Button
           onClick={(e) => {
@@ -90,13 +91,13 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
             handleLogin()
           }}
         >
-          Подтвердить
+          {auth.login.successbutton}
         </Button>
       </Card>
       <Card className={styles.cardWrap}>
-        <p>Нет аккаунта?</p>
+        <p>{auth.login.noacc}</p>
         <Button
-          className={styles.buttonRegister}
+          color={'purple'}
           onClick={() => {
             setForm(true)
             setLogin('')
@@ -105,7 +106,7 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
             setPasswordError(false)
           }}
         >
-          Регистрация
+          {auth.login.register}
         </Button>
       </Card>
     </div>

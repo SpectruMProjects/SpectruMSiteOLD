@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { CardPage } from 'shared/cardPage'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'processes/hooks'
-import { getTheme, getUserRoles } from 'processes/store/select'
+import { getLanguage, getTheme, getUserRoles } from 'processes/store/select'
 import { actionChangeTheme } from 'processes/store/slice'
 import { Button, CardInfo, Input } from 'shared'
 import { InputTheme } from 'features/inputTheme'
@@ -18,6 +18,7 @@ const AdminPage = (): JSX.Element => {
 
   const token = localStorage.getItem('accessToken')
   const userRoles = useAppSelector(getUserRoles)
+  const { admin } = useAppSelector(getLanguage)
 
   const [search, setSearch] = useState('')
   const [ban, setBan] = useState(false)
@@ -86,10 +87,14 @@ const AdminPage = (): JSX.Element => {
           background={'opacity'}
         >
           <CardInfo background={'blue'}>
-            <p>Вы уверены что хотите {ban ? 'разбанить' : 'забанить'} пользователя?</p>
+            <p>{ban ? admin.usercard.cardmodal.ban.noban : admin.usercard.cardmodal.ban.ban}</p>
             <div>
-              <button onClick={() => handleBanUser(false)}>Нет</button>
-              <button onClick={() => handleBanUser(true)}>Да</button>
+              <button onClick={() => handleBanUser(false)}>
+                {admin.usercard.cardmodal.ban.button1}
+              </button>
+              <button onClick={() => handleBanUser(true)}>
+                {admin.usercard.cardmodal.ban.button2}
+              </button>
             </div>
           </CardInfo>
         </CardInfo>
@@ -100,10 +105,14 @@ const AdminPage = (): JSX.Element => {
           background={'opacity'}
         >
           <CardInfo background={'blue'}>
-            <p>Вы уверены что хотите удалить пользователя?</p>
+            <p>{admin.usercard.cardmodal.del.info}</p>
             <div>
-              <button onClick={() => handleRemoveUser(false)}>Нет</button>
-              <button onClick={() => handleRemoveUser(true)}>Да</button>
+              <button onClick={() => handleRemoveUser(false)}>
+                {admin.usercard.cardmodal.del.button1}
+              </button>
+              <button onClick={() => handleRemoveUser(true)}>
+                {admin.usercard.cardmodal.del.button2}
+              </button>
             </div>
           </CardInfo>
         </CardInfo>
@@ -114,10 +123,10 @@ const AdminPage = (): JSX.Element => {
           background={'opacity'}
         >
           <CardInfo background={'blue'}>
-            <p>Изменение данных пользователя</p>
+            <p>{admin.usercard.cardmodal.change.info}</p>
             <Input
               color={'static-light'}
-              label={'Почта'}
+              label={admin.usercard.cardmodal.change.email}
               value={''}
               setValue={() => {
                 /**/
@@ -125,23 +134,27 @@ const AdminPage = (): JSX.Element => {
             />
             <Input
               color={'static-light'}
-              label={'Никнейм'}
+              label={admin.usercard.cardmodal.change.login}
               value={''}
               setValue={() => {
                 /**/
               }}
             />
             <div>
-              <button onClick={() => handleChangeUser(false)}>Закрыть</button>
-              <button onClick={() => handleChangeUser(true)}>Изменить</button>
+              <button onClick={() => handleChangeUser(false)}>
+                {admin.usercard.cardmodal.change.button1}
+              </button>
+              <button onClick={() => handleChangeUser(true)}>
+                {admin.usercard.cardmodal.change.button2}
+              </button>
             </div>
           </CardInfo>
         </CardInfo>
         <CardInfo className={styles.wrapperListMenu}>
           <div>
-            <h2>Админ меню</h2>
+            <h2>{admin.menu.head}</h2>
             <Button onClick={handleChangeTheme} color={'purple'}>
-              Тема
+              {admin.menu.button.theme}
               <InputTheme theme={theme} />
             </Button>
             <Button
@@ -150,9 +163,9 @@ const AdminPage = (): JSX.Element => {
                 setUserInfo(false)
               }}
             >
-              Пользователи
+              {admin.menu.button.users}
             </Button>
-            <h3>Пользователи</h3>
+            <h3>{admin.menu.users}</h3>
             {userInfoButton && (
               <Button className={styles.wrapperBtnUsers} color={'green'}>
                 <p
@@ -173,16 +186,16 @@ const AdminPage = (): JSX.Element => {
             )}
           </div>
           <Button color={'purple'} onClick={() => navigate('/profile')}>
-            Выйти
+            {admin.menu.exit}
           </Button>
         </CardInfo>
         {usersList && (
           <CardInfo className={styles.wrapperListUser} background={'dark-middle'}>
-            <h2>Список пользователей</h2>
-            <Input value={search} setValue={setSearch} label={'Поиск'} />
+            <h2>{admin.userpage.head}</h2>
+            <Input value={search} setValue={setSearch} label={admin.userpage.search} />
             <ul>
               <li>
-                <span>Почта: sosiska@gmail.com</span>
+                <span>{admin.userpage.card.email}: sosiska@gmail.com</span>
                 <div>
                   <button
                     className={cn(styles.buttonWrap, styles.infoBtn)}
@@ -192,16 +205,16 @@ const AdminPage = (): JSX.Element => {
                       setUsersList(false)
                     }}
                   >
-                    Подробнее
+                    {admin.userpage.card.about}
                   </button>
                   <button
                     className={cn(styles.buttonWrap, styles.banBtn)}
                     onClick={handleOpenModalBan}
                   >
-                    {ban ? 'Разбанить' : 'Забанить'}
+                    {ban ? admin.userpage.card.ban.noban : admin.userpage.card.ban.ban}
                   </button>
                   <button onClick={handleOpenModalRemove} className={styles.buttonWrap}>
-                    Удалить
+                    {admin.userpage.card.del}
                   </button>
                 </div>
               </li>
@@ -211,20 +224,20 @@ const AdminPage = (): JSX.Element => {
         {userInfo && (
           <CardInfo className={styles.wrapperUserInfo} background={'dark-middle'}>
             <section className={styles.infoSection}>
-              <CardInfo>3д моделька</CardInfo>
+              <CardInfo>{admin.usercard.model.head}</CardInfo>
               <CardInfo>
-                <h3>Основная информация</h3>
+                <h3>{admin.usercard.info.head}</h3>
                 <section>
-                  <span>Почта: sosiska@gmail.com</span>
-                  <span>Никнейм: sosiska</span>
+                  <span>{admin.usercard.info.email}: sosiska@gmail.com</span>
+                  <span>{admin.usercard.info.nickname}: sosiska</span>
                   <button
                     onClick={handleOpenModalChange}
                     className={cn(styles.buttonWrap, styles.changeBtn)}
                   >
-                    Изменить
+                    {admin.usercard.info.buttonchange}
                   </button>
                   <div>
-                    <h4>Роли:</h4>
+                    <h4>{admin.usercard.info.role}:</h4>
                     <span>Юзер</span>
                     <span>Админ</span>
                     <span>Чмо</span>
@@ -238,22 +251,22 @@ const AdminPage = (): JSX.Element => {
                     className={cn(styles.buttonWrap, styles.banBtn)}
                     onClick={handleOpenModalBan}
                   >
-                    {ban ? 'Разбанить' : 'Забанить'}
+                    {ban ? admin.usercard.info.buttonban.noban : admin.usercard.info.buttonban.ban}
                   </button>
                   <button onClick={handleOpenModalRemove} className={styles.buttonWrap}>
-                    Удалить
+                    {admin.usercard.info.buttondel}
                   </button>
                 </section>
               </CardInfo>
             </section>
             <CardInfo>
-              <h3>Статистика</h3>
+              <h3>{admin.usercard.statistic.head}</h3>
             </CardInfo>
             <CardInfo>
-              <h3>Инвентарь</h3>
+              <h3>{admin.usercard.bag.head}</h3>
             </CardInfo>
             <CardInfo>
-              <h3>Запросы</h3>
+              <h3>{admin.usercard.response.head}</h3>
             </CardInfo>
           </CardInfo>
         )}

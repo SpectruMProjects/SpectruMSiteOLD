@@ -1,5 +1,4 @@
 export interface IMenu {
-  text: string
   to: string
-  icon: string
+  icon: 'home' | 'hardcore' | 'profile' | 'auth'
 }

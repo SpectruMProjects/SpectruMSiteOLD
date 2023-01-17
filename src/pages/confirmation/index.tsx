@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import cn from 'classnames'
 
-import { useAppDispatch, useExitAccount, useNotification } from 'processes/hooks'
+import { useAppDispatch, useAppSelector, useExitAccount, useNotification } from 'processes/hooks'
 import { fetchConfirmationAccount, fetchConfirmationPassAccount } from 'processes/store/thunk'
+import { getLanguage } from 'processes/store/select'
 import { CardPage } from 'shared/cardPage'
 import { LoadingIcon } from 'app/assets/svg'
 
@@ -16,6 +17,8 @@ const ConfirmationPage = ({ type, className, ...props }: confirmationProps): JSX
   const dispatch = useAppDispatch()
   const notification = useNotification()
   const exitAccount = useExitAccount()
+
+  const { confirmation } = useAppSelector(getLanguage)
 
   useEffect(() => {
     exitAccount()
@@ -51,7 +54,7 @@ const ConfirmationPage = ({ type, className, ...props }: confirmationProps): JSX
     <CardPage className={cn(className, styles.wrapperConf)} {...props}>
       <div className={styles.loadWrapper}>
         <LoadingIcon className={styles.loadIcon} />
-        <p>Ожидание подтверждения...</p>
+        <p>{confirmation.load}</p>
       </div>
     </CardPage>
   )

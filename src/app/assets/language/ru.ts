@@ -42,7 +42,7 @@ export const RU: textType = {
     },
   },
   menu: {
-    main: 'Главная',
+    home: 'Главная',
     hardcore: 'Хардкор',
     auth: 'Авторизация',
     profile: 'Профиль',
@@ -106,7 +106,7 @@ export const RU: textType = {
       noacc: 'Нет аккаунта ?',
       register: 'Регистрация',
     },
-    signup: {
+    registration: {
       head: 'Регистрация',
       login: 'Логин',
       email: 'Почта',

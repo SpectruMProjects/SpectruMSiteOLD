@@ -36,7 +36,7 @@ export type textType = {
     }
   }
   menu: {
-    main: string
+    home: string
     hardcore: string
     auth: string
     profile: string
@@ -99,7 +99,7 @@ export type textType = {
       noacc: string
       register: string
     }
-    signup: {
+    registration: {
       head: string
       login: string
       email: string

@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom'
 
 import { logo } from 'app/assets/webp'
 import { DiscordIcon } from 'app/assets/svg'
+import { useAppSelector } from 'processes/hooks'
+import { getLanguage } from 'processes/store/select'
 
 import styles from './styles.module.scss'
 
 export const Footer = (): JSX.Element => {
   const navigate = useNavigate()
+  const { footer } = useAppSelector(getLanguage)
 
   return (
     <footer className={styles.footerWrapper}>
@@ -37,14 +40,11 @@ export const Footer = (): JSX.Element => {
         </div>
       </section>
       <section className={styles.topWrapFooter}>
-        <p>
-          Организация не имеет никакого отношения к Mojang AB. Все права на игру принадлежат Mojang
-          AB. Весь остальной контент принадлежит SpectruMTeam.
-        </p>
+        <p>{footer.info}</p>
         <div className={styles.linksInfo}>
-          <button disabled={true}>Контакты</button>
-          <button disabled={true}>Способы оплаты</button>
-          <button onClick={() => navigate('/team/success')}>Пользовательское соглашение</button>
+          <button disabled={true}>{footer.button.contact}</button>
+          <button disabled={true}>{footer.button.pay}</button>
+          <button onClick={() => navigate('/team/success')}>{footer.button.teamsuccess}</button>
         </div>
       </section>
     </footer>

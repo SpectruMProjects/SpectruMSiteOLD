@@ -9,32 +9,26 @@ interface MenuListState {
 const initialState: MenuListState = {
   menuList: [
     {
-      text: 'Главная',
       to: '/',
       icon: 'home',
     },
     {
-      text: 'Хардкор',
       to: '/hardcore',
-      icon: 'heart',
+      icon: 'hardcore',
     },
     // {
-    //   text: "Лаунчер",
     //   to: "/launcher",
     //   icon: "launch",
     // },
     // {
-    //   text: "Пропуск",
     //   to: "/pass",
     //   icon: "shop",
     // },
     {
-      text: 'Профиль',
       to: '/profile',
       icon: 'profile',
     },
     {
-      text: 'Авторизация',
       to: '/auth',
       icon: 'auth',
     },

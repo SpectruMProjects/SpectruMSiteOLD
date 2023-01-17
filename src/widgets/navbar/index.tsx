@@ -11,34 +11,33 @@ import {
 } from '@mui/icons-material'
 import cn from 'classnames'
 
-import { actionChangeTheme } from 'processes/store/slice'
+import { actionChangeTheme, actionChangeLanguage } from 'processes/store/slice'
 import { IMenu } from 'processes/interface'
 import { useAppDispatch, useAppSelector } from 'processes/hooks'
-import { getMenuList, getTheme } from 'processes/store/select'
+import { getLanguage, getLanguageSystem, getMenuList, getTheme } from 'processes/store/select'
 import { CardNavBar, InputTheme } from 'features'
 import { CardNav, CircleMenuMove } from 'entities/navbar'
 import { logo } from 'app/assets/webp'
 
 import NavBarProps from './NavBar.props'
 import styles from './NavBar.module.scss'
-import { actionChangeLanguage } from '../../processes/store/slice/language.slice'
 
 export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
   const { pathname } = useLocation()
   const dispatch = useAppDispatch()
 
-  const language = navigator.language.split('').slice(0, 2).join('')
-
   const handleIconReturn = (val: string): React.ReactNode => {
     if (val === 'home') return <Home />
     if (val === 'auth') return <Auth />
     if (val === 'profile') return <Profile />
-    if (val === 'heart') return <HeartBroken />
+    if (val === 'hardcore') return <HeartBroken />
   }
 
   const token: string | null = localStorage.getItem('accessToken')
   const menuList = useAppSelector(getMenuList)
   const theme = useAppSelector(getTheme)
+  const { menu } = useAppSelector(getLanguage)
+  const languageSystem = useAppSelector(getLanguageSystem)
 
   const [activeMenu, setActiveMenu] = useState<boolean>(false)
   const [top, setTop] = useState<number>(0)
@@ -83,28 +82,35 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
       <CircleMenuMove top={top} activeMenu={activeMenu} menuOff={menuOff} />
       {menuList
         .filter((menu) => filterMenuList(menu))
-        .map(({ icon, text, to }, index) => (
-          <CardNavBar
-            key={index}
-            text={text}
-            to={to}
-            index={index}
-            icon={handleIconReturn(icon)}
-            selected={pathname === to}
-            activeMenu={activeMenu}
-            setTop={setTop}
-          />
-        ))}
+        .map(({ icon, to }, index) => {
+          const text = menu[icon]
+          return (
+            <CardNavBar
+              key={index}
+              text={text}
+              to={to}
+              index={index}
+              icon={handleIconReturn(icon)}
+              selected={pathname === to}
+              activeMenu={activeMenu}
+              setTop={setTop}
+            />
+          )
+        })}
       <CardNav
         icon={theme ? <Dark /> : <Light />}
         activeMenu={activeMenu}
         onClick={handleChangeTheme}
       >
-        Тема
+        {menu.theme}
         <InputTheme theme={theme} />
       </CardNav>
       <CardNav icon={<Language />} activeMenu={activeMenu}>
-        <select className={styles.checkBox} defaultValue={language} onChange={handleChangeLanguage}>
+        <select
+          className={styles.checkBox}
+          defaultValue={languageSystem}
+          onChange={handleChangeLanguage}
+        >
           <option value={'en'}>English</option>
           <option value={'uk'}>Український</option>
           <option value={'ru'}>Русский</option>
