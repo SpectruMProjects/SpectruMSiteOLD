@@ -11,33 +11,34 @@ export const EN: textType = {
   },
   main: {
     header: {
-      hello: 'Добро пожаловать на',
-      info: 'Почувствуйте ламповую и дружелюбную атмосферу, где все игроки чувствуют себя как дома',
+      hello: 'Welcome to',
+      info: 'Feel the lamp and friendly atmosphere where all players feel at home',
     },
     aboutproject: {
       block1: {
+        head: 'About the project',
         first:
-          'Наши сервера Minecraft являются уникальными и неповторимыми. Они стабильны и не содержат П2В (платные преимущества).',
+          'Our Minecraft servers are unique and inimitable. They are stable and do not contain P2B (paid benefits).',
         second:
-          'На наших серверах вы сможете испытать новые игровые режимы, уникальные мини-игры и события, которые не найдете нигде еще.',
+          'On our servers you will be able to experience new game modes, unique mini-games and events that you will not find anywhere else.',
         third:
-          'Наши администраторы и модераторы работают над тем, чтобы сделать игру на наших серверах максимально приятной и безопасной для всех игроков. Если у вас возникнут какие-то вопросы или проблемы, не стесняйтесь обращаться к нам за помощью. Мы всегда рады помочь.',
+          'Our administrators and moderators are working to make playing on our servers as pleasant and safe as possible for all players. If you have any questions or problems, feel free to contact us for help. We are always happy to help.',
         fourth:
-          'Мы стремимся к тому, чтобы наши сервера были интересными и разнообразными, чтобы всегда было чем заняться.',
+          'We strive to ensure that our servers are interesting and diverse, so that there is always something to do.',
         fifth:
-          'Мы также стараемся предоставить нашим игрокам справедливую игру без преимуществ для игроков, которые платят деньги.',
+          'We also try to provide our players with a fair game without any benefits for paying players.',
         sixth:
-          'Вы сможете провести свое время на наших серверах, зная, что все игроки имеют равные шансы. Мы также регулярно обновляем наши сервера, чтобы вы всегда играли на самой последней версии Minecraft.',
+          'You will be able to spend your time on our servers knowing that all players have an equal chance. We also update our servers regularly to ensure you always play the latest version of Minecraft.',
       },
       block2: {
-        info: 'Почувствуйте ламповую и дружелюбную атмосферу, где все игроки чувствуют себя как дома. Мы разработали специальные функции и события, чтобы улучшить взаимодействие между игроками и создать уютную атмосферу. Мы также стремимся создать сообщество, которое является открытым и приветливым ко всем новым игрокам.',
+        info: 'Feel the lamp and friendly atmosphere, where all players feel at home. We have developed special features and events to improve interaction between players and create a cozy atmosphere. We also strive to create a community that is open and welcoming to all new players.',
       },
       block3: {
-        info: 'Наши администраторы и модераторы всегда рады помочь новичкам и ответить на любые вопросы, у которых могут возникнуть. Мы надеемся, что вы почувствуете себя как дома на наших серверах и станете частью нашего уютного сообщества. Ждем вас на наших серверах!',
+        info: 'Our administrators and moderators are always happy to help newcomers and answer any questions they may have. We hope that you will feel at home on our servers and become part of our cozy community. We are waiting for you on our servers!',
       },
       cardpay: {
-        headpay: 'Стоимость доступа на Хардкор',
-        button: 'Приобристи доступ на сервер',
+        headpay: 'Cost of access to Hardcore',
+        button: 'Get access to the server',
       },
     },
   },
@@ -49,52 +50,54 @@ export const EN: textType = {
     theme: 'Theme',
   },
   profile: {
-    head: 'Профиль',
+    head: 'Profile',
     setting: {
-      nickname: 'Никнейм',
-      email: 'Почта',
+      headbutton: 'Settings',
+      nickname: 'Nickname',
+      email: 'Mail',
       changepass: {
-        head: 'Смена пароля',
-        input: 'Новый пароль',
-        button: 'Подтвердить',
+        head: 'Change password',
+        input: 'New password',
+        button: 'Confirm',
       },
       admin: {
-        head: 'Админ панель',
-        button: 'Перейти',
+        head: 'Admin dashboard',
+        button: 'Next',
       },
-      exit: 'Выйти из аккаунта',
+      exit: 'Exit',
     },
     hardcore: {
-      head: 'Статистика',
+      headbutton: 'Hardcore',
+      head: 'Statistic',
       block1: {
-        info1: 'Примерное время возрождение после смерти',
-        info2: 'Дата последней смерти',
-        info3: 'Причина последней смерти',
+        info1: 'Estimated time of rebirth after death',
+        info2: 'Date of last death',
+        info3: 'Cause of last death',
       },
       block2: {
-        head: 'Смертей',
+        head: 'Deaths',
       },
     },
   },
   hardcore: {
     abouthardcore: {
-      about: 'О сервере',
-      vanilla: 'Ванильный геймплей, минимальное количество плагинов для комфортной игры',
-      hardcore: 'Только хардкор! Платите за свою смерть временем потраченным на сервере',
-      smp: 'Проще говоря обычное выживание и никаких поблажек',
+      about: 'About server',
+      vanilla: 'Vanilla gameplay, minimum number of plug-ins for a comfortable game',
+      hardcore: 'Only hardcore! Pay for your death with time spent on the server',
+      smp: 'Simply put, ordinary survival and no concessions',
     },
     workhradcore: {
-      how: 'Как работает Hardcore режим',
+      how: 'How Hardcore mode works',
       maintext:
-        'Если вы прошаренный игрок в Minecraft, то вы знаете что режим Hardcore работает по принципу одной смерти. Однако на сервере эта механика очень расточительна, т.к. по неосторожности можно потерять не только прогресс, но и возможность играть с друзьями. Поэтому мы сделали плагин который даст возможность возродиться спустя время, которое вы провели на сервере',
-      note: 'Для того чтобы точно расчитать время возрождения, мы пользуемся формулой: время до возрождения = текущее время (на момент смерти) + время на сервере (только в режиме выживания)',
+        'If you are an experienced Minecraft player, then you know that Hardcore mode works on the principle of one death. However, on the server, this mechanic is very wasteful. by negligence, you can lose not only progress, but also the opportunity to play with friends. Therefore, we made a plugin that will make it possible to be reborn after the time you spent on the server',
+      note: 'In order to accurately calculate the respawn time, we use the formula: time to respawn = current time (at the time of death) + time on the server (survival mode only)',
     },
     checkserver: {
-      head: 'Ивенты, лёгкая сборка, и прочее...',
-      info: 'Сервер на Paper, дружелюбное комьюнити, полностью бесплатное пользование, Discord сервер, и другие плюшки. Регистрируйся и заходи на сервер!',
-      or: 'или',
-      button1: 'Скопировать IP адрес',
-      button2: 'Перейти в личный кабинет',
+      head: 'Events, easy assembly, and more...',
+      info: 'Server on Paper, friendly community, completely free to use, Discord server, and other goodies. Register and join the server!',
+      or: 'or',
+      button1: 'Copy IP address',
+      button2: 'Go to personal account',
     },
   },
   auth: {

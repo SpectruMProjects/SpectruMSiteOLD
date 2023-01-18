@@ -16,6 +16,7 @@ export type textType = {
     }
     aboutproject: {
       block1: {
+        head: string
         first: string
         second: string
         third: string
@@ -45,6 +46,7 @@ export type textType = {
   profile: {
     head: string
     setting: {
+      headbutton: string
       nickname: string
       email: string
       changepass: {
@@ -59,6 +61,7 @@ export type textType = {
       exit: string
     }
     hardcore: {
+      headbutton: string
       head: string
       block1: {
         info1: string

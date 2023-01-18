@@ -6,11 +6,11 @@ import cn from 'classnames'
 import { CardPage } from 'shared/cardPage'
 import { useAppDispatch, useAppSelector, useExitAccount, useNotification } from 'processes/hooks'
 import { fetchChangePassword, fetchConfirmationRoles, fetchGetUser } from 'processes/store/thunk'
-import { getUser, getUserRoles } from 'processes/store/select'
+import { getLanguage, getUser, getUserRoles } from 'processes/store/select'
 import { Button, CardInfo, Input } from 'shared'
+import { HeartIcon } from 'app/assets/svg'
 
 import styles from './Profile.module.scss'
-import { HeartIcon } from '../../app/assets/svg'
 
 const ProfilePage = (): JSX.Element => {
   const dispatch = useAppDispatch()
@@ -24,6 +24,7 @@ const ProfilePage = (): JSX.Element => {
 
   const user = useAppSelector(getUser)
   const userRoles = useAppSelector(getUserRoles)
+  const { profile } = useAppSelector(getLanguage)
 
   const handleCopy = (value: string): void => {
     navigator.clipboard.writeText(value).then(() => notification('copy', 5000))
@@ -64,7 +65,9 @@ const ProfilePage = (): JSX.Element => {
   return (
     <CardPage>
       <CardInfo className={styles.wrapperProfile}>
-        <h2>Профиль {userRoles && userRoles.includes('admin') && ' (Админ)'}</h2>
+        <h2>
+          {profile.head} {userRoles && userRoles.includes('admin') && ' (Админ)'}
+        </h2>
         <div className={styles.wrapperNav}>
           <div className={styles.navLink}>
             <button
@@ -75,7 +78,7 @@ const ProfilePage = (): JSX.Element => {
             >
               <span className={styles.firstT}></span>
               <span className={styles.secondT}></span>
-              Настройки
+              {profile.setting.headbutton}
             </button>
             <button
               className={cn({
@@ -85,7 +88,7 @@ const ProfilePage = (): JSX.Element => {
             >
               <span className={styles.firstT}></span>
               <span className={styles.secondT}></span>
-              Хардкор
+              {profile.hardcore.headbutton}
             </button>
           </div>
           {user && (
@@ -93,7 +96,7 @@ const ProfilePage = (): JSX.Element => {
               {navMenu === 'setting' && (
                 <div className={styles.wrapperSetting}>
                   <span>
-                    Никнейм:{' '}
+                    {profile.setting.nickname}:{' '}
                     <button
                       className={styles.wrapperButton}
                       onClick={() => handleCopy(user.username)}
@@ -103,37 +106,37 @@ const ProfilePage = (): JSX.Element => {
                     </button>
                   </span>
                   <span>
-                    Почта:{' '}
+                    {profile.setting.email}:{' '}
                     <button className={styles.wrapperButton} onClick={() => handleCopy(user.mail)}>
                       <ContentCopy />
                       <span>{user.mail}</span>
                     </button>
                   </span>
                   <div className={styles.changePassword}>
-                    <p>Смена пароля</p>
+                    <p>{profile.setting.changepass.head}</p>
                     <Input
                       value={password}
                       setValue={setPassword}
                       error={passwordError}
-                      label={'Новый пароль'}
+                      label={profile.setting.changepass.input}
                       password={true}
                     />
                     <Button
                       className={styles.wrapperChangePass}
                       onClick={() => handleChangePassword(password, setPasswordError)}
                     >
-                      Подтвердить
+                      {profile.setting.changepass.button}
                     </Button>
                   </div>
                   {userRoles && userRoles.includes('admin') && (
                     <div className={styles.adminWrapper}>
-                      <p>Админ панель</p>
+                      <p>{profile.setting.admin.head}</p>
                       <Button
                         color={'green'}
                         className={styles.wrapperButtonAdmin}
                         onClick={() => navigate('/admin')}
                       >
-                        Перейти
+                        {profile.setting.admin.button}
                       </Button>
                     </div>
                   )}
@@ -142,27 +145,27 @@ const ProfilePage = (): JSX.Element => {
                     className={styles.wrapperOut}
                     onClick={() => handleExit()}
                   >
-                    Выйти из аккаунта
+                    {profile.setting.exit}
                   </Button>
                 </div>
               )}
               {navMenu == 'hardcore' && (
                 <div className={styles.wrapperHardCore}>
                   <iframe src='https://giphy.com/embed/0hChp6z6lE0IRBYTJG' />
-                  <h3>Статистика</h3>
+                  <h3>{profile.hardcore.head}</h3>
                   <div>
                     <div>
                       <div>
-                        <p>Примерное время возрождение после смерти:</p>
+                        <p>{profile.hardcore.block1.info1}:</p>
                         <p>00:06:52:30</p>
                       </div>
                       <div>
-                        <p>Дата последней смерти: не умирал</p>
-                        <p>Причина последней смерти: не умирал</p>
+                        <p>{profile.hardcore.block1.info2}: не умирал</p>
+                        <p>{profile.hardcore.block1.info3}: не умирал</p>
                       </div>
                     </div>
                     <div>
-                      <p>Смертей</p>
+                      <p>{profile.hardcore.block2.head}</p>
                       <HeartIcon />
                       <p>0</p>
                     </div>

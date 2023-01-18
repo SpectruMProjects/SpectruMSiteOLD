@@ -16,6 +16,7 @@ export const UK: textType = {
     },
     aboutproject: {
       block1: {
+        head: 'О проекте',
         first:
           'Наши сервера Minecraft являются уникальными и неповторимыми. Они стабильны и не содержат П2В (платные преимущества).',
         second:
@@ -51,6 +52,7 @@ export const UK: textType = {
   profile: {
     head: 'Профиль',
     setting: {
+      headbutton: 'Настройки',
       nickname: 'Никнейм',
       email: 'Почта',
       changepass: {
@@ -65,6 +67,7 @@ export const UK: textType = {
       exit: 'Выйти из аккаунта',
     },
     hardcore: {
+      headbutton: 'Хардкор',
       head: 'Статистика',
       block1: {
         info1: 'Примерное время возрождение после смерти',

@@ -1,21 +1,25 @@
 import React from 'react'
 import cn from 'classnames'
+import { useNavigate } from 'react-router-dom'
 
 import { Button, CardPage, CardInfo } from 'shared'
 import { AppleIcon, BerriesIcon, CarrotIcon, HeartIcon, WatermelonIcon } from 'app/assets/svg'
+import { useAppSelector } from 'processes/hooks'
+import { getLanguage } from 'processes/store/select'
 
 import styles from './styles.module.scss'
-import { useNavigate } from 'react-router-dom'
 
 const HardcorePage = (): JSX.Element => {
   const navigate = useNavigate()
+
+  const { hardcore } = useAppSelector(getLanguage)
 
   return (
     <CardPage className={styles.wrapperHardcore}>
       <CardInfo className={styles.wrapperLife}>
         <section className={styles.wrapperInfo}>
           <div className={styles.infoFirst}>
-            <Button>Скопировать IP-адрес</Button>
+            <Button>{hardcore.checkserver.button1}</Button>
             <div className={styles.minecraftInfo}>
               <p>License</p>
               <p>1.19.2</p>
@@ -45,22 +49,22 @@ const HardcorePage = (): JSX.Element => {
         </section>
       </CardInfo>
       <CardInfo className={styles.wrapperServer} background={'dark-middle'}>
-        <h2>О сервере</h2>
+        <h2>{hardcore.abouthardcore.about}</h2>
         <ul>
           <li>
             <p>Vanilla</p>
             <span></span>
-            <p>Ванильный геймплей, минимальное количество плагинов для комфортной игры</p>
+            <p>{hardcore.abouthardcore.vanilla}</p>
           </li>
           <li>
             <p>Hardcore</p>
             <span></span>
-            <p>Только хардкор! Платите за свою смерть временем потраченным на сервере</p>
+            <p>{hardcore.abouthardcore.hardcore}</p>
           </li>
           <li>
             <p>SMP</p>
             <span></span>
-            <p>“Survival Multiplayer” - Проще говоря обычное выживание и никаких поблажек</p>
+            <p>{hardcore.abouthardcore.smp}</p>
           </li>
         </ul>
         <AppleIcon className={styles.icon} />
@@ -69,32 +73,19 @@ const HardcorePage = (): JSX.Element => {
         <BerriesIcon className={cn(styles.icon, styles.berries)} />
       </CardInfo>
       <CardInfo className={styles.wrapperInfoHardcore}>
-        <h2>Как работает Hardcore режим?</h2>
-        <p>
-          Если вы прошаренный игрок в Minecraft, то вы знаете что режим Hardcore работает по
-          принципу одной смерти. Однако на сервере эта механика очень расточительна, т.к. по
-          неосторожности можно потерять не только прогресс, но и возможность играть с друзьями.
-          Поэтому мы сделали плагин который даст возможность возродиться спустя время, которое вы
-          провели на сервере
-        </p>
-        <span>
-          *Для того чтобы точно расчитать время возрождения, мы пользуемся формулой: время до
-          возрождения = текущее время (на момент смерти) + время на сервере (только в режиме
-          выживания)
-        </span>
+        <h2>{hardcore.workhradcore.how}</h2>
+        <p>{hardcore.workhradcore.maintext}</p>
+        <span>*{hardcore.workhradcore.note}</span>
       </CardInfo>
       <CardInfo className={styles.wrapperDownInfo} background={'dark-middle'}>
-        <h2>Ивенты, лёгкая сборка, и прочее...</h2>
+        <h2>{hardcore.checkserver.head}</h2>
         <div>
           <iframe src='https://giphy.com/embed/UdXlLBeKNW9xqemxYk' />
           <div>
-            <p>
-              Сервер на Paper, дружелюбное комьюнити, полностью бесплатное пользование, Discord
-              сервер, и другие плюшки. Регистрируйся и заходи на сервер!
-            </p>
+            <p>{hardcore.checkserver.info}</p>
             <div>
-              <Button>Скопировать IP адрес</Button> или{' '}
-              <Button onClick={() => navigate('/profile')}>Перейти в личный кабинет</Button>
+              <Button>{hardcore.checkserver.button1}</Button> {hardcore.checkserver.or}{' '}
+              <Button onClick={() => navigate('/profile')}>{hardcore.checkserver.button2}</Button>
             </div>
           </div>
         </div>
