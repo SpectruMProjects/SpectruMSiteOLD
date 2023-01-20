@@ -24,7 +24,7 @@ const ProfilePage = (): JSX.Element => {
 
   const user = useAppSelector(getUser)
   const userRoles = useAppSelector(getUserRoles)
-  const { profile } = useAppSelector(getLanguage)
+  const { profile, error } = useAppSelector(getLanguage)
 
   const handleCopy = (value: string): void => {
     navigator.clipboard.writeText(value).then(() => notification('copy', 5000))
@@ -41,7 +41,7 @@ const ProfilePage = (): JSX.Element => {
         'error',
         5000,
         {
-          text: 'Пароль должен содержать не меньше 8 символом, а так же иметь хотя бы одну цыфру и одну большую букву',
+          text: error.errorChangePassword.change,
         },
         passwordError,
       )

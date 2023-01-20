@@ -3,7 +3,14 @@ import cn from 'classnames'
 import { QuestionMark, PublicOff, ContentCopy, Info } from '@mui/icons-material'
 
 import { useAppDispatch, useAppSelector, useNotificationOff } from 'processes/hooks'
-import { getAction, getCopy, getErrors, getFetch, getLoading } from 'processes/store/select'
+import {
+  getAction,
+  getCopy,
+  getErrors,
+  getFetch,
+  getLanguage,
+  getLoading,
+} from 'processes/store/select'
 import {
   actionAddCopy,
   actionAddFetch,
@@ -27,6 +34,7 @@ export const Notification = ({ className, ...props }: NotificationProps): JSX.El
   const loading = useAppSelector(getLoading)
   const copy = useAppSelector(getCopy)
   const fetch = useAppSelector(getFetch)
+  const { notification } = useAppSelector(getLanguage)
 
   notificationObject(loading, actionAddLoading)
   notificationObject(copy, actionAddCopy)
@@ -72,7 +80,7 @@ export const Notification = ({ className, ...props }: NotificationProps): JSX.El
         <NotifyCard
           icon={<ContentCopy />}
           time={copy.time}
-          text={'Строка скопирована'}
+          text={notification.copy}
           color={'success'}
         />
       )}
@@ -80,7 +88,7 @@ export const Notification = ({ className, ...props }: NotificationProps): JSX.El
         <NotifyCard
           icon={<LoadingIcon />}
           time={loading.time}
-          text={'Загрузка данных...'}
+          text={notification.loading}
           color={'secondary'}
         />
       )}
@@ -88,7 +96,7 @@ export const Notification = ({ className, ...props }: NotificationProps): JSX.El
         <NotifyCard
           icon={<PublicOff />}
           time={fetch.time}
-          text={'Нету подключения к серверу...'}
+          text={notification.refetch}
           color={'warning'}
         />
       )}

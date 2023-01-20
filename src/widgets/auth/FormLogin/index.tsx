@@ -17,7 +17,7 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
   const navigate = useNavigate()
 
   const userError = useAppSelector(getUserError)
-  const { auth } = useAppSelector(getLanguage)
+  const { auth, error } = useAppSelector(getLanguage)
 
   const [login, setLogin] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -28,22 +28,12 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
   const handleLogin = () => {
     if (login.trim().length < 3) {
       setLoginError(true)
-      notification(
-        'error',
-        5000,
-        { text: 'Логин должeн содержать не меньше 3-х симоволов' },
-        loginError,
-      )
+      notification('error', 5000, { text: error.errorFormLogin.loginLength }, loginError)
     }
 
     if (password.trim().length < 8) {
       setPasswordError(true)
-      notification(
-        'error',
-        5000,
-        { text: 'Пароль должeн содержать не меньше 8-х симоволов' },
-        passwordError,
-      )
+      notification('error', 5000, { text: error.errorFormLogin.passwordLength }, passwordError)
     }
 
     if (password.trim().length >= 8) {

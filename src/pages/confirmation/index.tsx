@@ -18,7 +18,7 @@ const ConfirmationPage = ({ type, className, ...props }: confirmationProps): JSX
   const notification = useNotification()
   const exitAccount = useExitAccount()
 
-  const { confirmation } = useAppSelector(getLanguage)
+  const { confirmation, accept } = useAppSelector(getLanguage)
 
   useEffect(() => {
     exitAccount()
@@ -29,7 +29,7 @@ const ConfirmationPage = ({ type, className, ...props }: confirmationProps): JSX
             const token = localStorage.get('accessToken')
             if (token) {
               navigate('/profile')
-              notification('action', 5000, { text: 'Аккаунт активирован!' })
+              notification('action', 5000, { text: accept.account })
             }
           })
           .catch((error) => {
@@ -41,7 +41,7 @@ const ConfirmationPage = ({ type, className, ...props }: confirmationProps): JSX
             const token = localStorage.get('accessToken')
             if (token) {
               navigate('/profile')
-              notification('action', 5000, { text: 'Пароль был изменен!' })
+              notification('action', 5000, { text: accept.password })
             }
           })
           .catch((error) => {

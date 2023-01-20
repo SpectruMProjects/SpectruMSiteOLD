@@ -292,5 +292,26 @@ export type textType = {
       error: string
       notAllowed: string
     }
+    errorFormLogin: {
+      loginLength: string
+      passwordLength: string
+    }
+    errorFormSignUp: {
+      nicknameError: string
+      mailError: string
+      passwordError: string
+    }
+    errorChangePassword: {
+      change: string
+    }
+  }
+  accept: {
+    account: string
+    password: string
+  }
+  notification: {
+    refetch: string
+    loading: string
+    copy: string
   }
 }

@@ -299,5 +299,29 @@ export const EN: textType = {
       error: 'Unknown error',
       notAllowed: 'Не найдено',
     },
+    errorFormLogin: {
+      loginLength: 'Login must contain at least 3 characters',
+      passwordLength: 'Password must contain at least 8 characters',
+    },
+    errorFormSignUp: {
+      nicknameError:
+        'Nickname must be at least 3 characters long and contain Latin letters or numbers',
+      mailError: 'Please enter correct email',
+      passwordError:
+        'The password must contain at least 8 characters, and also have at least one number and one capital letter',
+    },
+    errorChangePassword: {
+      change:
+        'The password must contain at least 8 characters, and also have at least one number and one capital letter',
+    },
+  },
+  accept: {
+    account: 'Account activated!',
+    password: 'The password has been changed!',
+  },
+  notification: {
+    refetch: "Can't connect to server...",
+    loading: 'Loading data...',
+    copy: 'Row copied',
   },
 }

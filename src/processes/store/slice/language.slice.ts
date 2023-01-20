@@ -3,7 +3,7 @@ import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit'
 import { languageType, textType } from 'processes/types'
 import { UK, RU, EN, BE } from 'app/assets/language'
 
-interface LanguageState {
+export interface LanguageState {
   language: languageType
   languageText: textType
 }

@@ -13,12 +13,8 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
   const notification = useNotification()
   const dispatch = useAppDispatch()
 
-  const { auth } = useAppSelector(getLanguage)
+  const { auth, error } = useAppSelector(getLanguage)
 
-  const textError = (text: string, num: number): string =>
-    `${text} должен быть не меньше ${
-      num > 4 ? num + '-и' : num + '-х'
-    } символов, а так же содержать латинские буквы или цифры`
   const time = 5000
 
   const [username, setUsername] = useState('')
@@ -35,12 +31,12 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
 
     if (username.trim().length < 3 || username.match(/^.*[a-zA-Z0-9]$/g) === null) {
       setUsernameError(true)
-      notification('error', time, { text: textError('Ник', 3) }, usernameError)
+      notification('error', time, { text: error.errorFormSignUp.nicknameError }, usernameError)
     }
 
     if (mail.match(/^.*[a-zA-Z0-9-_.]@.*[a-z][.].*[a-z]$/g) === null || mail.trim().length === 0) {
       setEmailError(true)
-      notification('error', time, { text: 'Введите корректно почту' }, mailError)
+      notification('error', time, { text: error.errorFormSignUp.mailError }, mailError)
     }
 
     if (
@@ -48,7 +44,7 @@ export function FormRegister({ className, setForm, ...props }: FormRegisterProps
       password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/g) === null
     ) {
       setPasswordError(true)
-      notification('error', time, { text: textError('Пароль', 8) }, passwordError)
+      notification('error', time, { text: error.errorFormSignUp.passwordError }, passwordError)
     }
 
     if (
