@@ -4,7 +4,7 @@ export const RU: textType = {
   footer: {
     info: 'Организация не имеет никакого отношения к Mojang AB. Все права на игру принадлежат Mojang AB. Весь остальной контент принадлежит SpectruMTeam.',
     button: {
-      contact: 'Контакнты',
+      contact: 'Контакты',
       pay: 'Способы оплаты',
       teamsuccess: 'Пользовательское соглашение',
     },
@@ -285,7 +285,7 @@ export const RU: textType = {
       error: 'Неизвестная ошибка',
       userWithSameUsernameOrEmailNotExists: 'Пользователь с таким логином или почтой не найден',
       form: 'Введите правильно логин или пароль',
-      incorrectPassword: 'Не верный пароль',
+      incorrectPassword: 'Неверный пароль',
     },
     getUserError: {
       error: 'Неизвестная ошибка',
