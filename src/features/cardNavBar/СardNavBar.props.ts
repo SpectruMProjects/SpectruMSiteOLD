@@ -9,4 +9,5 @@ export default interface cardNavBardProps
   activeMenu: boolean
   setTop: (top: number) => void
   index: number
+  setMenu?: (val: boolean) => void
 }

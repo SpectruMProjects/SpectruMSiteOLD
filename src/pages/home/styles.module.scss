@@ -5,28 +5,15 @@
 .titleHomeWrapper {
   position: relative;
 
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  justify-content: center;
-
-  width: 100%;
-
   padding: 75px 20px;
 
   user-select: none;
-
-  color: var(--text7);
-
-  border-radius: var(--radius);
-
-  background: var(--background4);
   gap: 30px;
 }
 
 .frog {
   position: absolute;
+  z-index: 2;
   right: 50px;
   bottom: -50px;
 
@@ -143,21 +130,6 @@
   height: 70px;
 }
 
-.wrapperInfo {
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  padding: 20px;
-
-  color: var(--text7);
-
-  border-radius: var(--radius);
-
-  background: var(--background4);
-  gap: 20px;
-}
-
 .wrapperInfo h2 {
   padding-left: 20px;
 
@@ -213,11 +185,6 @@
 
   text-align: justify;
 
-  color: var(--text7);
-
-  border-radius: var(--radius);
-  background: var(--background4);
-
   font-size: 20px;
 }
 
@@ -235,11 +202,6 @@
   padding: 50px 40px 50px 200px;
 
   user-select: none;
-
-  color: var(--text7);
-
-  border-radius: var(--radius);
-  background: var(--background4);
 
   font-size: 20px;
 }
@@ -422,4 +384,56 @@
   font-size: 19px;
   font-weight: 500;
   gap: 10px;
+}
+
+@media screen and ( max-width: 1800px ) {
+  .frog {
+    right: 0;
+  }
+
+  .minecraft {
+    left: 0;
+  }
+}
+
+@media screen and ( max-width: 1300px ) {
+  .frog {
+    right: -50px;
+  }
+
+  .minecraft {
+    display: none;
+  }
+}
+
+@media screen and ( max-width: 1100px ) {
+  .frog {
+    right: 0;
+  }
+}
+
+@media screen and ( max-width: 768px ) {
+  .frog {
+    display: none;
+  }
+
+  .titleHomeWrapper h2 {
+    word-break: break-word;
+
+    font-size: 30px;
+  }
+
+  .titleWrapper p {
+    font-size: 18px;
+  }
+
+  .wrapperInfo h2 {
+    font-size: 26px;
+  }
+
+  .wrapperMainInfo > p,
+  .bottomWrapperFirst > p,
+  .bottomWrapperSecond > p {
+    font-size: 16px;
+  }
 }

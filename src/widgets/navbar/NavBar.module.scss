@@ -1,11 +1,11 @@
 .wrapperNavBar {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   top: 100px;
   left: 200px;
 
   display: flex;
-  align-items: left;
+  align-items: flex-start;
   flex-direction: column;
 
   width: 100%;
@@ -24,6 +24,32 @@
   max-width: 230px;
 
   transition: var(--transition);
+}
+
+.wrapperNavBarSmall {
+  position: fixed;
+  z-index: 3;
+  top: 40px;
+  right: 40px;
+
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  width: auto;
+  padding: 5px;
+
+  user-select: none;
+  transition: var(--transition);
+
+  border-radius: var(--radius);
+  background: var(--primary);
+}
+
+.wrapperNavBarSmallActive {
+  padding: 0;
+
+  border-radius: 50%;
 }
 
 .titleWrapper {
@@ -73,18 +99,6 @@
   opacity: 1;
 }
 
-@media screen and ( max-width: 2000px ) {
-  .wrapperNavBar {
-    left: 70px;
-  }
-}
-
-@media screen and ( max-width: 1600px ) {
-  .wrapperNavBar {
-    left: 50px;
-  }
-}
-
 .wrapperInputTheme {
   display: flex;
 }
@@ -97,4 +111,107 @@
   border-radius: var(--radius);
   outline: none;
   background-color: var(--background6);
+}
+
+.menuLines {
+  position: relative;
+
+  width: 50px;
+  height: 50px;
+
+  transition: var(--transition);
+
+  border-radius: 50%;
+
+  span,
+  span::after,
+  span::before {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+
+    width: 30px;
+    height: 4px;
+
+    transition: var(--transition);
+
+    border-radius: var(--radius);
+
+    background-color: var(--background8);
+  }
+
+  span::after {
+    top: -10px;
+    left: 0;
+
+    content: "";
+  }
+
+  span::before {
+    top: 10px;
+    left: 0;
+
+    content: "";
+  }
+}
+
+.menuLinesActive {
+  span::after {
+    top: -5px;
+    right: 0;
+    left: auto;
+
+    width: 17px;
+
+    transition: var(--transition);
+    transform: rotate(35deg);
+  }
+
+  span::before {
+    top: 5px;
+    right: 0;
+    left: auto;
+
+    width: 17px;
+
+    transition: var(--transition);
+    transform: rotate(-35deg);
+  }
+}
+
+.wrapperNavMenu {
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+
+  transition: var(--transition);
+
+  border-radius: var(--radius);
+  background-color: var(--background4);
+}
+
+.wrapperNavMenuActive {
+  width: 0;
+  height: 0;
+  padding: 0;
+
+  transition: var(--transition);
+  transform: scale(0);
+
+  pointer-events: none;
+
+  opacity: 0;
+}
+
+@media screen and ( max-width: 2000px ) {
+  .wrapperNavBar {
+    left: 70px;
+  }
+}
+
+@media screen and ( max-width: 1600px ) {
+  .wrapperNavBar {
+    left: 50px;
+  }
 }

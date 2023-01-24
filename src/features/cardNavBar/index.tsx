@@ -4,6 +4,7 @@ import cn from 'classnames'
 
 import CardNavBardProps from './СardNavBar.props'
 import styles from './СardNavBar.module.scss'
+import { useWindowSize } from '../../processes/hooks'
 
 export const CardNavBar = ({
   selected,
@@ -13,9 +14,11 @@ export const CardNavBar = ({
   activeMenu,
   index,
   setTop,
+  setMenu,
   ...props
 }: CardNavBardProps): JSX.Element => {
   const navigate = useNavigate()
+  const [windowX] = useWindowSize()
 
   useEffect(() => {
     if (selected) {
@@ -31,13 +34,14 @@ export const CardNavBar = ({
       onClick={() => {
         setTop(index)
         navigate(to)
+        if (setMenu) setMenu(false)
       }}
       {...props}
     >
       <span
         className={cn(styles.iconWrap, {
           [styles.iconOn]: selected,
-          [styles.iconActive]: selected && activeMenu,
+          [styles.iconActive]: selected && windowX > 1100 && activeMenu,
         })}
       >
         {icon}
