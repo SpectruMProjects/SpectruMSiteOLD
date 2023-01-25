@@ -61,20 +61,22 @@
       height: 80px;
     }
 
-    p:first-of-type,
-    p:last-of-type {
+    p {
       position: absolute;
-      bottom: 3px;
-      left: 3px;
 
       color: var(--text7);
 
       font-size: 20px;
     }
 
+    p:first-of-type {
+      bottom: 3px;
+      left: 3px;
+    }
+
     p:last-of-type {
       right: 3px;
-      left: auto;
+      bottom: 3px;
     }
 
     h3:first-of-type {
@@ -300,5 +302,94 @@
         font-size: 16px;
       }
     }
+  }
+}
+
+@media screen and ( max-width: 700px ) {
+  .wrapperLife {
+    .wrapperHeart {
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .wrapperDownInfo {
+    > div {
+      div {
+        div {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  .wrapperServer {
+    ul {
+      li {
+        span {
+          max-width: 100px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and ( max-width: 550px ) {
+  .wrapperDownInfo {
+    > div {
+      flex-direction: column;
+    }
+  }
+
+  .wrapperLife {
+    .wrapperInfo {
+      align-items: center;
+      flex-direction: column-reverse;
+      gap: 30px;
+
+      .infoSecond {
+        align-items: center;
+      }
+    }
+
+    .wrapperHeart {
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+@media screen and ( max-width: 450px ) {
+  .wrapperLife {
+    .wrapperHeart {
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      > p {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .wrapperServer {
+    ul {
+      li {
+        flex-direction: column;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .wrapperInfoHardcore {
+    padding: 10px 30px;
   }
 }

@@ -36,3 +36,21 @@
 
   color: var(--text4);
 }
+
+@media screen and ( max-width: 768px ) {
+  .wrapperFormLogin {
+    max-width: none;
+
+    border-radius: 0;
+  }
+}
+
+@media screen and ( max-width: 450px ) {
+  .wrapperFormLogin {
+    padding: 20px;
+  }
+
+  .cardWrap {
+    flex-direction: column;
+  }
+}

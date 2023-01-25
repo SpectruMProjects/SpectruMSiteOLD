@@ -47,8 +47,10 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
 
   const menuOff: boolean = menuList.find((menu) => menu.to === pathname) === undefined
 
-  const handleChangeLanguage = (e: any) => {
-    dispatch(actionChangeLanguage(e.target.value))
+  const handleChangeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const lang = e.target.value
+    if (lang === 'ru' || lang === 'en' || lang === 'be' || lang === 'uk')
+      dispatch(actionChangeLanguage(lang))
   }
 
   const handleChangeTheme = (): void => {
@@ -123,10 +125,15 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
     </section>
   ) : (
     <section
-      className={cn(styles.wrapperNavBarSmall, {
+      className={cn(className, styles.wrapperNavBarSmall, {
         [styles.wrapperNavBarSmallActive]: !menuSmall,
       })}
     >
+      <span
+        className={cn(styles.background, {
+          [styles.backgroundActive]: !menuSmall,
+        })}
+      ></span>
       <section
         className={cn(styles.menuLines, {
           [styles.menuLinesActive]: menuSmall,

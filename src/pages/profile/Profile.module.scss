@@ -255,3 +255,37 @@
 .wrapperButtonAdmin {
   background: var(--mauve);
 }
+
+@media screen and ( max-width: 768px ) {
+  .wrapperHardCore {
+    > div {
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+
+      > div {
+        > div:last-of-type {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media screen and ( max-width: 400px ) {
+  .wrapperHardCore {
+    > iframe {
+      display: none;
+    }
+  }
+
+  .wrapperSetting {
+    > span {
+      display: flex;
+
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+}

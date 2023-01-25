@@ -69,7 +69,6 @@
   height: 200px;
   padding: 0;
 
-  background: var(--primary-dark);
   box-shadow: 0 0 10px var(--primary-opacity01);
 
   font-size: 22px;
@@ -336,7 +335,6 @@
   display: flex;
   flex-direction: column;
 
-  max-width: 900px;
   margin: 0 auto;
   padding: 30px 60px;
 
@@ -413,6 +411,10 @@
 }
 
 @media screen and ( max-width: 768px ) {
+  .wrapperServer {
+    flex-direction: column;
+  }
+
   .frog {
     display: none;
   }
@@ -435,5 +437,66 @@
   .bottomWrapperFirst > p,
   .bottomWrapperSecond > p {
     font-size: 16px;
+  }
+}
+
+@media screen and ( max-width: 550px ) {
+  .wrapperBuy {
+    width: 100%;
+
+    border-radius: 0;
+  }
+}
+
+@media screen and ( max-width: 450px ) {
+  .buttonServer {
+    max-width: none;
+
+    border-radius: 0;
+  }
+
+  .wrapperInfo {
+    padding: 30px 0 0;
+  }
+
+  .bottomWrapperFirst {
+    padding: 30px;
+  }
+
+  .titleHomeWrapper h2 {
+    flex-direction: column;
+  }
+
+  .bottomWrapperSecond {
+    padding: 30px;
+
+    > p {
+      text-align: justify;
+    }
+  }
+
+  .helper {
+    display: none;
+  }
+}
+
+@media screen and ( max-width: 400px ) {
+  .firstColor,
+  .secondColor {
+    flex-direction: column;
+  }
+
+  .wrapperTitleBuy {
+    flex-direction: column;
+  }
+
+  .buttonBuy {
+    flex-direction: column;
+
+    white-space: normal;
+
+    > p {
+      word-break: break-word;
+    }
   }
 }
