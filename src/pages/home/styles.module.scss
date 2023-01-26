@@ -81,7 +81,7 @@
 
   padding: 5px 15px;
 
-  color: var(--text5);
+  color: var(--dark);
   border-radius: var(--radius);
   background: var(--primary-dark);
 }
@@ -156,7 +156,7 @@
   text-align: justify;
   white-space: pre-wrap;
 
-  color: var(--text5);
+  color: var(--dark);
 
   font-size: 18px;
 }
@@ -341,11 +341,11 @@
   user-select: none;
   text-align: center;
 
-  color: var(--text7);
+  color: var(--light);
 
   border-radius: var(--radius);
 
-  background: var(--background4);
+  background: var(--dark-light);
 }
 
 .wrapperBuy > p {
@@ -375,7 +375,7 @@
 
   white-space: nowrap;
 
-  color: var(--text5);
+  color: var(--dark);
 
   background: var(--mauve);
 

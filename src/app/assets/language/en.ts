@@ -256,6 +256,14 @@ export const EN: textType = {
   confirmation: {
     load: 'Waiting for confirmation...',
   },
+  errorpage: {
+    text: {
+      errorpage: 'Error 404: This page does not exist',
+    },
+    textinfo:
+      'We ask you, as a user, to continue to be more careful when navigating through the pages of our site, so as not to cause a number of any errors. Below you can go back to our website.',
+    button: 'Go back to site',
+  },
   error: {
     notifyError: {
       error: 'Unknown error',

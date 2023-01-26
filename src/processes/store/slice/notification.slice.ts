@@ -1,5 +1,4 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit'
-import { v4 as uuidv4 } from 'uuid'
 
 import { IAction, IError, INotify } from 'processes/interface'
 import { fetchChangePassword, fetchRegistrationAccount } from '../thunk'
@@ -11,6 +10,7 @@ interface INotificationState {
   copy: INotify
   errors: IError[]
   action: IAction[]
+  error: string
 }
 
 const initialState: INotificationState = {
@@ -20,6 +20,7 @@ const initialState: INotificationState = {
   copy: { pending: false, time: 0 },
   errors: [],
   action: [],
+  error: '',
 }
 
 export const notificationSlice = createSlice({
@@ -55,10 +56,8 @@ export const notificationSlice = createSlice({
         state.status = 'pending'
       })
       .addCase(fetchRegistrationAccount.rejected, (state: Draft<INotificationState>, action) => {
-        const id = uuidv4()
-
         state.status = 'rejected'
-        state.errors.push({ id, text: String(action.error.message), time: 5000 })
+        state.error = String(action.error.message)
       })
       .addCase(fetchRegistrationAccount.fulfilled, (state: Draft<INotificationState>) => {
         state.status = 'received'
@@ -67,10 +66,8 @@ export const notificationSlice = createSlice({
         state.status = 'pending'
       })
       .addCase(fetchChangePassword.rejected, (state: Draft<INotificationState>, action) => {
-        const id = uuidv4()
-
         state.status = 'rejected'
-        state.errors.push({ id, text: String(action.error.message), time: 5000 })
+        state.error = String(action.error.message)
       })
       .addCase(fetchChangePassword.fulfilled, (state: Draft<INotificationState>) => {
         state.status = 'received'

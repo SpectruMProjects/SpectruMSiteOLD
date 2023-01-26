@@ -12,7 +12,7 @@
   padding: 30px;
 
   border-radius: var(--radius);
-  background: var(--background7);
+  background: var(--dark-middle);
   gap: 10px;
 
   span {
@@ -49,7 +49,7 @@
   }
 
   > h3 {
-    color: var(--text7);
+    color: var(--light);
 
     font-size: 22px;
   }
@@ -88,7 +88,7 @@
         text-align: left;
 
         > p {
-          color: var(--text7);
+          color: var(--light);
 
           font-size: 20px;
         }
@@ -133,7 +133,7 @@
       cursor: pointer;
       transition: var(--transition-fast);
 
-      color: var(--text7);
+      color: var(--light);
       border: none;
 
       border-radius: 10px 10px 0 0;
@@ -158,21 +158,21 @@
         border-radius: 50%;
         background: transparent;
 
-        box-shadow: 10px 10px 0 var(--background7);
+        box-shadow: 10px 10px 0 var(--dark-middle);
       }
 
       .secondT {
         right: -20px;
         left: auto;
 
-        box-shadow: -10px 10px 0 var(--background7);
+        box-shadow: -10px 10px 0 var(--dark-middle);
       }
     }
 
     .buttonOn {
       transition: var(--transition-fast);
 
-      background: var(--background7);
+      background: var(--dark-middle);
 
       .firstT,
       .secondT {
@@ -193,7 +193,7 @@
   cursor: pointer;
   transition: var(--transition);
 
-  color: var(--text7);
+  color: var(--light);
   border: none;
   border-radius: var(--radius);
   outline: none;
@@ -212,8 +212,8 @@
 .wrapperButton:hover {
   transition: var(--transition);
 
-  color: var(--text5);
-  background: var(--background6);
+  color: var(--dark);
+  background: var(--light);
 }
 
 .wrapperChangePass {

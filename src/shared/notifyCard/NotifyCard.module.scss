@@ -13,7 +13,7 @@
 
   opacity: 0;
 
-  color: var(--text5);
+  color: var(--dark);
   border-radius: 10px;
   box-shadow: 0 0 5px var(--shadow-opacity03);
 }
@@ -51,7 +51,7 @@
 }
 
 .notificationIcon svg circle {
-  stroke: var(--text5);
+  stroke: var(--dark);
 }
 
 .text {
@@ -59,7 +59,7 @@
 
   word-break: break-word;
 
-  color: var(--text5);
+  color: var(--dark);
 
   font-size: 16px;
 }
@@ -84,7 +84,7 @@
 
   transition: var(--transition);
 
-  color: var(--text5);
+  color: var(--dark);
   border-radius: 50%;
 }
 
@@ -110,7 +110,7 @@
   transition: var(--transition);
   pointer-events: fill;
 
-  color: var(--text5);
+  color: var(--dark);
   border: none;
   border-radius: var(--radius);
   outline: none;
@@ -138,7 +138,7 @@
   transition-timing-function: linear;
   transition-property: width;
 
-  background: var(--background4);
+  background: var(--dark-light);
 }
 
 .timelineOn {

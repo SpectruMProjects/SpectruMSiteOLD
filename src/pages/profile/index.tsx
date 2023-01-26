@@ -66,7 +66,7 @@ const ProfilePage = (): JSX.Element => {
     <CardPage>
       <CardInfo className={styles.wrapperProfile}>
         <h2>
-          {profile.head} {userRoles && userRoles.includes('admin') && ' (Админ)'}
+          {profile.head} {userRoles && userRoles.includes('admin') && ' (Admin)'}
         </h2>
         <div className={styles.wrapperNav}>
           <div className={styles.navLink}>
@@ -128,18 +128,6 @@ const ProfilePage = (): JSX.Element => {
                       {profile.setting.changepass.button}
                     </Button>
                   </div>
-                  {userRoles && userRoles.includes('admin') && (
-                    <div className={styles.adminWrapper}>
-                      <p>{profile.setting.admin.head}</p>
-                      <Button
-                        color={'green'}
-                        className={styles.wrapperButtonAdmin}
-                        onClick={() => navigate('/admin')}
-                      >
-                        {profile.setting.admin.button}
-                      </Button>
-                    </div>
-                  )}
                   <Button
                     color={'purple'}
                     className={styles.wrapperOut}

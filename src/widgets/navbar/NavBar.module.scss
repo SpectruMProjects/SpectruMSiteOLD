@@ -17,7 +17,7 @@
   text-align: center;
 
   border-radius: var(--radius);
-  background: var(--background4);
+  background: var(--dark-light);
 }
 
 .wrapperNavBarOn {
@@ -62,7 +62,7 @@
 
   user-select: none;
 
-  color: var(--text7);
+  color: var(--light);
   gap: 15px;
 }
 
@@ -84,7 +84,7 @@
   text-align: left;
 
   opacity: 0;
-  color: var(--text7);
+  color: var(--light);
 
   font-size: 18px;
   font-weight: 700;
@@ -110,7 +110,7 @@
 
   border-radius: var(--radius);
   outline: none;
-  background-color: var(--background6);
+  background-color: var(--light);
 }
 
 .menuLines {
@@ -139,7 +139,7 @@
 
     border-radius: var(--radius);
 
-    background-color: var(--background8);
+    background-color: var(--dark);
   }
 
   span::after {
@@ -196,7 +196,7 @@
   pointer-events: fill;
 
   border-radius: var(--radius);
-  background-color: var(--background4);
+  background-color: var(--dark-light);
 }
 
 .wrapperNavMenuActive {
@@ -250,5 +250,29 @@
   .wrapperNavBarSmall {
     top: 20px;
     right: 20px;
+  }
+}
+
+@media screen and ( max-width: 550px ) {
+  .wrapperNavBarSmall {
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+
+    border-radius: 0;
+  }
+
+  .wrapperNavBarSmallActive {
+    top: 20px;
+    right: 20px;
+
+    padding: 0;
+  }
+
+  .wrapperNavMenu {
+    width: 100%;
   }
 }

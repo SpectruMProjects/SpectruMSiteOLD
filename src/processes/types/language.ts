@@ -249,6 +249,13 @@ export type textType = {
   confirmation: {
     load: string
   }
+  errorpage: {
+    text: {
+      errorpage: string
+    }
+    textinfo: string
+    button: string
+  }
   error: {
     notifyError: {
       error: string

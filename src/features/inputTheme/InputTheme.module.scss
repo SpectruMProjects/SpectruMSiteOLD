@@ -33,11 +33,11 @@ input[type="checkbox"] {
   cursor: pointer;
   transition: var(--transition);
 
-  color: var(--text7);
+  color: var(--light);
 
   border: 2px solid var(--secondary);
   border-radius: 50px;
-  background: var(--background4);
+  background: var(--dark-light);
 }
 
 .icon {

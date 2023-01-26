@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 
 import { Card, Button, Input } from 'shared'
 import { useAppDispatch, useAppSelector, useNotification } from 'processes/hooks'
 import { fetchLoginAccount } from 'processes/store/thunk'
-import { getLanguage, getUserError } from 'processes/store/select'
-import { actionClearError } from 'processes/store/slice'
+import { getLanguage } from 'processes/store/select'
 
 import FormLoginProps from './FormLogin.props'
 import styles from './FormLogin.module.scss'
@@ -16,14 +15,14 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
   const notification = useNotification()
   const navigate = useNavigate()
 
-  const userError = useAppSelector(getUserError)
   const { auth, error } = useAppSelector(getLanguage)
 
-  const [login, setLogin] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [login, setLogin] = useState('')
+  const [password, setPassword] = useState('')
 
-  const [loginError, setLoginError] = useState<boolean>(false)
-  const [passwordError, setPasswordError] = useState<boolean>(false)
+  const [loginError, setLoginError] = useState(false)
+  const [passwordError, setPasswordError] = useState(false)
+  const stateForm = useRef({ login: '', password: '' })
 
   const handleLogin = () => {
     if (login.trim().length < 3) {
@@ -45,23 +44,27 @@ export function FormLogin({ className, setForm, ...props }: FormLoginProps): JSX
     }
 
     if (password.trim().length >= 8 && login.trim().length >= 3) {
-      dispatch(fetchLoginAccount({ login, password })).then(() => {
-        const token = localStorage.getItem('accessToken')
-        if (token) {
-          navigate('/profile')
-        }
-      })
+      if (stateForm.current.login === login && stateForm.current.password === password) {
+        setLoginError(true)
+        setPasswordError(true)
+      } else {
+        setLoginError(false)
+        setPasswordError(false)
+        dispatch(fetchLoginAccount({ login, password })).then(() => {
+          const token = localStorage.getItem('accessToken')
+          if (token) {
+            navigate('/profile')
+          }
+          if (!token) {
+            stateForm.current.login = login
+            stateForm.current.password = password
+            setLoginError(true)
+            setPasswordError(true)
+          }
+        })
+      }
     }
   }
-
-  useEffect(() => {
-    if (userError) {
-      notification('error', 5000, { text: userError })
-      dispatch(actionClearError())
-      setLoginError(true)
-      setPasswordError(true)
-    }
-  }, [userError])
 
   return (
     <div className={cn(className, styles.wrapperFormLogin)} {...props}>

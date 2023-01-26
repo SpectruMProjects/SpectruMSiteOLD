@@ -128,6 +128,7 @@ export function NavBar({ className, ...props }: NavBarProps): JSX.Element {
       className={cn(className, styles.wrapperNavBarSmall, {
         [styles.wrapperNavBarSmallActive]: !menuSmall,
       })}
+      onMouseLeave={() => setMenuSmall(false)}
     >
       <span
         className={cn(styles.background, {

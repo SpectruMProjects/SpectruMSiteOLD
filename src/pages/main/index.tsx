@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useOutlet } from 'react-router-dom'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 
 import { NavBar } from 'widgets/navbar'
-import { useAppSelector } from 'processes/hooks'
+import { useAppSelector, useWindowSize } from 'processes/hooks'
 import { getTheme } from 'processes/store/select'
 import { Notification } from 'widgets/notification'
 import { Footer } from 'widgets/footer'
@@ -12,12 +12,14 @@ const MainPage = (): JSX.Element => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const currentOutlet = useOutlet()
+  // eslint-disable-next-line
+  const [_, windowY] = useWindowSize()
 
   const theme: boolean = useAppSelector(getTheme)
   const token = localStorage.getItem('accessToken')
 
   const handlePage = (val: string): string => {
-    if (val === '/hardcore' || val === '/' || val === '/team/success') {
+    if (val === '/hardcore' || val === '/' || val === '/team/success' || windowY < 1100) {
       return 'page-resize'
     }
     return ''
@@ -39,7 +41,7 @@ const MainPage = (): JSX.Element => {
   return (
     <>
       <Notification />
-      {pathname !== '/admin' && <NavBar />}
+      <NavBar />
       <SwitchTransition>
         <CSSTransition key={pathname} timeout={300} classNames='page' unmountOnExit>
           <section className={`page ${handlePage(pathname)}`}>

@@ -1,5 +1,10 @@
 :root {
   /* --------------------------------------------- Static ------------------------------------------------------- */
+  --dark: #11111b;
+  --dark-middle: #181825;
+  --dark-light: #1e1e2e;
+  --light: #cdd6f4;
+  --light-dark: #a6adc8;
   --rosewater: #f5e0dc;
   --maroon: #eba0ac;
   --flamingo: #f2cdcd;

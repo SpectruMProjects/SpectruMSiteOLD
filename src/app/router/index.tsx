@@ -10,13 +10,14 @@ import ProfilePage from 'pages/profile'
 import AuthPage from 'pages/auth'
 import ConfirmationPage from 'pages/confirmation'
 import HardcorePage from 'pages/hardcore'
-import AdminPage from 'pages/admin'
 import TeamSuccessPage from 'pages/teamsuccess'
+import ErrorPage from 'pages/error'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainPage />,
+    errorElement: <ErrorPage text={'errorpage'} />,
     children: [
       { path: '/', element: <HomePage /> },
       { path: 'launcher', element: <LauncherPage /> },
@@ -40,7 +41,6 @@ const router = createBrowserRouter([
         path: 'team',
         children: [{ path: 'success', element: <TeamSuccessPage /> }],
       },
-      { path: 'admin', element: <AdminPage /> },
     ],
   },
 ])

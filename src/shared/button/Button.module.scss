@@ -1,7 +1,6 @@
 .buttonWrapper {
   display: flex;
   justify-content: center;
-  gap: 10px;
 
   width: 100%;
   padding: 10px;
@@ -10,13 +9,14 @@
   user-select: none;
   transition: var(--transition);
 
-  color: var(--text5);
+  color: var(--dark);
   border: none;
   border-radius: var(--radius);
   outline: none;
 
   font-size: 18px;
   font-weight: 500;
+  gap: 10px;
 }
 
 .buttonWrapper:hover {

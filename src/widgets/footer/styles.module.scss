@@ -11,7 +11,7 @@
   user-select: none;
 
   border-radius: var(--radius);
-  background: var(--background4);
+  background: var(--dark-light);
   gap: 40px;
 }
 
@@ -22,7 +22,7 @@
 
   width: 100%;
 
-  color: var(--text7);
+  color: var(--light);
   gap: 50px;
 }
 
@@ -43,7 +43,7 @@
     transition: var(--transition);
     white-space: nowrap;
 
-    color: var(--text7);
+    color: var(--light);
     border-radius: 50%;
     background: var(--primary);
   }
@@ -60,7 +60,7 @@
 
     width: 25px;
     height: 25px;
-    fill: var(--text5);
+    fill: var(--dark);
   }
 }
 
@@ -78,7 +78,7 @@
     white-space: nowrap;
     text-decoration: none;
 
-    color: var(--text7);
+    color: var(--light);
     border: none;
     border-radius: var(--radius);
     background: transparent;

@@ -1,0 +1,27 @@
+.wrapperError {
+  align-items: center;
+
+  padding: 30px 0;
+}
+
+.wrapperErrorInfo {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 600px;
+  gap: 40px;
+
+  > h2 {
+    color: var(--danger);
+  }
+}
+
+.buttonWrapper {
+  text-decoration: none;
+}
+
+@media screen and ( max-width: 768px ) {
+  .wrapperErrorInfo {
+    max-width: none;
+  }
+}

@@ -24,13 +24,13 @@ export function Input({
       return 'text1'
     }
     if (val === 'light') {
-      return 'text6'
+      return 'text4'
     }
     if (val === 'static-dark') {
-      return 'text7'
+      return 'dark'
     }
     if (val === 'static-light') {
-      return 'text5'
+      return 'light'
     }
   }
 
@@ -39,13 +39,13 @@ export function Input({
       return 'background1'
     }
     if (val === 'light') {
-      return 'background5'
+      return 'background4'
     }
     if (val === 'static-dark') {
-      return 'background8'
+      return 'dark'
     }
     if (val === 'static-light') {
-      return 'background6'
+      return 'light'
     }
   }
 

@@ -12,14 +12,14 @@
   transition: var(--transition);
 
   border-radius: var(--radius);
-  background: var(--background4);
+  background: var(--dark-light);
   gap: 20px;
 }
 
 .loadWrapper p {
   white-space: nowrap;
 
-  color: var(--text4);
+  color: var(--light-dark);
 
   font-size: 20px;
 }

@@ -14,13 +14,13 @@ export const CardInfo = ({
     val: 'dark-dark' | 'dark-light' | 'dark-middle' | 'blue' | 'green' | 'opacity',
   ) => {
     if (val === 'dark-middle') {
-      return 'background7'
+      return 'dark-middle'
     }
     if (val === 'dark-dark') {
-      return 'background8'
+      return 'dark'
     }
     if (val === 'dark-light') {
-      return 'background4'
+      return 'dark-light'
     }
     if (val === 'blue') {
       return 'primary'

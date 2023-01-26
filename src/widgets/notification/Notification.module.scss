@@ -15,3 +15,13 @@
   pointer-events: none;
   gap: 10px;
 }
+
+@media screen and ( max-width: 550px ) {
+  .notificationWrapper {
+    left: 0;
+
+    max-width: none;
+
+    padding: 5px 20px;
+  }
+}

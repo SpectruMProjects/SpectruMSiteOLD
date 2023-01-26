@@ -34,7 +34,7 @@
   transition: var(--transition);
 
   border-radius: 50%;
-  background-color: var(--background4);
+  background-color: var(--dark-light);
   box-shadow: 0 0 0 6px var(--background1);
 }
 
@@ -56,7 +56,7 @@
   transition: var(--transition);
 
   border-radius: 0 0 10px 10px;
-  background-color: var(--background4);
+  background-color: var(--dark-light);
 }
 
 .checkMenuMain {
@@ -86,7 +86,7 @@
   transition: var(--transition);
 
   border-radius: 10px 10px 0 0;
-  background-color: var(--background4);
+  background-color: var(--dark-light);
 }
 
 .checkMenuTopOn {
