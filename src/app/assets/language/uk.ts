@@ -73,6 +73,9 @@ export const UK: textType = {
         info1: 'Приблизний час відродження після смерті',
         info2: 'Дата останньої смерті',
         info3: 'Причина останньої смерті',
+        info4: 'Час на сервері',
+        notdied: 'Не помер',
+        notbeen: 'Не було на сервері',
       },
       block2: {
         head: 'Смерть',
@@ -321,6 +324,10 @@ export const UK: textType = {
     errorChangePassword: {
       change:
         'Пароль повинен містити не менше 8-и символів, а також мати хоча б одну цифру і одну велику букву',
+    },
+    errorHardcoreStat: {
+      error: 'Невідома помилка',
+      notFound: 'Не знайдено',
     },
   },
   accept: {

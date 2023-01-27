@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
 import { IUser } from 'processes/interface'
-import { LoginDto } from 'processes/types'
+import { hardcoreStat, LoginDto } from 'processes/types'
 import apiClient from 'processes/service/axios'
 
 import { actionAddError } from '../slice'
@@ -122,5 +122,38 @@ export const fetchConfirmationRoles = createAsyncThunk(
     }
 
     if (res.code === 'ok') return res.roles
+  },
+)
+
+export const fetchHardcoreStatistic = createAsyncThunk(
+  '@@user/hardcore',
+  async (nickname: string, { dispatch, getState }): Promise<hardcoreStat | void> => {
+    const id = uuidv4()
+
+    const res = await axios.getHardcoreStat(nickname)
+
+    const {
+      language: {
+        languageText: { error },
+      },
+    } = getState() as RootState
+
+    if (res.code !== 'ok') {
+      dispatch(
+        actionAddError({
+          id,
+          text: error.errorHardcoreStat[res.code],
+          time: 5000,
+        }),
+      )
+    }
+
+    if (res.code === 'ok')
+      return {
+        deaths: res.deaths,
+        loginTime: res.loginTime,
+        deathTime: res.deathTime,
+        respawnTime: res.respawnTime,
+      }
   },
 )

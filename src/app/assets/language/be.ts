@@ -73,6 +73,9 @@ export const BE: textType = {
         info1: 'Прыкладны час адраджэнне пасля смерці',
         info2: 'Дата апошняй смерці',
         info3: 'Прычына апошняй смерці',
+        info4: 'Час на серверы',
+        notdied: 'Не памёр',
+        notbeen: 'Не было на серверы',
       },
       block2: {
         head: 'Смерцяў',
@@ -321,6 +324,10 @@ export const BE: textType = {
     errorChangePassword: {
       change:
         'Пароль павінен змяшчаць не менш за 8-ы сімвал, а таксама мець хаця б адну лічбу і адну вялікую літару.',
+    },
+    errorHardcoreStat: {
+      error: 'Невядомая памылка',
+      notFound: 'Не знойдзена',
     },
   },
   accept: {

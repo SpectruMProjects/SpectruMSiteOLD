@@ -73,6 +73,9 @@ export const EN: textType = {
         info1: 'Estimated time of rebirth after death',
         info2: 'Date of last death',
         info3: 'Cause of last death',
+        info4: 'Time on the server',
+        notdied: 'Not died',
+        notbeen: "Wasn't on the server",
       },
       block2: {
         head: 'Deaths',
@@ -305,7 +308,7 @@ export const EN: textType = {
     },
     notifyConfirmationRolesError: {
       error: 'Unknown error',
-      notAllowed: 'Не найдено',
+      notAllowed: 'Not found',
     },
     errorFormLogin: {
       loginLength: 'Login must contain at least 3 characters',
@@ -321,6 +324,10 @@ export const EN: textType = {
     errorChangePassword: {
       change:
         'The password must contain at least 8 characters, and also have at least one number and one capital letter',
+    },
+    errorHardcoreStat: {
+      error: 'Unknown error',
+      notFound: 'Not found',
     },
   },
   accept: {

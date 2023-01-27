@@ -5,21 +5,25 @@ import {
   fetchConfirmationAccount,
   fetchConfirmationRoles,
   fetchGetUser,
+  fetchHardcoreStatistic,
   fetchLoginAccount,
 } from '../thunk'
+import { hardcoreStat } from '../../types'
 
 export interface UserState {
   status: 'idle' | 'pending' | 'rejected' | 'received'
   user: IUser | undefined
-  error: string | null
   roles: string[]
+  hardcore: hardcoreStat | undefined
+  error: string | null
 }
 
 const initialState: UserState = {
   status: 'idle',
   user: undefined,
-  error: null,
   roles: [],
+  hardcore: undefined,
+  error: null,
 }
 
 export const userSlice = createSlice({
@@ -87,6 +91,20 @@ export const userSlice = createSlice({
         (state: Draft<UserState>, action: PayloadAction<string[] | void>) => {
           state.status = 'received'
           if (action.payload) state.roles = action.payload
+        },
+      )
+      .addCase(fetchHardcoreStatistic.pending, (state: Draft<UserState>) => {
+        state.status = 'pending'
+      })
+      .addCase(fetchHardcoreStatistic.rejected, (state: Draft<UserState>, action) => {
+        state.status = 'rejected'
+        state.error = String(action.error.message)
+      })
+      .addCase(
+        fetchHardcoreStatistic.fulfilled,
+        (state: Draft<UserState>, action: PayloadAction<hardcoreStat | void>) => {
+          state.status = 'received'
+          if (action.payload) state.hardcore = action.payload
         },
       )
   },

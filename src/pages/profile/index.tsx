@@ -5,8 +5,13 @@ import cn from 'classnames'
 
 import { CardPage } from 'shared/cardPage'
 import { useAppDispatch, useAppSelector, useExitAccount, useNotification } from 'processes/hooks'
-import { fetchChangePassword, fetchConfirmationRoles, fetchGetUser } from 'processes/store/thunk'
-import { getLanguage, getUser, getUserRoles } from 'processes/store/select'
+import {
+  fetchChangePassword,
+  fetchConfirmationRoles,
+  fetchGetUser,
+  fetchHardcoreStatistic,
+} from 'processes/store/thunk'
+import { getLanguage, getUser, getUserHardcore, getUserRoles } from 'processes/store/select'
 import { Button, CardInfo, Input } from 'shared'
 import { HeartIcon } from 'app/assets/svg'
 
@@ -24,6 +29,7 @@ const ProfilePage = (): JSX.Element => {
 
   const user = useAppSelector(getUser)
   const userRoles = useAppSelector(getUserRoles)
+  const userHardcore = useAppSelector(getUserHardcore)
   const { profile, error } = useAppSelector(getLanguage)
 
   const handleCopy = (value: string): void => {
@@ -60,6 +66,7 @@ const ProfilePage = (): JSX.Element => {
   useEffect(() => {
     dispatch(fetchGetUser())
     dispatch(fetchConfirmationRoles())
+    if (user) dispatch(fetchHardcoreStatistic(String(user.username)))
   }, [])
 
   return (
@@ -145,17 +152,41 @@ const ProfilePage = (): JSX.Element => {
                     <div>
                       <div>
                         <p>{profile.hardcore.block1.info1}:</p>
-                        <p>00:06:52:30</p>
+                        <p>
+                          {userHardcore?.respawnTime !== 0
+                            ? userHardcore?.respawnTime
+                            : '00:00:00:00'}
+                        </p>
                       </div>
                       <div>
-                        <p>{profile.hardcore.block1.info2}: не умирал</p>
-                        <p>{profile.hardcore.block1.info3}: не умирал</p>
+                        <p>
+                          {profile.hardcore.block1.info2}:{' '}
+                          {userHardcore?.deathTime !== 0
+                            ? 'Not have info'
+                            : profile.hardcore.block1.notdied}
+                        </p>
+                        <p>
+                          {profile.hardcore.block1.info3}:{' '}
+                          {userHardcore?.deathTime !== 0
+                            ? userHardcore?.deathTime
+                            : profile.hardcore.block1.notdied}
+                        </p>
+                        <p>
+                          {profile.hardcore.block1.info3}:{' '}
+                          {userHardcore?.deathTime !== 0
+                            ? userHardcore?.loginTime
+                            : profile.hardcore.block1.notbeen}
+                        </p>
                       </div>
                     </div>
                     <div>
                       <p>{profile.hardcore.block2.head}</p>
                       <HeartIcon />
-                      <p>0</p>
+                      <p>
+                        {userHardcore?.deaths.length !== 0
+                          ? userHardcore?.deaths.length
+                          : profile.hardcore.block1.notdied}
+                      </p>
                     </div>
                   </div>
                 </div>

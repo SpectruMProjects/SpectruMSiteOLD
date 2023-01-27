@@ -10,10 +10,6 @@ import {
   ChangePassDto,
   ChangePassResponse,
   ActivateChangePassReponse,
-  GetWhiteListDto,
-  GetWhiteListResponse,
-  GetWhiteListUserStatusDto,
-  GetWhiteListUserStatusResponse,
   GetHardcoreStatResponse,
   GetUserByIdResponse,
   HasUserPassResponse,
@@ -172,8 +168,7 @@ export default class ApiClient {
       if (e instanceof AxiosError) {
         const message = e.response?.data?.message
         if (e.response?.status === 400) {
-          if (typeof message == 'object')
-            return { code: 'form', codes: message }
+          if (typeof message == 'object') return { code: 'form', codes: message }
           if (e.response?.data.code) return { code: e.response?.data.code }
         }
       }
@@ -297,44 +292,6 @@ export default class ApiClient {
     } catch (e) {
       if (e instanceof AxiosError && e.response?.status === 400)
         return { code: e.response.data.code }
-      return { code: 'error' }
-    }
-  }
-
-  /**
-   * возвращает всех игроков которые могут посетить сервер
-   */
-  async getWhiteList({ server }: GetWhiteListDto): Promise<GetWhiteListResponse> {
-    try {
-      const res = await this.get(`/pass/${server}/whiteList`)
-      return {
-        code: 'ok',
-        ...res.data,
-      }
-    } catch (e) {
-      if (e instanceof AxiosError && e.response?.status === 400) {
-        return { code: e.response.data.code }
-      }
-      return { code: 'error' }
-    }
-  }
-
-  /**
-   * получение возможности посетить сервер по юзеру
-   */
-  async getWhiteListUserStatus({
-    server,
-    username,
-  }: GetWhiteListUserStatusDto): Promise<GetWhiteListUserStatusResponse> {
-    try {
-      await this.get(`/pass/${server}/whiteList/${username}`)
-      return { code: 'ok', status: 'active' }
-    } catch (e) {
-      if (e instanceof AxiosError && e.response?.status === 400) {
-        return e.response.data.code
-          ? { code: e.response.data.code }
-          : { code: 'ok', status: 'notActive' }
-      }
       return { code: 'error' }
     }
   }

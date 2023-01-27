@@ -256,6 +256,14 @@
   background: var(--mauve);
 }
 
+@media screen and ( max-width: 1100px ) {
+  .wrapperHardCore {
+    > iframe {
+      bottom: -120px;
+    }
+  }
+}
+
 @media screen and ( max-width: 768px ) {
   .wrapperHardCore {
     > div {
@@ -272,13 +280,15 @@
   }
 }
 
-@media screen and ( max-width: 400px ) {
+@media screen and ( max-width: 550px ) {
   .wrapperHardCore {
     > iframe {
       display: none;
     }
   }
+}
 
+@media screen and ( max-width: 400px ) {
   .wrapperSetting {
     > span {
       display: flex;

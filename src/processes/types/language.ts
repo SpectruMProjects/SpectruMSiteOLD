@@ -67,6 +67,9 @@ export type textType = {
         info1: string
         info2: string
         info3: string
+        info4: string
+        notdied: string
+        notbeen: string
       }
       block2: {
         head: string
@@ -310,6 +313,10 @@ export type textType = {
     }
     errorChangePassword: {
       change: string
+    }
+    errorHardcoreStat: {
+      error: string
+      notFound: string
     }
   }
   accept: {

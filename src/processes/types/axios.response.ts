@@ -1,6 +1,21 @@
 import { IUser } from 'processes/interface'
 import { MinecraftDeathReason } from './minecraftDeathReason.types'
 
+export type hardcoreDeath = {
+  at: number
+  reason?: {
+    reason: MinecraftDeathReason
+    from?: string
+  }
+}
+
+export type hardcoreStat = {
+  deaths: hardcoreDeath[]
+  loginTime: number
+  deathTime: number
+  respawnTime: number
+}
+
 export type ActivateRegCodeResponse =
   | {
       code: 'ok'
@@ -134,13 +149,7 @@ export type GetHardcoreStatResponse =
     }
   | {
       code: 'ok'
-      deaths: {
-        at: number
-        reason?: {
-          reason: MinecraftDeathReason
-          from?: string
-        }
-      }[]
+      deaths: hardcoreDeath[]
       loginTime: number
       deathTime: number
       respawnTime: number
