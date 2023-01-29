@@ -17,7 +17,7 @@ import {
   UserRolesResponse,
 } from '../types'
 
-const url = process.env.REACT_APP_SERVER_URL ?? 'http://spectrumine.com'
+const url = process.env.REACT_APP_SERVER_URL ?? 'https://spectrumine.com'
 
 function composeUrl(uri: string): string {
   return url + (uri.startsWith('/') ? uri : '/' + uri)
