@@ -1,159 +1,161 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { v4 as uuidv4 } from 'uuid'
+import {createAsyncThunk} from '@reduxjs/toolkit'
+import {v4 as uuidv4} from 'uuid'
 
-import { IUser } from 'processes/interface'
-import { hardcoreStat, LoginDto } from 'processes/types'
+import {IUser} from 'processes/interface'
+import {hardcoreStat, LoginDto} from 'processes/types'
 import apiClient from 'processes/service/axios'
 
-import { actionAddError } from '../slice'
-import { RootState } from '../index'
+import {actionAddError} from '../slice'
+import {RootState} from '../index'
 
 const axios = new apiClient()
 
 export const fetchConfirmationAccount = createAsyncThunk(
-  '@@user/confirmationAccount',
-  async (code: string, { dispatch, getState }): Promise<IUser | void> => {
-    const id = uuidv4()
+    '@@user/confirmationAccount',
+    async (code: string, {dispatch, getState}): Promise<IUser | void> => {
+        const id = uuidv4()
 
-    const res = await axios.activateRegCode(code)
+        const res = await axios.activateRegCode(code)
 
-    const {
-      language: {
-        languageText: { error },
-      },
-    } = getState() as RootState
+        const {
+            language: {
+                languageText: {error},
+            },
+        } = getState() as RootState
 
-    if (res.code !== 'ok') {
-      dispatch(actionAddError({ id, text: error.notifyConfirmationError[res.code], time: 5000 }))
-    }
+        if (res.code !== 'ok') {
+            dispatch(actionAddError({id, text: error.notifyConfirmationError[res.code], time: 5000}))
+        }
 
-    if (res.code === 'ok') return res.user
-  },
+        if (res.code === 'ok') {
+            return res.user
+        }
+    },
 )
 
 export const fetchLoginAccount = createAsyncThunk(
-  '@@user/loginAccount',
-  async ({ login, password }: LoginDto, { dispatch, getState }): Promise<IUser | void> => {
-    const id = uuidv4()
+    '@@user/loginAccount',
+    async ({login, password}: LoginDto, {dispatch, getState}): Promise<IUser | void> => {
+        const id = uuidv4()
 
-    const res = await axios.login({ login, password })
+        const res = await axios.login({login, password})
 
-    const {
-      language: {
-        languageText: { error },
-      },
-    } = getState() as RootState
+        const {
+            language: {
+                languageText: {error},
+            },
+        } = getState() as RootState
 
-    if (res.code !== 'ok') {
-      dispatch(actionAddError({ id, text: error.notifyLoginError[res.code], time: 5000 }))
-    }
+        if (res.code !== 'ok') {
+            dispatch(actionAddError({id, text: error.notifyLoginError[res.code], time: 5000}))
+        }
 
-    if (res.code === 'ok') {
-      return res.user
-    }
-  },
+        if (res.code === 'ok') {
+            return res.user
+        }
+    },
 )
 
 export const fetchGetUser = createAsyncThunk(
-  '@@user/getUser',
-  async (_, { dispatch, getState }): Promise<IUser | void> => {
-    const id = uuidv4()
+    '@@user/getUser',
+    async (_, {dispatch, getState}): Promise<IUser | void> => {
+        const id = uuidv4()
 
-    const res = await axios.auth()
+        const res = await axios.auth()
 
-    const {
-      language: {
-        languageText: { error },
-      },
-    } = getState() as RootState
+        const {
+            language: {
+                languageText: {error},
+            },
+        } = getState() as RootState
 
-    if (res.code !== 'ok') {
-      dispatch(actionAddError({ id, text: error.getUserError[res.code], time: 5000 }))
-    }
+        if (res.code !== 'ok') {
+            dispatch(actionAddError({id, text: error.getUserError[res.code], time: 5000}))
+        }
 
-    if (res.code === 'ok') return res.user
-  },
+        if (res.code === 'ok') return res.user
+    },
 )
 
 export const fetchConfirmationPassAccount = createAsyncThunk(
-  '@@user/confirmationAccount',
-  async (code: string, { dispatch, getState }): Promise<IUser | void> => {
-    const id = uuidv4()
+    '@@user/confirmationAccount',
+    async (code: string, {dispatch, getState}): Promise<IUser | void> => {
+        const id = uuidv4()
 
-    const res = await axios.activateChangePassCode(code)
+        const res = await axios.activateChangePassCode(code)
 
-    const {
-      language: {
-        languageText: { error },
-      },
-    } = getState() as RootState
+        const {
+            language: {
+                languageText: {error},
+            },
+        } = getState() as RootState
 
-    if (res.code !== 'ok') {
-      dispatch(
-        actionAddError({ id, text: error.notifyConfirmationPassError[res.code], time: 5000 }),
-      )
-    }
+        if (res.code !== 'ok') {
+            dispatch(
+                actionAddError({id, text: error.notifyConfirmationPassError[res.code], time: 5000}),
+            )
+        }
 
-    if (res.code === 'ok') return res.user
-  },
+        if (res.code === 'ok') return res.user
+    },
 )
 
 export const fetchConfirmationRoles = createAsyncThunk(
-  '@@user/confirmationRoles',
-  async (_, { dispatch, getState }): Promise<string[] | void> => {
-    const id = uuidv4()
+    '@@user/confirmationRoles',
+    async (_, {dispatch, getState}): Promise<string[] | void> => {
+        const id = uuidv4()
 
-    const res = await axios.roles()
+        const res = await axios.roles()
 
-    const {
-      language: {
-        languageText: { error },
-      },
-    } = getState() as RootState
+        const {
+            language: {
+                languageText: {error},
+            },
+        } = getState() as RootState
 
-    if (res.code !== 'ok') {
-      dispatch(
-        actionAddError({
-          id,
-          text: error.notifyConfirmationRolesError[res.code],
-          time: 5000,
-        }),
-      )
-    }
+        if (res.code !== 'ok') {
+            dispatch(
+                actionAddError({
+                    id,
+                    text: error.notifyConfirmationRolesError[res.code],
+                    time: 5000,
+                }),
+            )
+        }
 
-    if (res.code === 'ok') return res.roles
-  },
+        if (res.code === 'ok') return res.roles
+    },
 )
 
 export const fetchHardcoreStatistic = createAsyncThunk(
-  '@@user/hardcore',
-  async (nickname: string, { dispatch, getState }): Promise<hardcoreStat | void> => {
-    const id = uuidv4()
+    '@@user/hardcore',
+    async (nickname: string, {dispatch, getState}): Promise<hardcoreStat | void> => {
+        const id = uuidv4()
 
-    const res = await axios.getHardcoreStat(nickname)
+        const res = await axios.getHardcoreStat(nickname)
 
-    const {
-      language: {
-        languageText: { error },
-      },
-    } = getState() as RootState
+        const {
+            language: {
+                languageText: {error},
+            },
+        } = getState() as RootState
 
-    if (res.code !== 'ok') {
-      dispatch(
-        actionAddError({
-          id,
-          text: error.errorHardcoreStat[res.code],
-          time: 5000,
-        }),
-      )
-    }
+        if (res.code !== 'ok') {
+            dispatch(
+                actionAddError({
+                    id,
+                    text: error.errorHardcoreStat[res.code],
+                    time: 5000,
+                }),
+            )
+        }
 
-    if (res.code === 'ok')
-      return {
-        deaths: res.deaths,
-        loginTime: res.loginTime,
-        deathTime: res.deathTime,
-        respawnTime: res.respawnTime,
-      }
-  },
+        if (res.code === 'ok')
+            return {
+                deaths: res.deaths,
+                loginTime: res.loginTime,
+                deathTime: res.deathTime,
+                respawnTime: res.respawnTime,
+            }
+    },
 )
