@@ -18,7 +18,7 @@ export const EN: textType = {
       block1: {
         head: 'About the project',
         first:
-          'Our Minecraft servers are unique and inimitable. They are stable and do not contain P2B (paid benefits).',
+          'Our Minecraft servers are unique and inimitable. They are stable and do not contain P2W (paid benefits).',
         second:
           'On our servers you will be able to experience new game modes, unique mini-games and events that you will not find anywhere else.',
         third:
